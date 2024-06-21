@@ -4,7 +4,9 @@ date: today
 author: Trang Le
 format: 
   html:
-    theme: sandstone
+    theme: 
+      light: sandstone
+      dark: slate
     toc: true
     toc_float: true
     resources:
@@ -16,161 +18,337 @@ format:
 Welcome to the webinar on **openalexR**!
 Today, we will explore how to use the **openalexR** package to fetch data from OpenAlex, a free, comprehensive database for scholarly papers, authors, institutions, and more.
 
-## Agenda
-
-1.  Introduction to **openalexR**
-2.  Installation and setup
-3.  Basic usage
-4.  Advanced usage
-5.  Data visualization
-6.  Q&A and interactive challenges
-
-## 1. Introduction
+## 🌻 Introduction
 
 **openalexR** is an R package that provides an interface to OpenAlex, a free and open dataset of the entire research landscape.
 With **openalexR**, you can easily access and analyze scholarly data directly from R.
 
-## 2. Installation and Setup
+## 🌱 Installation and setup
 
-First, let's install and load the **openalexR** package.
-If you haven't already installed it, you can do so from CRAN:
+If you haven't already installed the **openalexR** package, you can do so from CRAN:
 
 ```{r install, eval=FALSE}
 install.packages("openalexR")
 ```
 
-Load the package:
+::: callout-important
+## The polite pool
 
-```{r load}
+Before we go any further, we highly recommend you set the `openalexR.mailto` option so that your requests go to [the polite pool](https://docs.openalex.org/how-to-use-the-api/rate-limits-and-authentication#the-polite-pool) for faster response times.
+If you have OpenAlex Premium, you can add your API key to the `openalexR.apikey` option as well.
+To do so, you can open `.Renviron` with `file.edit("~/.Renviron")` and add:
+
+```         
+openalexR.mailto = example@email.com
+openalexR.apikey = EXAMPLE_APIKEY
+```
+:::
+
+We will now load in **openalexR** and two additional packages **dplyr**, and **ggplot2** to use for the rest of this webinar.
+
+```{r load, message=FALSE}
 library(openalexR)
+library(dplyr)
+library(ggplot2)
 ```
 
-## 3. Basic Usage
+```{r set-theme, include=FALSE}
+theme_set(theme_classic())
+theme_update(
+  plot.background = element_rect(fill = "transparent", colour = NA),
+  panel.background = element_rect(fill = "transparent", colour = NA)
+)
 
-### Fetching Information on a Specific Work
+knitr::opts_chunk$set(dev.args = list(bg = "transparent"))
+```
+
+::: {.callout-note collapse="true"}
+## R base pipe
+
+Throughout the webinar, you will see this symbol, `|>`.
+Simply put, `x |> f()` is equivalent to `f(x)`.
+Using this [R base pipe](https://developer.r-project.org/Blog/public/2021/02/21/a-native-pipe-in-r-2021-02-21/) allows me to chain functions together in a more readable way.
+:::
+
+## 🌿 Basic usage
+
+The main function of **openalexR** is `oa_fetch`.
+
+```{r}
+#| eval: false
+?oa_fetch
+```
+
+### Fetching information from identifiers
 
 Let's start by fetching data on a specific scholarly work using its OpenAlex ID:
 
 ```{r fetch-work}
-work_id <- "W2741809807"
-work <- oa_fetch(entity = "works", id = work_id)
-print(work)
+work <- oa_fetch(entity = "works", id = "W2741809807", verbose = TRUE)
+work
 ```
 
-### Searching for Works
+::: {.callout-note collapse="true"}
+When you know the OpenAlex ID of the work, you do not need to specify `entity = "works"` because entity can be inferred from the first character of `id`.
+However, I specify it here for clarity.
+In other use cases (search, filter), you will almost always want to specify `entity`.
+:::
+
+Now, we can view the output tibble/dataframe, `work`, interactively in RStudio or inspect it with base functions like `str` or `head`.
+
+```{r}
+str(work, max.level = 2)
+```
+
+**openalexR** also provides the `show_works` function to simplify the result (e.g., remove some columns, keep first/last author) for easy viewing.
+Let us define `print_oa` to wrap the output table in `knitr::kable()` to be displayed nicely on the webpage, but you will most likely not need this function.
+
+```{r}
+print_oa <- function(x, fun = show_works) {
+  x |>
+    select(-any_of("url")) |>
+    fun() |>
+    knitr::kable()
+}
+print_oa(work)
+```
+
+### Filter and search
+
+There are different [filters](https://ropensci.github.io/openalexR/articles/Filters)/arguments you can use in `oa_fetch`, depending on which [entity](https://docs.openalex.org/#data) you're interested in: works, authors, sources, funders, institutions, or concepts.
+We show a few examples below.
+
+#### 1. Use `doi` as a [works filter](https://ropensci.github.io/openalexR/articles/Filters.html#works)
+
+**Goal**: Fetch information on two works with DOIs `10.1016/j.joi.2017.08.007` and `https://doi.org/10.1007/s11192-013-1221-3`.
+[^1]
+
+[^1]: Either canonical form with [https://doi.org/](https://orcid.org/){.uri} or without will work.
+
+```{r}
+works_from_dois <- oa_fetch(
+  entity = "works",
+  doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1007/s11192-013-1221-3"),
+  verbose = TRUE
+)
+print_oa(works_from_dois)
+```
+
+#### 2. Use `author.orcid` as a filter
+
+**Goal**: Fetch all works by authors with ORCID IDs `0000-0001-6187-6610` and `0000-0002-8517-9411`.
+[^2]
+
+[^2]: Either canonical form with <https://orcid.org/> or without will work.
+
+```{r}
+works_from_orcids <- oa_fetch(
+  entity = "works",
+  author.orcid = c("0000-0001-6187-6610", "0000-0002-8517-9411")
+)
+
+print_oa(works_from_orcids)
+```
+
+#### 3. Many filters at once
+
+**Goal**: Download all works that have been cited more than 50 times, published between 2020 and 2021, and include the strings "bibliometric analysis" or "science mapping" in the title.
+Maybe we also want the results to be sorted by total citations in a descending order.
+
+```{r}
+works_biblio <- oa_fetch(
+  entity = "works",
+  title.search = c("bibliometric analysis", "science mapping"),
+  cited_by_count = ">50",
+  from_publication_date = "2020-07-01",
+  to_publication_date = "2021-07-01",
+  options = list(sort = "cited_by_count:desc")
+)
+
+print_oa(works_biblio)
+```
+
+#### 4. What if we use a wrong filter?
+
+**Goal**: Sample 10 works published in 2024.
+
+Say we mistakenly use `year` instead of `publication_year` as a filter.
+
+```{r}
+#| error: true
+oa_fetch(
+  entity = "works",
+  year = 2024,
+  options = list(sample = 10),
+  verbose = TRUE
+)
+```
+
+The API returns a helpful error message: `year` is a wrong filter, and shows you all possible, correct filters.
+In our case, `publication_year` is the filter we want.
+
+```{r}
+oa_fetch(
+  entity = "works",
+  publication_year = 2024,
+  # TODO figure out why this doesn't work with some seeds
+  options = list(sample = 10, seed = 1),
+  verbose = TRUE
+) |>
+  print_oa()
+```
+
+#### 5. Search
 
 You can also search for works related to a specific topic.
-Here's an example fetching the first few works related to "climate change":
+Here's an example fetching the first few works of which abstracts include the phrase "urban heat island":
 
 ```{r search-works}
-query <- "climate change"
-works <- oa_fetch(entity = "works", search = query, options = list(sample = 10))
-print(works)
+oa_fetch(
+  entity = "works",
+  abstract.search = "urban heat island",
+  options = list(sample = 10, seed = 1)
+) |>
+  print_oa()
 ```
 
-## 4. Advanced Usage
+::: {.callout-tip collapse="true"}
+You can read more about search [here](https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/search-entities).
+<!-- You will learn how relevance score is calculated, how words are stemmed to improve search results, and how to do complex boolean searches. --> Specifically, stop words like "the" and "an" are removed, and, by default, [stemming](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-kstem-tokenfilter.html) is used to improve results ("possums" will also return records with the word "possum").
+To disable stemming and the removal of stop words for searches on titles and abstracts, you can add `.no_stem` to the search filter, *e.g.* `abstract.search.no_stem`.
+:::
 
-### Fetching Author Information
+#### 6. Other entities
 
-To fetch information about a specific author, use their OpenAlex ID:
+Similar to works, you can fetch information on authors, sources, funders, institutions, and concepts.
+Here are some examples of fetching authors:
 
-```{r fetch-author}
-author <- oa_fetch(entity = "authors", display_name.search = "Eugen Lounkine", verbose = T)
-author_id <- author$id[[1]]
-print(author)
-knitr::knit_exit()
+**Goal**: Acquire information on a couple of authors with more than 10 works.
+Here, we can use filters such as `display_name` and `works_count`:
+
+```{r}
+oa_fetch(
+  entity = "authors",
+  display_name.search = c("Massimo Aria", "Eugen Lounkine"),
+  works_count = ">10"
+) |>
+  print_oa(show_authors)
 ```
 
-### Exploring Institutions
+## 🪴 Example analyses
 
-To explore data on institutions, you can fetch details using their OpenAlex ID:
+**Goal**: Download all authors' records of scholars who work at the [University of Naples Federico II](https://explore.openalex.org/institutions/I71267560) (OpenAlex ID: I71267560) and have published at least 500 publications.
 
-```{r fetch-institution}
-institution_id <- "I123456789"
-institution <- oa_fetch(entity = "institutions", id = institution_id)
-print(institution)
+Let's first check how many records match the query, then download the entire collection.
+We can do this by adding `count_only` (default `FALSE`) to the list of argument:
+
+```{r}
+oa_fetch(
+  entity = "authors",
+  last_known_institutions.id = "I71267560",
+  works_count = ">499",
+  count_only = TRUE
+)
+
+oa_fetch(
+  entity = "authors",
+  last_known_institutions.id = "I71267560",
+  works_count = ">499"
+) |>
+  print_oa(show_authors) 
 ```
 
-### Fetching Works by an Author
+TODO
 
-You can fetch all works by a specific author:
+## 🌵 Advanced usage
 
-```{r author-works}
-author_works <- oa_fetch(entity = "works", filter = list(author.id = author_id))
-print(author_works)
-```
+### Other parameters of `oa_fetch`
+
+So far, we have seen the argument `options`, which is a list of additional parameters that can be passed to the API.
+`output = "list"` TODO
+
+### Building your own query
+
+TODO
+
+### oa_generate
+
+TODO
 
 ### Analyzing Citations
 
 Analyze the citations of a work:
 
 ```{r analyze-citations}
-citations <- oa_fetch(entity = "works", filter = list(cited_by.work.id = work_id))
-print(citations)
+# citations <- oa_fetch(entity = "works", filter = list(cited_by.work.id = work_id))
+# print(citations)
 ```
 
-## 5. Data Visualization
+TODO
 
-Visualizing the data can provide insights.
-Let's create a simple plot of publication counts by year:
+## 🛤️ Coding challenges
 
-```{r visualize-data, warning=FALSE, message=FALSE}
-library(ggplot2)
+### Challenge 1: Advanced filters
 
-# Fetch works related to the topic
-works_data <- oa_fetch(entity = "works", search = query, per_page = 100)
-works_by_year <- table(works_data$publication_year)
-df <- as.data.frame(works_by_year)
-colnames(df) <- c("Year", "Count")
+According to the OpenAlex [API documentation](https://docs.openalex.org/api-entities), what is the filter we should use to:
 
-# Plot the data
-ggplot(df, aes(x = as.numeric(Year), y = Count)) +
-  geom_line() +
-  labs(title = paste("Number of Publications on", query, "by Year"),
-       x = "Year",
-       y = "Number of Publications")
-```
+-   Get `funders` with a description containing "engineering"?
+-   Get `topics` with more than 1000 works?
+-   Get `institutions` that are located in Asia?
 
-## Coding Challenges
+### Challenge 2: Humpback whale
 
-### Challenge 1: Top Authors in a Field
+Identify works on a specific topic (e.g., "humpback whale") that have been cited more than 100 times.
+When were these works published?
+Where are the authors based?
+Create a bar plot showing the number of citations for each author.
 
-Identify the top 10 authors in a specific research field (e.g., "machine learning") based on the number of publications and create a bar plot showing the number of publications for each author.
+::: panel-tabset
+## Your solution
 
 ```{r challenge-top-authors}
-# Define the research field
-field <- "machine learning"
+#| eval: false
 
-# Fetch works related to the field
-works <- oa_fetch(entity = "works", search = field, per_page = 100)
+work <- oa_fetch(
+  entity = "works",
+  ______
+)
 
-# Extract author information and count publications
-author_counts <- table(unlist(works$author_display_name))
-top_authors <- sort(author_counts, decreasing = TRUE)[1:10]
-top_authors_df <- as.data.frame(top_authors)
+# print(humpback$title[1:10])
+# hb_authors <- humpback$author |> 
+#   bind_rows() 
 
-# Plot the top authors
-ggplot(top_authors_df, aes(x = reorder(Var1, Freq), y = Freq)) +
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  labs(title = paste("Top 10 Authors in", field), x = "Author", y = "Number of Publications")
 ```
 
-## Q&A Session
+## My solution
 
-Open the floor for questions and provide live solutions to participants' queries.
-Encourage them to use the chat or Q&A feature in Zoom to ask their questions.
+```{r answer-top-authors}
+humpback <- oa_fetch(
+  entity = "works",
+  title.search = "humpback whale",
+  cited_by_count = ">100",
+  options = list(sort = "cited_by_count:desc")
+)
+print(humpback$title[1:10])
+hb_authors <- humpback$author |> 
+  bind_rows() 
+```
+:::
 
-# Conclusion
+## 🌸 Q&A
+
+TODO
+
+# 🍁 Conclusion
 
 Thank you for participating in the **openalexR** webinar!
-We hope you found it informative and engaging.
-For more information, visit the [openalexR GitHub page](https://github.com/yourusername/openalexR) or reach out with any questions.
+We hope you found the session informative and engaging.
+For more information, visit the [openalexR GitHub page](https://github.com/ropensci/openalexR) reach out to me on the [OpenAlex Community](https://groups.google.com/g/openalex-community) Google Group with any questions.
 
 ------------------------------------------------------------------------
 
-Feel free to adjust the content and examples based on your specific audience and goals for the webinar.
-Good luck with your webinar!
+## 🌳 Links
 
-This Quarto Markdown file (`.qmd`) provides a structured and interactive webinar script, including installation instructions, basic and advanced usage examples, data visualization, and interactive challenges to keep the audience engaged.
-You can adapt the content to better suit your specific needs and audience preferences.
+-   <https://openalex.org>
+-   <https://docs.openalex.org>
+-   <https://docs.ropensci.org/openalexR>
