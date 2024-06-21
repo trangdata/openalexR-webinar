@@ -4,6 +4,7 @@ date: today
 author: Trang Le
 format: 
   html:
+    theme: sandstone
     toc: true
     toc_float: true
     resources:
