@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Trang Le">
-<meta name="dcterms.date" content="2024-06-20">
+<meta name="dcterms.date" content="2024-06-21">
 
 <title>Introduction to openalexR: a webinar</title>
 <style>
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 20, 2024</p>
+      <p class="date">June 21, 2024</p>
     </div>
   </div>
   
@@ -154,6 +154,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Load the package:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openalexR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Thank you for using openalexR!
+To acknowledge our work, please cite the package by calling `citation("openalexR")`.
+To suppress this message, add `openalexR.message = suppressed` to your .Renviron file.</code></pre>
+</div>
 </div>
 </section>
 <section id="basic-usage" class="level2">
@@ -162,9 +167,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="fetching-information-on-a-specific-work">Fetching Information on a Specific Work</h3>
 <p>Let’s start by fetching data on a specific scholarly work using its OpenAlex ID:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>work_id <span class="ot">&lt;-</span> <span class="st">"W2741809807"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">id =</span> work_id)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>work_id <span class="ot">&lt;-</span> <span class="st">"W2741809807"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">id =</span> work_id)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 38
   id                title display_name author ab    publication_date so    so_id
@@ -184,28 +189,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="searching-for-works">Searching for Works</h3>
 <p>You can also search for works related to a specific topic. Here’s an example fetching the first few works related to “climate change”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="st">"climate change"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>works <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">search =</span> query, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(works)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="st">"climate change"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>works <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">search =</span> query, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(works)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 39
    id     title display_name author ab    publication_date relevance_score so   
    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;        &lt;list&gt; &lt;chr&gt; &lt;chr&gt;                      &lt;dbl&gt; &lt;chr&gt;
- 1 https… Mult… Multiphysic… &lt;df&gt;   "The… 2016-09-01                  1.00 "Sci…
- 2 https… Stra… Strategic R… &lt;df&gt;   "The… 2014-01-02                  1.00 "\u0…
- 3 https… The … The potenti… &lt;df&gt;   "Thi… 2019-01-01                  1.00 "Els…
- 4 https… Impl… Implementat… &lt;df&gt;   "The… 2023-01-30                  1.00 "Int…
- 5 https… INTE… INTERNATION… &lt;df&gt;   "The… 2016-01-01                  1.00 "Ìnf…
- 6 https… Etha… Ethanol spr… &lt;df&gt;   "Aim… 2019-10-21                  1.00 "OEN…
- 7 https… Addr… Addressing … &lt;df&gt;   "Wil… 2017-02-18                  1.00 "Sus…
- 8 https… Roll… Rolling–sli… &lt;df&gt;   "To … 2024-06-01                  1.00 "Wea…
- 9 https… Pres… Preserving … &lt;df&gt;   "We … 2023-01-31                  1.00 "Sci…
-10 https… INDI… INDICES DE … &lt;df&gt;   "The… 2022-12-15                  1.00 "Mer…
+ 1 https… Loca… Local distr… &lt;df&gt;   Abst… 2017-04-01                  1.00 Popu…
+ 2 https… Pati… Patient Saf… &lt;df&gt;   An a… 2010-07-01                  1.00 Join…
+ 3 https… Mosq… Mosque Invo… &lt;df&gt;   Abst… 2018-05-06                  1.00 Poli…
+ 4 https… Ethn… Ethnic dive… &lt;df&gt;   The … 2005-12-23                  1.00 Rese…
+ 5 https… Conv… Convectivel… &lt;df&gt;   Abst… 2009-04-15                  1.00 Jour…
+ 6 https… Emis… Emissions C… &lt;df&gt;   Taki… 2013-01-01                  1.00 Envi…
+ 7 https… Iden… Identificat… &lt;df&gt;   Abst… 2023-09-01                  1.00 Acta…
+ 8 https… Acad… Academics’ … &lt;df&gt;   &lt;NA&gt;  2006-09-29                  1.00 High…
+ 9 https… Is C… Is Classroo… &lt;df&gt;   Lear… 2020-11-28                  1.00 Sust…
+10 https… Crea… Creating a … &lt;df&gt;   The … 2023-08-03                  1.00 Fron…
 # ℹ 31 more variables: so_id &lt;chr&gt;, host_organization &lt;chr&gt;, issn_l &lt;chr&gt;,
 #   url &lt;chr&gt;, pdf_url &lt;chr&gt;, license &lt;chr&gt;, version &lt;chr&gt;, first_page &lt;chr&gt;,
 #   last_page &lt;chr&gt;, volume &lt;chr&gt;, issue &lt;chr&gt;, is_oa &lt;lgl&gt;,
 #   is_oa_anywhere &lt;lgl&gt;, oa_status &lt;chr&gt;, oa_url &lt;chr&gt;,
-#   any_repository_has_fulltext &lt;lgl&gt;, language &lt;chr&gt;, grants &lt;lgl&gt;,
+#   any_repository_has_fulltext &lt;lgl&gt;, language &lt;chr&gt;, grants &lt;list&gt;,
 #   cited_by_count &lt;int&gt;, counts_by_year &lt;list&gt;, publication_year &lt;int&gt;,
 #   cited_by_api_url &lt;chr&gt;, ids &lt;list&gt;, doi &lt;chr&gt;, type &lt;chr&gt;, …</code></pre>
 </div>
@@ -218,20 +223,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="fetching-author-information">Fetching Author Information</h3>
 <p>To fetch information about a specific author, use their OpenAlex ID:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"authors"</span>, <span class="at">display_name.search =</span> <span class="st">"Eugen Lounkine"</span>, <span class="at">verbose =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"authors"</span>, <span class="at">display_name.search =</span> <span class="st">"Eugen Lounkine"</span>, <span class="at">verbose =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/authors?filter=display_name.search%3AEugen%20Lounkine</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting 1 page of results with a total of 1 records...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>author_id <span class="ot">&lt;-</span> author<span class="sc">$</span>id[[<span class="dv">1</span>]]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(author)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>author_id <span class="ot">&lt;-</span> author<span class="sc">$</span>id[[<span class="dv">1</span>]]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(author)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 18
   id             display_name display_name_alterna…¹ relevance_score ids   orcid
   &lt;chr&gt;          &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;lgl&gt;
-1 https://opena… Eugen Lounk… &lt;chr [2]&gt;                        5291. &lt;chr&gt; NA   
+1 https://opena… Eugen Lounk… &lt;chr [2]&gt;                        5292. &lt;chr&gt; NA   
 # ℹ abbreviated name: ¹​display_name_alternatives
 # ℹ 12 more variables: works_count &lt;int&gt;, cited_by_count &lt;int&gt;,
 #   counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;,
@@ -240,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #   affiliation_lineage &lt;chr&gt;, affiliations_other &lt;list&gt;, x_concepts &lt;list&gt;,
 #   works_api_url &lt;chr&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_exit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_exit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -282,7 +287,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -314,29 +330,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -344,7 +338,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
