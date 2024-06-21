@@ -1,0 +1,5 @@
+project:
+  title: "openalexR-webinar"
+  resources:
+    - data/*
+editor: visual

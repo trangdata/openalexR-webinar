@@ -1,0 +1,175 @@
+---
+title: "Introduction to openalexR: a webinar"
+date: today
+author: Trang Le
+format: 
+  html:
+    toc: true
+    toc_float: true
+    resources:
+      - data/* 
+# filters:
+#   - webr
+---
+
+Welcome to the webinar on **openalexR**!
+Today, we will explore how to use the **openalexR** package to fetch data from OpenAlex, a free, comprehensive database for scholarly papers, authors, institutions, and more.
+
+## Agenda
+
+1.  Introduction to **openalexR**
+2.  Installation and setup
+3.  Basic usage
+4.  Advanced usage
+5.  Data visualization
+6.  Q&A and interactive challenges
+
+## 1. Introduction
+
+**openalexR** is an R package that provides an interface to OpenAlex, a free and open dataset of the entire research landscape.
+With **openalexR**, you can easily access and analyze scholarly data directly from R.
+
+## 2. Installation and Setup
+
+First, let's install and load the **openalexR** package.
+If you haven't already installed it, you can do so from CRAN:
+
+```{r install, eval=FALSE}
+install.packages("openalexR")
+```
+
+Load the package:
+
+```{r load}
+library(openalexR)
+```
+
+## 3. Basic Usage
+
+### Fetching Information on a Specific Work
+
+Let's start by fetching data on a specific scholarly work using its OpenAlex ID:
+
+```{r fetch-work}
+work_id <- "W2741809807"
+work <- oa_fetch(entity = "works", id = work_id)
+print(work)
+```
+
+### Searching for Works
+
+You can also search for works related to a specific topic.
+Here's an example fetching the first few works related to "climate change":
+
+```{r search-works}
+query <- "climate change"
+works <- oa_fetch(entity = "works", search = query, options = list(sample = 10))
+print(works)
+```
+
+## 4. Advanced Usage
+
+### Fetching Author Information
+
+To fetch information about a specific author, use their OpenAlex ID:
+
+```{r fetch-author}
+author <- oa_fetch(entity = "authors", display_name.search = "Eugen Lounkine", verbose = T)
+author_id <- author$id[[1]]
+print(author)
+knitr::knit_exit()
+```
+
+### Exploring Institutions
+
+To explore data on institutions, you can fetch details using their OpenAlex ID:
+
+```{r fetch-institution}
+institution_id <- "I123456789"
+institution <- oa_fetch(entity = "institutions", id = institution_id)
+print(institution)
+```
+
+### Fetching Works by an Author
+
+You can fetch all works by a specific author:
+
+```{r author-works}
+author_works <- oa_fetch(entity = "works", filter = list(author.id = author_id))
+print(author_works)
+```
+
+### Analyzing Citations
+
+Analyze the citations of a work:
+
+```{r analyze-citations}
+citations <- oa_fetch(entity = "works", filter = list(cited_by.work.id = work_id))
+print(citations)
+```
+
+## 5. Data Visualization
+
+Visualizing the data can provide insights.
+Let's create a simple plot of publication counts by year:
+
+```{r visualize-data, warning=FALSE, message=FALSE}
+library(ggplot2)
+
+# Fetch works related to the topic
+works_data <- oa_fetch(entity = "works", search = query, per_page = 100)
+works_by_year <- table(works_data$publication_year)
+df <- as.data.frame(works_by_year)
+colnames(df) <- c("Year", "Count")
+
+# Plot the data
+ggplot(df, aes(x = as.numeric(Year), y = Count)) +
+  geom_line() +
+  labs(title = paste("Number of Publications on", query, "by Year"),
+       x = "Year",
+       y = "Number of Publications")
+```
+
+## Coding Challenges
+
+### Challenge 1: Top Authors in a Field
+
+Identify the top 10 authors in a specific research field (e.g., "machine learning") based on the number of publications and create a bar plot showing the number of publications for each author.
+
+```{r challenge-top-authors}
+# Define the research field
+field <- "machine learning"
+
+# Fetch works related to the field
+works <- oa_fetch(entity = "works", search = field, per_page = 100)
+
+# Extract author information and count publications
+author_counts <- table(unlist(works$author_display_name))
+top_authors <- sort(author_counts, decreasing = TRUE)[1:10]
+top_authors_df <- as.data.frame(top_authors)
+
+# Plot the top authors
+ggplot(top_authors_df, aes(x = reorder(Var1, Freq), y = Freq)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  labs(title = paste("Top 10 Authors in", field), x = "Author", y = "Number of Publications")
+```
+
+## Q&A Session
+
+Open the floor for questions and provide live solutions to participants' queries.
+Encourage them to use the chat or Q&A feature in Zoom to ask their questions.
+
+# Conclusion
+
+Thank you for participating in the **openalexR** webinar!
+We hope you found it informative and engaging.
+For more information, visit the [openalexR GitHub page](https://github.com/yourusername/openalexR) or reach out with any questions.
+
+------------------------------------------------------------------------
+
+Feel free to adjust the content and examples based on your specific audience and goals for the webinar.
+Good luck with your webinar!
+
+This Quarto Markdown file (`.qmd`) provides a structured and interactive webinar script, including installation instructions, basic and advanced usage examples, data visualization, and interactive challenges to keep the audience engaged.
+You can adapt the content to better suit your specific needs and audience preferences.
