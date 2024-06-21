@@ -65,10 +65,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="openalexR-webinar_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="openalexR-webinar_files/libs/quarto-html/anchor.min.js"></script>
 <link href="openalexR-webinar_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="openalexR-webinar_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="openalexR-webinar_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="openalexR-webinar_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="openalexR-webinar_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="openalexR-webinar_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="openalexR-webinar_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="openalexR-webinar_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="openalexR-webinar_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 
 
 </head>
@@ -81,17 +83,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#agenda" id="toc-agenda" class="nav-link active" data-scroll-target="#agenda">Agenda</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">1. Introduction</a></li>
-  <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup">2. Installation and Setup</a></li>
-  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">3. Basic Usage</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">🌻 Introduction</a></li>
+  <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup">🌱 Installation and setup</a></li>
+  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">🌿 Basic usage</a>
   <ul class="collapse">
-  <li><a href="#fetching-information-on-a-specific-work" id="toc-fetching-information-on-a-specific-work" class="nav-link" data-scroll-target="#fetching-information-on-a-specific-work">Fetching Information on a Specific Work</a></li>
-  <li><a href="#searching-for-works" id="toc-searching-for-works" class="nav-link" data-scroll-target="#searching-for-works">Searching for Works</a></li>
+  <li><a href="#fetching-information-from-identifiers" id="toc-fetching-information-from-identifiers" class="nav-link" data-scroll-target="#fetching-information-from-identifiers">Fetching information from identifiers</a></li>
+  <li><a href="#filter-and-search" id="toc-filter-and-search" class="nav-link" data-scroll-target="#filter-and-search">Filter and search</a></li>
   </ul></li>
-  <li><a href="#advanced-usage" id="toc-advanced-usage" class="nav-link" data-scroll-target="#advanced-usage">4. Advanced Usage</a>
+  <li><a href="#example-analyses" id="toc-example-analyses" class="nav-link" data-scroll-target="#example-analyses">🪴 Example analyses</a></li>
+  <li><a href="#advanced-usage" id="toc-advanced-usage" class="nav-link" data-scroll-target="#advanced-usage">🌵 Advanced usage</a>
   <ul class="collapse">
-  <li><a href="#fetching-author-information" id="toc-fetching-author-information" class="nav-link" data-scroll-target="#fetching-author-information">Fetching Author Information</a></li>
+  <li><a href="#other-parameters-of-oa_fetch" id="toc-other-parameters-of-oa_fetch" class="nav-link" data-scroll-target="#other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch</code></a></li>
+  <li><a href="#building-your-own-query" id="toc-building-your-own-query" class="nav-link" data-scroll-target="#building-your-own-query">Building your own query</a></li>
+  <li><a href="#oa_generate" id="toc-oa_generate" class="nav-link" data-scroll-target="#oa_generate">oa_generate</a></li>
+  <li><a href="#analyzing-citations" id="toc-analyzing-citations" class="nav-link" data-scroll-target="#analyzing-citations">Analyzing Citations</a></li>
+  </ul></li>
+  <li><a href="#coding-challenges" id="toc-coding-challenges" class="nav-link" data-scroll-target="#coding-challenges">🛤️ Coding challenges</a>
+  <ul class="collapse">
+  <li><a href="#challenge-1-advanced-filters" id="toc-challenge-1-advanced-filters" class="nav-link" data-scroll-target="#challenge-1-advanced-filters">Challenge 1: Advanced filters</a></li>
+  <li><a href="#challenge-2-humpback-whale" id="toc-challenge-2-humpback-whale" class="nav-link" data-scroll-target="#challenge-2-humpback-whale">Challenge 2: Humpback whale</a></li>
+  </ul></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa">🌸 Q&amp;A</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">🍁 Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">🌳 Links</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -130,46 +145,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Welcome to the webinar on <strong>openalexR</strong>! Today, we will explore how to use the <strong>openalexR</strong> package to fetch data from OpenAlex, a free, comprehensive database for scholarly papers, authors, institutions, and more.</p>
-<section id="agenda" class="level2">
-<h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
-<ol type="1">
-<li>Introduction to <strong>openalexR</strong></li>
-<li>Installation and setup</li>
-<li>Basic usage</li>
-<li>Advanced usage</li>
-<li>Data visualization</li>
-<li>Q&amp;A and interactive challenges</li>
-</ol>
-</section>
 <section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
+<h2 class="anchored" data-anchor-id="introduction">🌻 Introduction</h2>
 <p><strong>openalexR</strong> is an R package that provides an interface to OpenAlex, a free and open dataset of the entire research landscape. With <strong>openalexR</strong>, you can easily access and analyze scholarly data directly from R.</p>
 </section>
 <section id="installation-and-setup" class="level2">
-<h2 class="anchored" data-anchor-id="installation-and-setup">2. Installation and Setup</h2>
-<p>First, let’s install and load the <strong>openalexR</strong> package. If you haven’t already installed it, you can do so from CRAN:</p>
+<h2 class="anchored" data-anchor-id="installation-and-setup">🌱 Installation and setup</h2>
+<p>If you haven’t already installed the <strong>openalexR</strong> package, you can do so from CRAN:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"openalexR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Load the package:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The polite pool
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before we go any further, we highly recommend you set the <code>openalexR.mailto</code> option so that your requests go to <a href="https://docs.openalex.org/how-to-use-the-api/rate-limits-and-authentication#the-polite-pool">the polite pool</a> for faster response times. If you have OpenAlex Premium, you can add your API key to the <code>openalexR.apikey</code> option as well. To do so, you can open <code>.Renviron</code> with <code>file.edit("~/.Renviron")</code> and add:</p>
+<pre><code>openalexR.mailto = example@email.com
+openalexR.apikey = EXAMPLE_APIKEY</code></pre>
+</div>
+</div>
+<p>We will now load in <strong>openalexR</strong> and two additional packages <strong>dplyr</strong>, and <strong>ggplot2</strong> to use for the rest of this webinar.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openalexR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Thank you for using openalexR!
-To acknowledge our work, please cite the package by calling `citation("openalexR")`.
-To suppress this message, add `openalexR.message = suppressed` to your .Renviron file.</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openalexR)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+R base pipe
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Throughout the webinar, you will see this symbol, <code>|&gt;</code>. Simply put, <code>x |&gt; f()</code> is equivalent to <code>f(x)</code>. Using this <a href="https://developer.r-project.org/Blog/public/2021/02/21/a-native-pipe-in-r-2021-02-21/">R base pipe</a> allows me to chain functions together in a more readable way.</p>
+</div>
 </div>
 </div>
 </section>
 <section id="basic-usage" class="level2">
-<h2 class="anchored" data-anchor-id="basic-usage">3. Basic Usage</h2>
-<section id="fetching-information-on-a-specific-work" class="level3">
-<h3 class="anchored" data-anchor-id="fetching-information-on-a-specific-work">Fetching Information on a Specific Work</h3>
+<h2 class="anchored" data-anchor-id="basic-usage">🌿 Basic usage</h2>
+<p>The main function of <strong>openalexR</strong> is <code>oa_fetch</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?oa_fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="fetching-information-from-identifiers" class="level3">
+<h3 class="anchored" data-anchor-id="fetching-information-from-identifiers">Fetching information from identifiers</h3>
 <p>Let’s start by fetching data on a specific scholarly work using its OpenAlex ID:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>work_id <span class="ot">&lt;-</span> <span class="st">"W2741809807"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">id =</span> work_id)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">id =</span> <span class="st">"W2741809807"</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Requesting url: https://api.openalex.org/works/W2741809807</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 38
   id                title display_name author ab    publication_date so    so_id
@@ -184,73 +222,879 @@ To suppress this message, add `openalexR.message = suppressed` to your .Renviron
 #   cited_by_api_url &lt;chr&gt;, ids &lt;list&gt;, doi &lt;chr&gt;, type &lt;chr&gt;, …</code></pre>
 </div>
 </div>
-</section>
-<section id="searching-for-works" class="level3">
-<h3 class="anchored" data-anchor-id="searching-for-works">Searching for Works</h3>
-<p>You can also search for works related to a specific topic. Here’s an example fetching the first few works related to “climate change”:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When you know the OpenAlex ID of the work, you do not need to specify <code>entity = "works"</code> because entity can be inferred from the first character of <code>id</code>. However, I specify it here for clarity. In other use cases (search, filter), you will almost always want to specify <code>entity</code>.</p>
+</div>
+</div>
+</div>
+<p>Now, we can view the output tibble/dataframe, <code>work</code>, interactively in RStudio or inspect it with base functions like <code>str</code> or <code>head</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="st">"climate change"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>works <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">search =</span> query, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(works)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(work, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 39
-   id     title display_name author ab    publication_date relevance_score so   
-   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;        &lt;list&gt; &lt;chr&gt; &lt;chr&gt;                      &lt;dbl&gt; &lt;chr&gt;
- 1 https… Loca… Local distr… &lt;df&gt;   Abst… 2017-04-01                  1.00 Popu…
- 2 https… Pati… Patient Saf… &lt;df&gt;   An a… 2010-07-01                  1.00 Join…
- 3 https… Mosq… Mosque Invo… &lt;df&gt;   Abst… 2018-05-06                  1.00 Poli…
- 4 https… Ethn… Ethnic dive… &lt;df&gt;   The … 2005-12-23                  1.00 Rese…
- 5 https… Conv… Convectivel… &lt;df&gt;   Abst… 2009-04-15                  1.00 Jour…
- 6 https… Emis… Emissions C… &lt;df&gt;   Taki… 2013-01-01                  1.00 Envi…
- 7 https… Iden… Identificat… &lt;df&gt;   Abst… 2023-09-01                  1.00 Acta…
- 8 https… Acad… Academics’ … &lt;df&gt;   &lt;NA&gt;  2006-09-29                  1.00 High…
- 9 https… Is C… Is Classroo… &lt;df&gt;   Lear… 2020-11-28                  1.00 Sust…
-10 https… Crea… Creating a … &lt;df&gt;   The … 2023-08-03                  1.00 Fron…
-# ℹ 31 more variables: so_id &lt;chr&gt;, host_organization &lt;chr&gt;, issn_l &lt;chr&gt;,
-#   url &lt;chr&gt;, pdf_url &lt;chr&gt;, license &lt;chr&gt;, version &lt;chr&gt;, first_page &lt;chr&gt;,
-#   last_page &lt;chr&gt;, volume &lt;chr&gt;, issue &lt;chr&gt;, is_oa &lt;lgl&gt;,
-#   is_oa_anywhere &lt;lgl&gt;, oa_status &lt;chr&gt;, oa_url &lt;chr&gt;,
-#   any_repository_has_fulltext &lt;lgl&gt;, language &lt;chr&gt;, grants &lt;list&gt;,
-#   cited_by_count &lt;int&gt;, counts_by_year &lt;list&gt;, publication_year &lt;int&gt;,
-#   cited_by_api_url &lt;chr&gt;, ids &lt;list&gt;, doi &lt;chr&gt;, type &lt;chr&gt;, …</code></pre>
+<pre><code>tibble [1 × 38] (S3: tbl_df/tbl/data.frame)
+ $ id                         : chr "https://openalex.org/W2741809807"
+ $ title                      : chr "The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles"
+ $ display_name               : chr "The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles"
+ $ author                     :List of 1
+ $ ab                         : chr "Despite growing interest in Open Access (OA) to scholarly literature, there is an unmet need for large-scale, u"| __truncated__
+ $ publication_date           : chr "2018-02-13"
+ $ so                         : chr "PeerJ"
+ $ so_id                      : chr "https://openalex.org/S1983995261"
+ $ host_organization          : chr "PeerJ, Inc."
+ $ issn_l                     : chr "2167-8359"
+ $ url                        : chr "https://doi.org/10.7717/peerj.4375"
+ $ pdf_url                    : chr "https://peerj.com/articles/4375.pdf"
+ $ license                    : chr "cc-by"
+ $ version                    : chr "publishedVersion"
+ $ first_page                 : chr "e4375"
+ $ last_page                  : chr "e4375"
+ $ volume                     : chr "6"
+ $ issue                      : logi NA
+ $ is_oa                      : logi TRUE
+ $ is_oa_anywhere             : logi TRUE
+ $ oa_status                  : chr "gold"
+ $ oa_url                     : chr "https://peerj.com/articles/4375.pdf"
+ $ any_repository_has_fulltext: logi TRUE
+ $ language                   : chr "en"
+ $ grants                     : logi NA
+ $ cited_by_count             : int 728
+ $ counts_by_year             :List of 1
+ $ publication_year           : int 2018
+ $ cited_by_api_url           : chr "https://api.openalex.org/works?filter=cites:W2741809807"
+ $ ids                        :List of 1
+ $ doi                        : chr "https://doi.org/10.7717/peerj.4375"
+ $ type                       : chr "article"
+ $ referenced_works           :List of 1
+ $ related_works              :List of 1
+ $ is_paratext                : logi FALSE
+ $ is_retracted               : logi FALSE
+ $ concepts                   :List of 1
+ $ topics                     :List of 1</code></pre>
+</div>
+</div>
+<p><strong>openalexR</strong> also provides the <code>show_works</code> function to simplify the result (e.g., remove some columns, keep first/last author) for easy viewing. Let us define <code>print_oa</code> to wrap the output table in <code>knitr::kable()</code> to be displayed nicely on the webpage, but you will most likely not need this function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>print_oa <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">fun =</span> show_works) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">any_of</span>(<span class="st">"url"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fun</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 50%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">first_author</th>
+<th style="text-align: left;">last_author</th>
+<th style="text-align: left;">so</th>
+<th style="text-align: left;">is_oa</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">W2741809807</td>
+<td style="text-align: left;">The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles</td>
+<td style="text-align: left;">Heather Piwowar</td>
+<td style="text-align: left;">Stefanie Haustein</td>
+<td style="text-align: left;">PeerJ</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Citation, License, Bibliometrics</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
+<section id="filter-and-search" class="level3">
+<h3 class="anchored" data-anchor-id="filter-and-search">Filter and search</h3>
+<p>There are different <a href="https://ropensci.github.io/openalexR/articles/Filters">filters</a>/arguments you can use in <code>oa_fetch</code>, depending on which <a href="https://docs.openalex.org/#data">entity</a> you’re interested in: works, authors, sources, funders, institutions, or concepts. We show a few examples below.</p>
+<section id="use-doi-as-a-works-filter" class="level4">
+<h4 class="anchored" data-anchor-id="use-doi-as-a-works-filter">1. Use <code>doi</code> as a <a href="https://ropensci.github.io/openalexR/articles/Filters.html#works">works filter</a></h4>
+<p><strong>Goal</strong>: Fetch information on two works with DOIs <code>10.1016/j.joi.2017.08.007</code> and <code>https://doi.org/10.1007/s11192-013-1221-3</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>works_from_dois <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">doi =</span> <span class="fu">c</span>(<span class="st">"10.1016/j.joi.2017.08.007"</span>, <span class="st">"https://doi.org/10.1007/s11192-013-1221-3"</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Requesting url: https://api.openalex.org/works?filter=doi%3A10.1016%2Fj.joi.2017.08.007%7Chttps%3A%2F%2Fdoi.org%2F10.1007%2Fs11192-013-1221-3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Getting 1 page of results with a total of 2 records...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_dois)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 38%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 3%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">first_author</th>
+<th style="text-align: left;">last_author</th>
+<th style="text-align: left;">so</th>
+<th style="text-align: left;">is_oa</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">W2755950973</td>
+<td style="text-align: left;">bibliometrix : An R-tool for comprehensive science mapping analysis</td>
+<td style="text-align: left;">Massimo Aria</td>
+<td style="text-align: left;">Corrado Cuccurullo</td>
+<td style="text-align: left;">Journal of informetrics</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Workflow, Bibliometrics, Software</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W2038196424</td>
+<td style="text-align: left;">Coverage and adoption of altmetrics sources in the bibliometric community</td>
+<td style="text-align: left;">Stefanie Haustein</td>
+<td style="text-align: left;">Jens Terliesner</td>
+<td style="text-align: left;">Scientometrics</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Altmetrics, Bookmarking, Social media</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="use-author.orcid-as-a-filter" class="level4">
+<h4 class="anchored" data-anchor-id="use-author.orcid-as-a-filter">2. Use <code>author.orcid</code> as a filter</h4>
+<p><strong>Goal</strong>: Fetch all works by authors with ORCID IDs <code>0000-0001-6187-6610</code> and <code>0000-0002-8517-9411</code>. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>works_from_orcids <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">author.orcid =</span> <span class="fu">c</span>(<span class="st">"0000-0001-6187-6610"</span>, <span class="st">"0000-0002-8517-9411"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in oa_request(oa_query(filter = filter_i, multiple_id = multiple_id, : 
+The following work(s) have truncated lists of authors: W4230863633.
+Query each work separately by its identifier to get full list of authors.
+For example:
+  lapply(c("W4230863633"), \(x) oa_fetch(identifier = x))
+Details at https://docs.openalex.org/api-entities/authors/limitations.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_orcids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 48%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 2%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">first_author</th>
+<th style="text-align: left;">last_author</th>
+<th style="text-align: left;">so</th>
+<th style="text-align: left;">is_oa</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">W2755950973</td>
+<td style="text-align: left;">bibliometrix : An R-tool for comprehensive science mapping analysis</td>
+<td style="text-align: left;">Massimo Aria</td>
+<td style="text-align: left;">Corrado Cuccurullo</td>
+<td style="text-align: left;">Journal of informetrics</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Workflow, Bibliometrics, Software</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W2741809807</td>
+<td style="text-align: left;">The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles</td>
+<td style="text-align: left;">Heather Piwowar</td>
+<td style="text-align: left;">Stefanie Haustein</td>
+<td style="text-align: left;">PeerJ</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Citation, License, Bibliometrics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W2122130843</td>
+<td style="text-align: left;">Scientometrics 2.0: New metrics of scholarly impact on the social Web</td>
+<td style="text-align: left;">Jason Priem</td>
+<td style="text-align: left;">Bradely H. Hemminger</td>
+<td style="text-align: left;">First Monday</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Bookmarking, Altmetrics, Social media</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W3005144120</td>
+<td style="text-align: left;">Mapping the Evolution of Social Research and Data Science on 30 Years of Social Indicators Research</td>
+<td style="text-align: left;">Massimo Aria</td>
+<td style="text-align: left;">Maria Spano</td>
+<td style="text-align: left;">Social indicators research</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Human geography, Data collection, Position (finance)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W2038196424</td>
+<td style="text-align: left;">Coverage and adoption of altmetrics sources in the bibliometric community</td>
+<td style="text-align: left;">Stefanie Haustein</td>
+<td style="text-align: left;">Jens Terliesner</td>
+<td style="text-align: left;">Scientometrics</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Altmetrics, Bookmarking, Social media</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W2408216567</td>
+<td style="text-align: left;">Foundations and trends in performance management. A twenty-five years bibliometric analysis in business and public administration domains</td>
+<td style="text-align: left;">Corrado Cuccurullo</td>
+<td style="text-align: left;">Fabrizia Sarto</td>
+<td style="text-align: left;">Scientometrics</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Domain (mathematical analysis), Content analysis, Public domain</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="many-filters-at-once" class="level4">
+<h4 class="anchored" data-anchor-id="many-filters-at-once">3. Many filters at once</h4>
+<p><strong>Goal</strong>: Download all works that have been cited more than 50 times, published between 2020 and 2021, and include the strings “bibliometric analysis” or “science mapping” in the title. Maybe we also want the results to be sorted by total citations in a descending order.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>works_biblio <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="fu">c</span>(<span class="st">"bibliometric analysis"</span>, <span class="st">"science mapping"</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;50"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_publication_date =</span> <span class="st">"2020-07-01"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">to_publication_date =</span> <span class="st">"2021-07-01"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_biblio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 39%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 24%">
+<col style="width: 1%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">first_author</th>
+<th style="text-align: left;">last_author</th>
+<th style="text-align: left;">so</th>
+<th style="text-align: left;">is_oa</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">W3038273726</td>
+<td style="text-align: left;">Investigating the emerging COVID-19 research trends in the field of business and management: A bibliometric analysis approach</td>
+<td style="text-align: left;">Surabhi Verma</td>
+<td style="text-align: left;">Anders Gustafsson</td>
+<td style="text-align: left;">Journal of business research</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Bibliometrics, Field (mathematics), Empirical research</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W3044902155</td>
+<td style="text-align: left;">Financial literacy: A systematic review and bibliometric analysis</td>
+<td style="text-align: left;">Kirti Goyal</td>
+<td style="text-align: left;">Satish Kumar</td>
+<td style="text-align: left;">International journal of consumer studies</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Financial literacy, Content analysis, Citation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W3042215340</td>
+<td style="text-align: left;">A bibliometric analysis using VOSviewer of publications on COVID-19</td>
+<td style="text-align: left;">Yuetian Yu</td>
+<td style="text-align: left;">Erzhen Chen</td>
+<td style="text-align: left;">Annals of translational medicine</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Citation, Bibliometrics, China</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W3038187379</td>
+<td style="text-align: left;">Mapping citizen science contributions to the UN sustainable development goals</td>
+<td style="text-align: left;">Dilek Fraisl</td>
+<td style="text-align: left;">Steffen Fritz</td>
+<td style="text-align: left;">Sustainability science</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Citizen science, Sustainable development, Metadata</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W3025370095</td>
+<td style="text-align: left;">Artificial Intelligence in Health Care: Bibliometric Analysis</td>
+<td style="text-align: left;">Yuqi Guo</td>
+<td style="text-align: left;">Fan Yang</td>
+<td style="text-align: left;">JMIR. Journal of medical internet research/Journal of medical internet research</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Health care, Bibliometrics, Convolutional neural network</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W3042710080</td>
+<td style="text-align: left;">Big data algorithms and applications in intelligent transportation system: A review and bibliometric analysis</td>
+<td style="text-align: left;">Sepideh Kaffash</td>
+<td style="text-align: left;">Joe Zhu</td>
+<td style="text-align: left;">International journal of production economics</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Big data, Intelligent transportation system, Field (mathematics)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="what-if-we-use-a-wrong-filter" class="level4">
+<h4 class="anchored" data-anchor-id="what-if-we-use-a-wrong-filter">4. What if we use a wrong filter?</h4>
+<p><strong>Goal</strong>: Sample 10 works published in 2024.</p>
+<p>Say we mistakenly use <code>year</code> instead of <code>publication_year</code> as a filter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2024</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Requesting url: https://api.openalex.org/works?filter=year%3A2024&amp;sample=10</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: OpenAlex API request failed [403]
+Invalid query parameters error.
+&lt;year is not a valid field. Valid fields are underscore or hyphenated versions of: abstract.search, abstract.search.no_stem, apc_list.currency, apc_list.provenance, apc_list.value, apc_list.value_usd, apc_paid.currency, apc_paid.provenance, apc_paid.value, apc_paid.value_usd, author.id, author.orcid, authors_count, authorships.affiliations.institution_ids, authorships.author.id, authorships.author.orcid, authorships.countries, authorships.institutions.continent, authorships.institutions.country_code, authorships.institutions.id, authorships.institutions.is_global_south, authorships.institutions.lineage, authorships.institutions.ror, authorships.institutions.type, authorships.is_corresponding, best_oa_location.is_accepted, best_oa_location.is_oa, best_oa_location.is_published, best_oa_location.landing_page_url, best_oa_location.license, best_oa_location.license_id, best_oa_location.source.host_organization, best_oa_location.source.host_organization_lineage, best_oa_location.source.id, best_oa_location.source.is_in_doaj, best_oa_location.source.is_oa, best_oa_location.source.issn, best_oa_location.source.type, best_oa_location.version, best_open_version, biblio.first_page, biblio.issue, biblio.last_page, biblio.volume, cited_by, cited_by_count, cited_by_percentile_year.max, cited_by_percentile_year.min, cites, concept.id, concepts.id, concepts.wikidata, concepts_count, corresponding_author_ids, corresponding_institution_ids, countries_distinct_count, default.search, display_name, display_name.search, display_name.search.no_stem, doi, doi_starts_with, from_created_date, from_publication_date, fulltext.search, fulltext_origin, fwci, grants.award_id, grants.funder, has_abstract, has_doi, has_embeddings, has_fulltext, has_ngrams, has_oa_accepted_or_published_version, has_oa_submitted_version, has_old_authors, has_orcid, has_pdf_url, has_pmcid, has_pmid, has_raw_affiliation_strings, has_references, ids.mag, ids.openalex, ids.pmcid, ids.pmid, indexed_in, institution.id, institutions.continent, institutions.country_code, institutions.id, institutions.is_global_south, institutions.ror, institutions.type, institutions_distinct_count, is_corresponding, is_oa, is_paratext, is_retracted, journal, keyword.search, keywords.id, language, locations.is_accepted, locations.is_oa, locations.is_published, locations.landing_page_url, locations.license, locations.license_id, locations.source.has_issn, locations.source.host_institution_lineage, locations.source.host_organization, locations.source.host_organization_lineage, locations.source.id, locations.source.is_in_doaj, locations.source.is_oa, locations.source.issn, locations.source.publisher_lineage, locations.source.type, locations.version, locations_count, mag, mag_only, oa_status, open_access.any_repository_has_fulltext, open_access.is_oa, open_access.oa_status, openalex, openalex_id, pmcid, pmid, primary_location.is_accepted, primary_location.is_oa, primary_location.is_published, primary_location.landing_page_url, primary_location.license, primary_location.license_id, primary_location.source.has_issn, primary_location.source.host_institution_lineage, primary_location.source.host_organization, primary_location.source.host_organization_lineage, primary_location.source.id, primary_location.source.is_in_doaj, primary_location.source.is_oa, primary_location.source.issn, primary_location.source.publisher_lineage, primary_location.source.type, primary_location.version, primary_topic.domain.id, primary_topic.field.id, primary_topic.id, primary_topic.subfield.id, publication_date, publication_year, raw_affiliation_strings.search, referenced_works, referenced_works_count, related_to, repository, semantic.search, sustainable_development_goals.id, sustainable_development_goals.score, title.search, title.search.no_stem, title_and_abstract.search, title_and_abstract.search.no_stem, to_publication_date, to_updated_date, topics.domain.id, topics.field.id, topics.id, topics.subfield.id, topics_count, type, type_crossref, version&gt;</code></pre>
+</div>
+</div>
+<p>The API returns a helpful error message: <code>year</code> is a wrong filter, and shows you all possible, correct filters. In our case, <code>publication_year</code> is the filter we want.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="dv">2024</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co"> figure out why this doesn't work with some seeds</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Requesting url: https://api.openalex.org/works?filter=publication_year%3A2024&amp;sample=10&amp;seed=1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Getting 1 page of results with a total of 10 records...</code></pre>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 36%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 21%">
+<col style="width: 1%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">first_author</th>
+<th style="text-align: left;">last_author</th>
+<th style="text-align: left;">so</th>
+<th style="text-align: left;">is_oa</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">W4399851829</td>
+<td style="text-align: left;">“Dance and Make Revels”</td>
+<td style="text-align: left;">Fionnuala Braun</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">USURJ</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Revels, Dance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W4399151826</td>
+<td style="text-align: left;">Mutual Information Analysis of Neuromorphic Coding for Distributed</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wireless Spiking Neural Networks</td>
+<td style="text-align: left;">Pietro Savazzi</td>
+<td style="text-align: left;">Fabio Dell’Acqua</td>
+<td style="text-align: left;">arXiv (Cornell University)</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Coding (social sciences), Artificial neural network, Mutual information</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W4396675285</td>
+<td style="text-align: left;">Trends in the implementation of biopesticides in the Euro-Mediterranean region: a narrative literary review</td>
+<td style="text-align: left;">Elena Fusar Poli</td>
+<td style="text-align: left;">Michele Filippo Fontefrancesco</td>
+<td style="text-align: left;">Sustainable earth</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Narrative, Pesticide</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W4398160760</td>
+<td style="text-align: left;">Giải pháp phát triển khoa học - công nghệ của Học viện Hành chính Quốc gia trong giai đoạn mới</td>
+<td style="text-align: left;">Nguyễn Minh Sản</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">State management Review/Tạp chí điện tử Quản lý Nhà nước/Quản lý nhà nước</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Chemistry</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W4396694765</td>
+<td style="text-align: left;">Fluctuations and Changes in Adolescent Personality</td>
+<td style="text-align: left;">Tayler E. Truhan</td>
+<td style="text-align: left;">Kostas A. Papageorgiou</td>
+<td style="text-align: left;">Routledge eBooks</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Personality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W4391747045</td>
+<td style="text-align: left;">The Effect of Oral Iron Supplementation/Fortification on the Gut Microbiota in Infancy: A Systematic Review and Meta-Analysis</td>
+<td style="text-align: left;">Theoni Karamantziani</td>
+<td style="text-align: left;">Nicoletta Iacovidou</td>
+<td style="text-align: left;">Children</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Meta-analysis, Gut flora, Randomized controlled trial</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="search" class="level4">
+<h4 class="anchored" data-anchor-id="search">5. Search</h4>
+<p>You can also search for works related to a specific topic. Here’s an example fetching the first few works of which abstracts include the phrase “urban heat island”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">abstract.search =</span> <span class="st">"urban heat island"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 45%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 2%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">first_author</th>
+<th style="text-align: left;">last_author</th>
+<th style="text-align: left;">so</th>
+<th style="text-align: left;">is_oa</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">W4362452636</td>
+<td style="text-align: left;">WRF-based scenario experiment research on urban heat island: A review</td>
+<td style="text-align: left;">Dan Zhu</td>
+<td style="text-align: left;">Ryozo Ooka</td>
+<td style="text-align: left;">Urban climate</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Urbanization, Urban heat island, Weather Research and Forecasting Model</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W3042163173</td>
+<td style="text-align: left;">Relationship of surface urban heat island with air temperature and precipitation in global large cities</td>
+<td style="text-align: left;">Long Li</td>
+<td style="text-align: left;">Ren Wang</td>
+<td style="text-align: left;">Ecological indicators</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Urban heat island, Precipitation, Context (archaeology)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W2378815279</td>
+<td style="text-align: left;">The Relationship Between Urban Heat Island and Land Use/Cover Changes in Guangzhou City</td>
+<td style="text-align: left;">Wu Zhi-Feng Sun Qin-Qin</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Guotu ziyuan yaogan</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Urban heat island, Index (typography), Significant difference</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W2379535365</td>
+<td style="text-align: left;">The Role of Urban Green Space System in Low-carbon City</td>
+<td style="text-align: left;">Xiaomin Liu</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Chinese Landscape Architecture</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Climate change, Sustainable development, Space (punctuation)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W4323536207</td>
+<td style="text-align: left;">Spatiotemporal Characterization Of Land Surface Temperature In Relation Landuse/Cover: A Spatial Autocorrelation Approach</td>
+<td style="text-align: left;">. Diksha</td>
+<td style="text-align: left;">Rina Kumari</td>
+<td style="text-align: left;">Journal of Landscape Ecology</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Spatial analysis, Common spatial pattern, Autocorrelation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W2144594621</td>
+<td style="text-align: left;">Dynamic simulation of pollutant dispersion over complex urban terrains: A tool for sustainable development, control and management*1</td>
+<td style="text-align: left;">K HANJALI</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Energy</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Terrain, Pollutant, Dispersion (optics)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can read more about search <a href="https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/search-entities">here</a>. <!-- You will learn how relevance score is calculated, how words are stemmed to improve search results, and how to do complex boolean searches. --> Specifically, stop words like “the” and “an” are removed, and, by default, <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-kstem-tokenfilter.html">stemming</a> is used to improve results (“possums” will also return records with the word “possum”). To disable stemming and the removal of stop words for searches on titles and abstracts, you can add <code>.no_stem</code> to the search filter, <em>e.g.</em> <code>abstract.search.no_stem</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="other-entities" class="level4">
+<h4 class="anchored" data-anchor-id="other-entities">6. Other entities</h4>
+<p>Similar to works, you can fetch information on authors, sources, funders, institutions, and concepts. Here are some examples of fetching authors:</p>
+<p><strong>Goal</strong>: Acquire information on a couple of authors with more than 10 works. Here, we can use filters such as <code>display_name</code> and <code>works_count</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">display_name.search =</span> <span class="fu">c</span>(<span class="st">"Massimo Aria"</span>, <span class="st">"Eugen Lounkine"</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;10"</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>(show_authors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 21%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">orcid</th>
+<th style="text-align: right;">works_count</th>
+<th style="text-align: right;">cited_by_count</th>
+<th style="text-align: left;">affiliation_display_name</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A5069892096</td>
+<td style="text-align: left;">Massimo Aria</td>
+<td style="text-align: left;">0000-0002-8517-9411</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">8181</td>
+<td style="text-align: left;">University of Naples Federico II</td>
+<td style="text-align: left;">Statistics, Internal medicine, Pathology</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A5088290637</td>
+<td style="text-align: left;">Eugen Lounkine</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">2097</td>
+<td style="text-align: left;">Novartis (Switzerland)</td>
+<td style="text-align: left;">Biochemistry, Computational biology, Genetics</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="example-analyses" class="level2">
+<h2 class="anchored" data-anchor-id="example-analyses">🪴 Example analyses</h2>
+<p><strong>Goal</strong>: Download all authors’ records of scholars who work at the <a href="https://explore.openalex.org/institutions/I71267560">University of Naples Federico II</a> (OpenAlex ID: I71267560) and have published at least 500 publications.</p>
+<p>Let’s first check how many records match the query, then download the entire collection. We can do this by adding <code>count_only</code> (default <code>FALSE</code>) to the list of argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_known_institutions.id =</span> <span class="st">"I71267560"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;499"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">count_only =</span> <span class="cn">TRUE</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     count db_response_time_ms page per_page
+[1,]    38                 182    1        1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_known_institutions.id =</span> <span class="st">"I71267560"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;499"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>(show_authors) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 19%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">display_name</th>
+<th style="text-align: left;">orcid</th>
+<th style="text-align: right;">works_count</th>
+<th style="text-align: right;">cited_by_count</th>
+<th style="text-align: left;">affiliation_display_name</th>
+<th style="text-align: left;">top_concepts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A5063152727</td>
+<td style="text-align: left;">L. Lista</td>
+<td style="text-align: left;">0000-0001-6471-5492</td>
+<td style="text-align: right;">2374</td>
+<td style="text-align: right;">73504</td>
+<td style="text-align: left;">INFN Sezione di Napoli</td>
+<td style="text-align: left;">Particle physics, Nuclear physics, Quantum mechanics</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A5069689088</td>
+<td style="text-align: left;">C. Sciacca</td>
+<td style="text-align: left;">0000-0002-8412-4072</td>
+<td style="text-align: right;">2372</td>
+<td style="text-align: right;">60702</td>
+<td style="text-align: left;">INFN Sezione di Napoli</td>
+<td style="text-align: left;">Particle physics, Nuclear physics, Quantum mechanics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A5019451576</td>
+<td style="text-align: left;">Alberto Orso Maria Iorio</td>
+<td style="text-align: left;">0000-0002-3798-1135</td>
+<td style="text-align: right;">1227</td>
+<td style="text-align: right;">29599</td>
+<td style="text-align: left;">INFN Sezione di Napoli</td>
+<td style="text-align: left;">Particle physics, Nuclear physics, Quantum mechanics</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A5078843367</td>
+<td style="text-align: left;">G. De Nardo</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">968</td>
+<td style="text-align: right;">28236</td>
+<td style="text-align: left;">University of Naples Federico II</td>
+<td style="text-align: left;">Particle physics, Nuclear physics, Quantum mechanics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A5076706548</td>
+<td style="text-align: left;">Salvatore Capozziello</td>
+<td style="text-align: left;">0000-0003-4886-2024</td>
+<td style="text-align: right;">930</td>
+<td style="text-align: right;">34384</td>
+<td style="text-align: left;">University of Naples Federico II</td>
+<td style="text-align: left;">Quantum mechanics, Astronomy, Theoretical physics</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A5023058736</td>
+<td style="text-align: left;">Francesco Fienga</td>
+<td style="text-align: left;">0000-0001-5978-4952</td>
+<td style="text-align: right;">846</td>
+<td style="text-align: right;">17213</td>
+<td style="text-align: left;">University of Naples Federico II</td>
+<td style="text-align: left;">Quantum mechanics, Nuclear physics, Particle physics</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>TODO</p>
 </section>
 <section id="advanced-usage" class="level2">
-<h2 class="anchored" data-anchor-id="advanced-usage">4. Advanced Usage</h2>
-<section id="fetching-author-information" class="level3">
-<h3 class="anchored" data-anchor-id="fetching-author-information">Fetching Author Information</h3>
-<p>To fetch information about a specific author, use their OpenAlex ID:</p>
+<h2 class="anchored" data-anchor-id="advanced-usage">🌵 Advanced usage</h2>
+<section id="other-parameters-of-oa_fetch" class="level3">
+<h3 class="anchored" data-anchor-id="other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch</code></h3>
+<p>So far, we have seen the argument <code>options</code>, which is a list of additional parameters that can be passed to the API. <code>output = "list"</code> TODO</p>
+</section>
+<section id="building-your-own-query" class="level3">
+<h3 class="anchored" data-anchor-id="building-your-own-query">Building your own query</h3>
+<p>TODO</p>
+</section>
+<section id="oa_generate" class="level3">
+<h3 class="anchored" data-anchor-id="oa_generate">oa_generate</h3>
+<p>TODO</p>
+</section>
+<section id="analyzing-citations" class="level3">
+<h3 class="anchored" data-anchor-id="analyzing-citations">Analyzing Citations</h3>
+<p>Analyze the citations of a work:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"authors"</span>, <span class="at">display_name.search =</span> <span class="st">"Eugen Lounkine"</span>, <span class="at">verbose =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Requesting url: https://api.openalex.org/authors?filter=display_name.search%3AEugen%20Lounkine</code></pre>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># citations &lt;- oa_fetch(entity = "works", filter = list(cited_by.work.id = work_id))</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(citations)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Getting 1 page of results with a total of 1 records...</code></pre>
+<p>TODO</p>
+</section>
+</section>
+<section id="coding-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="coding-challenges">🛤️ Coding challenges</h2>
+<section id="challenge-1-advanced-filters" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-1-advanced-filters">Challenge 1: Advanced filters</h3>
+<p>According to the OpenAlex <a href="https://docs.openalex.org/api-entities">API documentation</a>, what is the filter we should use to:</p>
+<ul>
+<li>Get <code>funders</code> with a description containing “engineering”?</li>
+<li>Get <code>topics</code> with more than 1000 works?</li>
+<li>Get <code>institutions</code> that are located in Asia?</li>
+</ul>
+</section>
+<section id="challenge-2-humpback-whale" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-2-humpback-whale">Challenge 2: Humpback whale</h3>
+<p>Identify works on a specific topic (e.g., “humpback whale”) that have been cited more than 100 times. When were these works published? Where are the authors based? Create a bar plot showing the number of citations for each author.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Your solution</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">My solution</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  ______</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print(humpback$title[1:10])</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># hb_authors &lt;- humpback$author |&gt; </span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   bind_rows() </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>author_id <span class="ot">&lt;-</span> author<span class="sc">$</span>id[[<span class="dv">1</span>]]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(author)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>humpback <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="st">"humpback whale"</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;100"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(humpback<span class="sc">$</span>title[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 18
-  id             display_name display_name_alterna…¹ relevance_score ids   orcid
-  &lt;chr&gt;          &lt;chr&gt;        &lt;list&gt;                           &lt;dbl&gt; &lt;lis&gt; &lt;lgl&gt;
-1 https://opena… Eugen Lounk… &lt;chr [2]&gt;                        5292. &lt;chr&gt; NA   
-# ℹ abbreviated name: ¹​display_name_alternatives
-# ℹ 12 more variables: works_count &lt;int&gt;, cited_by_count &lt;int&gt;,
-#   counts_by_year &lt;list&gt;, affiliation_display_name &lt;chr&gt;,
-#   affiliation_id &lt;chr&gt;, affiliation_ror &lt;chr&gt;,
-#   affiliation_country_code &lt;chr&gt;, affiliation_type &lt;chr&gt;,
-#   affiliation_lineage &lt;chr&gt;, affiliations_other &lt;list&gt;, x_concepts &lt;list&gt;,
-#   works_api_url &lt;chr&gt;</code></pre>
+<pre><code> [1] "Songs of Humpback Whales"                                                                            
+ [2] "Leading-edge tubercles delay stall on humpback whale (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) flippers"       
+ [3] "Hydrodynamic design of the humpback whale flipper"                                                   
+ [4] "Dynamics of two populations of the humpback whale, Megaptera novaeangliae (Borowski)"                
+ [5] "Network-Based Diffusion Analysis Reveals Cultural Transmission of Lobtail Feeding in Humpback Whales"
+ [6] "Genetic tagging of humpback whales"                                                                  
+ [7] "Microplastic in a macro filter feeder: Humpback whale Megaptera novaeangliae"                        
+ [8] "9. The Seasonal Migratory Cycle of Humpback Whales"                                                  
+ [9] "Abundant mitochondrial DNA variation and world-wide population structure in humpback whales."        
+[10] "Humpback Whales (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) Fatally Poisoned by Dinoflagellate Toxin"            </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">knit_exit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="ot">&lt;-</span> humpback<span class="sc">$</span>author <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="qa" class="level2">
+<h2 class="anchored" data-anchor-id="qa">🌸 Q&amp;A</h2>
+<p>TODO</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>🍁 Conclusion</h1>
+<p>Thank you for participating in the <strong>openalexR</strong> webinar! We hope you found the session informative and engaging. For more information, visit the <a href="https://github.com/ropensci/openalexR">openalexR GitHub page</a> reach out to me on the <a href="https://groups.google.com/g/openalex-community">OpenAlex Community</a> Google Group with any questions.</p>
+<hr>
+<section id="links" class="level2">
+<h2 class="anchored" data-anchor-id="links">🌳 Links</h2>
+<ul>
+<li><a href="https://openalex.org" class="uri">https://openalex.org</a></li>
+<li><a href="https://docs.openalex.org" class="uri">https://docs.openalex.org</a></li>
+<li><a href="https://docs.ropensci.org/openalexR" class="uri">https://docs.ropensci.org/openalexR</a></li>
+</ul>
 </section>
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Either canonical form with <a href="https://orcid.org/" class="uri">https://doi.org/</a> or without will work.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Either canonical form with <a href="https://orcid.org/" class="uri">https://orcid.org/</a> or without will work.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -272,6 +1116,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
