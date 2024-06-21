@@ -1,5 +1,8 @@
 project:
   title: "openalexR-webinar"
+  output-dir: docs
   resources:
     - data/*
 editor: visual
+execute:
+  freeze: auto
