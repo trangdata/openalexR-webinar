@@ -85,6 +85,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li>
+<a href="#coding-challenges" id="toc-coding-challenges" class="nav-link" data-scroll-target="#coding-challenges">🛤️ Coding challenges</a>
+  <ul class="collapse">
+<li><a href="#challenge-1-advanced-filters" id="toc-challenge-1-advanced-filters" class="nav-link" data-scroll-target="#challenge-1-advanced-filters">Challenge 1: Advanced filters</a></li>
+  <li><a href="#challenge-2-humpback-whale" id="toc-challenge-2-humpback-whale" class="nav-link" data-scroll-target="#challenge-2-humpback-whale">Challenge 2: Humpback whale</a></li>
+  </ul>
+</li>
+  <li>
 <a href="#example-analyses" id="toc-example-analyses" class="nav-link" data-scroll-target="#example-analyses">🪴 Example analyses</a>
   <ul class="collapse">
 <li><a href="#prolific-authors" id="toc-prolific-authors" class="nav-link" data-scroll-target="#prolific-authors">Prolific authors</a></li>
@@ -101,13 +108,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#n-grams" id="toc-n-grams" class="nav-link" data-scroll-target="#n-grams">🌾 N-grams</a></li>
   </ul>
 </li>
-  <li>
-<a href="#coding-challenges" id="toc-coding-challenges" class="nav-link" data-scroll-target="#coding-challenges">🛤️ Coding challenges</a>
-  <ul class="collapse">
-<li><a href="#challenge-1-advanced-filters" id="toc-challenge-1-advanced-filters" class="nav-link" data-scroll-target="#challenge-1-advanced-filters">Challenge 1: Advanced filters</a></li>
-  <li><a href="#challenge-2-humpback-whale" id="toc-challenge-2-humpback-whale" class="nav-link" data-scroll-target="#challenge-2-humpback-whale">Challenge 2: Humpback whale</a></li>
-  </ul>
-</li>
   <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa">🌸 Q&amp;A</a></li>
   <li>
 <a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">🍁 Conclusion</a>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
 </div>
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Introduction to openalexR: a webinar</h1>
+<div class="quarto-title-block"><div><h1 class="title">Introduction to openalexR: a webinar</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source" data-quarto-source-url="https://github.com/trangdata/openalexR-webinar"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -833,12 +833,94 @@ Tip
 </table>
 </div>
 </div>
-</section></section></section><section id="example-analyses" class="level2"><h2 class="anchored" data-anchor-id="example-analyses">🪴 Example analyses</h2>
+</section></section></section><section id="coding-challenges" class="level2"><h2 class="anchored" data-anchor-id="coding-challenges">🛤️ Coding challenges</h2>
+<section id="challenge-1-advanced-filters" class="level3"><h3 class="anchored" data-anchor-id="challenge-1-advanced-filters">Challenge 1: Advanced filters</h3>
+<p>According to the OpenAlex <a href="https://docs.openalex.org/api-entities">API documentation</a>, what is the filter we should use to:</p>
+<ul>
+<li>Get <code>funders</code> with a description containing “engineering”?</li>
+<li>Get <code>topics</code> with more than 1000 works?</li>
+<li>Get <code>institutions</code> located in Asia?</li>
+</ul></section><section id="challenge-2-humpback-whale" class="level3"><h3 class="anchored" data-anchor-id="challenge-2-humpback-whale">Challenge 2: Humpback whale</h3>
+<p>Identify works on a specific topic (e.g., “humpback whale”) that have been cited more than 100 times. When were these works published? Where are the authors based? Create a bar plot showing the number of works at each institution.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Your solution</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">My solution</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># work &lt;- oa_fetch(</span></span>
+<span><span class="co">#   entity = "works",</span></span>
+<span><span class="co">#   # decide whether you want search/title.search/abstract.search/etc.</span></span>
+<span><span class="co">#   ______</span></span>
+<span><span class="co"># )</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># ______</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">humpback</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  title.search <span class="op">=</span> <span class="st">"humpback whale"</span>,</span>
+<span>  cited_by_count <span class="op">=</span> <span class="st">"&gt;100"</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sort <span class="op">=</span> <span class="st">"cited_by_count:desc"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">title</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Songs of Humpback Whales"                                                                            
+ [2] "Leading-edge tubercles delay stall on humpback whale (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) flippers"       
+ [3] "Hydrodynamic design of the humpback whale flipper"                                                   
+ [4] "Dynamics of two populations of the humpback whale, Megaptera novaeangliae (Borowski)"                
+ [5] "Network-Based Diffusion Analysis Reveals Cultural Transmission of Lobtail Feeding in Humpback Whales"
+ [6] "Genetic tagging of humpback whales"                                                                  
+ [7] "Microplastic in a macro filter feeder: Humpback whale Megaptera novaeangliae"                        
+ [8] "9. The Seasonal Migratory Cycle of Humpback Whales"                                                  
+ [9] "Abundant mitochondrial DNA variation and world-wide population structure in humpback whales."        
+[10] "Humpback Whales (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) Fatally Poisoned by Dinoflagellate Toxin"            </code></pre>
+</div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_authors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">author</span>, <span class="va">nrow</span><span class="op">)</span></span>
+<span><span class="va">hb_authors</span> <span class="op">&lt;-</span> <span class="va">humpback</span><span class="op">$</span><span class="va">author</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">n_authors</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#D3B484"</span>, <span class="st">"#F89C74"</span>, <span class="st">"#C9DB74"</span>, <span class="st">"#87C55F"</span>, <span class="st">"#B497E7"</span>,<span class="st">"#66C5CC"</span><span class="op">)</span></span>
+<span><span class="va">hb_authors</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">institution_display_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span></span>
+<span>    inst <span class="op">=</span> <span class="va">institution_display_name</span>, </span>
+<span>    country <span class="op">=</span> <span class="va">institution_country_code</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span>,  .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">n</span>, y <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">inst</span>, <span class="va">n</span><span class="op">)</span>, fill <span class="op">=</span> <span class="va">country</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">pal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Weighted value of most cited works"</span>,</span>
+<span>    y <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Institutions with most cited works on humpback whale"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="openalexR-webinar_files/figure-html/answer-top-authors-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="example-analyses" class="level2"><h2 class="anchored" data-anchor-id="example-analyses">🪴 Example analyses</h2>
 <section id="prolific-authors" class="level3"><h3 class="anchored" data-anchor-id="prolific-authors">Prolific authors</h3>
 <p><strong>Goal</strong>: Download all authors’ records of scholars who work at the <a href="https://explore.openalex.org/institutions/I71267560">University of Naples Federico II</a> (OpenAlex ID: I71267560) and have published at least 500 publications.</p>
 <p>Let’s first check how many records match the query, then download the entire collection. We can do this by adding <code>count_only = TRUE</code> (default <code>FALSE</code>) to the list of argument:</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
 <span>  entity <span class="op">=</span> <span class="st">"authors"</span>,</span>
 <span>  last_known_institutions.id <span class="op">=</span> <span class="st">"I71267560"</span>,</span>
 <span>  works_count <span class="op">=</span> <span class="st">"&gt;499"</span>,</span>
@@ -846,12 +928,12 @@ Tip
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     count db_response_time_ms page per_page
-[1,]    38                  87    1        1</code></pre>
+[1,]    38                 124    1        1</code></pre>
 </div>
 </div>
 <p>So there are <code>.Last.value[1, 1][[1]]</code> records in total. Now, we can get the entire collection:</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
 <span>  entity <span class="op">=</span> <span class="st">"authors"</span>,</span>
 <span>  last_known_institutions.id <span class="op">=</span> <span class="st">"I71267560"</span>,</span>
 <span>  works_count <span class="op">=</span> <span class="st">"&gt;499"</span></span>
@@ -940,7 +1022,7 @@ Tip
 <p><strong>Goal</strong>: Visualize big journals’ topics.</p>
 <p>We first download all records of journals with the most works/citation count, then visualize their scored concepts:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jours_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jours_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
 <span>  entity <span class="op">=</span> <span class="st">"sources"</span>,</span>
 <span>  works_count <span class="op">=</span> <span class="st">"&gt;200000"</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -954,7 +1036,7 @@ Tip
 </div>
 <p>The following is a lot of code but it is mainly for processing the data and customizing the final plot.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clean_journal_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clean_journal_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\\(.*?\\)"</span>, <span class="st">""</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"Journal of the|Journal of"</span>, <span class="st">"J."</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1050,60 +1132,67 @@ Important
 </section><section id="oa_generate" class="level3"><h3 class="anchored" data-anchor-id="oa_generate"><code>oa_generate()</code></h3>
 <p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_generate.html">oa_generate()</a></code> is a generator for making request to OpenAlex API, returning one record at a time. This is useful when you want to process a large number of records without loading them all into memory at once. You will need to first build your own query (<em>e.g.</em>, using <code><a href="https://docs.ropensci.org/openalexR/reference/oa_query.html">oa_query()</a></code>) to use as an argument in <code><a href="https://docs.ropensci.org/openalexR/reference/oa_generate.html">oa_generate()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">oa_generate</span><span class="op">)</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## o_gnrt&gt; if (require("coro")) {</span></span>
-<span><span class="co">## o_gnrt+   # Example 1: basic usage getting one record at a time</span></span>
-<span><span class="co">## o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cites%3AW1160808132"</span></span>
-<span><span class="co">## o_gnrt+   oar &lt;- oa_generate(query_url, verbose = TRUE)</span></span>
-<span><span class="co">## o_gnrt+   p1 &lt;- oar() # record 1</span></span>
-<span><span class="co">## o_gnrt+   p2 &lt;- oar() # record 2</span></span>
-<span><span class="co">## o_gnrt+   p3 &lt;- oar() # record 3</span></span>
-<span><span class="co">## o_gnrt+   head(p1)</span></span>
-<span><span class="co">## o_gnrt+   head(p3)</span></span>
-<span><span class="co">## o_gnrt+ </span></span>
-<span><span class="co">## o_gnrt+   # Example 2: using `coro::loop()` to iterate through the generator</span></span>
-<span><span class="co">## o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cited_by%3AW1847168837"</span></span>
-<span><span class="co">## o_gnrt+   oar &lt;- oa_generate(query_url)</span></span>
-<span><span class="co">## o_gnrt+   coro::loop(for (x in oar) {</span></span>
-<span><span class="co">## o_gnrt+     print(x$id)</span></span>
-<span><span class="co">## o_gnrt+   })</span></span>
-<span><span class="co">## o_gnrt+ </span></span>
-<span><span class="co">## o_gnrt+   # Example 3: save records in blocks of 100</span></span>
-<span><span class="co">## o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cites%3AW1160808132"</span></span>
-<span><span class="co">## o_gnrt+   oar &lt;- oa_generate(query_url)</span></span>
-<span><span class="co">## o_gnrt+   n &lt;- 100</span></span>
-<span><span class="co">## o_gnrt+   recs &lt;- vector("list", n)</span></span>
-<span><span class="co">## o_gnrt+   i &lt;- 0</span></span>
-<span><span class="co">## o_gnrt+ </span></span>
-<span><span class="co">## o_gnrt+   coro::loop(for (x in oar) {</span></span>
-<span><span class="co">## o_gnrt+     j &lt;- i %% n + 1</span></span>
-<span><span class="co">## o_gnrt+     recs[[j]] &lt;- x</span></span>
-<span><span class="co">## o_gnrt+     if (j == n) {</span></span>
-<span><span class="co">## o_gnrt+       # saveRDS(recs, sprintf("rec-%s.rds", i %/% n))</span></span>
-<span><span class="co">## o_gnrt+       recs &lt;- vector("list", n) # reset recs</span></span>
-<span><span class="co">## o_gnrt+     }</span></span>
-<span><span class="co">## o_gnrt+     i &lt;- i + 1</span></span>
-<span><span class="co">## o_gnrt+   })</span></span>
-<span><span class="co">## o_gnrt+   head(x)</span></span>
-<span><span class="co">## o_gnrt+   j</span></span>
-<span><span class="co">## o_gnrt+   # 398 works total, so j = 98 makes sense.</span></span>
-<span><span class="co">## o_gnrt+ </span></span>
-<span><span class="co">## o_gnrt+   # You can also manually call the generator until exhausted</span></span>
-<span><span class="co">## o_gnrt+   # using `while (!coro::is_exhausted(record_i))`.</span></span>
-<span><span class="co">## o_gnrt+   # More details at https://coro.r-lib.org/articles/generator.html.</span></span>
-<span><span class="co">## o_gnrt+ </span></span>
-<span><span class="co">## o_gnrt+ }</span></span>
-<span><span class="co">## Loading required package: coro</span></span>
-<span><span class="co">## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,</span></span>
-<span><span class="co">## logical.return = TRUE, : there is no package called 'coro'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">oa_generate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<details><summary>Output</summary><pre class="details" data-summary="Output"><code>
+o_gnrt&gt; if (require("coro")) {
+o_gnrt+   # Example 1: basic usage getting one record at a time
+o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cites%3AW1160808132"
+o_gnrt+   oar &lt;- oa_generate(query_url, verbose = TRUE)
+o_gnrt+   p1 &lt;- oar() # record 1
+o_gnrt+   p2 &lt;- oar() # record 2
+o_gnrt+   p3 &lt;- oar() # record 3
+o_gnrt+   head(p1)
+o_gnrt+   head(p3)
+o_gnrt+ 
+o_gnrt+   # Example 2: using `coro::loop()` to iterate through the generator
+o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cited_by%3AW1847168837"
+o_gnrt+   oar &lt;- oa_generate(query_url)
+o_gnrt+   coro::loop(for (x in oar) {
+o_gnrt+     print(x$id)
+o_gnrt+   })
+o_gnrt+ 
+o_gnrt+   # Example 3: save records in blocks of 100
+o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cites%3AW1160808132"
+o_gnrt+   oar &lt;- oa_generate(query_url)
+o_gnrt+   n &lt;- 100
+o_gnrt+   recs &lt;- vector("list", n)
+o_gnrt+   i &lt;- 0
+o_gnrt+ 
+o_gnrt+   coro::loop(for (x in oar) {
+o_gnrt+     j &lt;- i %% n + 1
+o_gnrt+     recs[[j]] &lt;- x
+o_gnrt+     if (j == n) {
+o_gnrt+       # saveRDS(recs, sprintf("rec-%s.rds", i %/% n))
+o_gnrt+       recs &lt;- vector("list", n) # reset recs
+o_gnrt+     }
+o_gnrt+     i &lt;- i + 1
+o_gnrt+   })
+o_gnrt+   head(x)
+o_gnrt+   j
+o_gnrt+   # 398 works total, so j = 98 makes sense.
+o_gnrt+ 
+o_gnrt+   # You can also manually call the generator until exhausted
+o_gnrt+   # using `while (!coro::is_exhausted(record_i))`.
+o_gnrt+   # More details at https://coro.r-lib.org/articles/generator.html.
+o_gnrt+ 
+o_gnrt+ }</code></pre>
+</details>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: coro</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+logical.return = TRUE, : there is no package called 'coro'</code></pre>
+</div>
 </div>
 </section><section id="oa_snowball" class="level3"><h3 class="anchored" data-anchor-id="oa_snowball"><code>oa_snowball()</code></h3>
 <p>The user can also perform <em>snowballing</em> with <code><a href="https://docs.ropensci.org/openalexR/reference/oa_snowball.html">oa_snowball()</a></code>. Snowballing is a literature search technique where the researcher starts with a set of articles and find articles that cite or were cited by the original set. <code><a href="https://docs.ropensci.org/openalexR/reference/oa_snowball.html">oa_snowball()</a></code> returns a list of 2 elements: <em>nodes</em> and <em>edges</em>. Similar to <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code>, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_snowball.html">oa_snowball()</a></code> finds and returns information on a core set of articles satisfying certain criteria, but, unlike <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code>, it also returns information the articles that cite and are cited by this core set.</p>
 </section><section id="n-grams" class="level3"><h3 class="anchored" data-anchor-id="n-grams">🌾 N-grams</h3>
 <p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams</a></span><span class="op">(</span></span>
 <span>  works_identifier <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"W1964141474"</span>, <span class="st">"W1963991285"</span><span class="op">)</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
@@ -1115,7 +1204,7 @@ Important
 1 https://openalex.org/W1964141474 https://doi.org/10.1016/j.conb.…  2733 &lt;df&gt;  
 2 https://openalex.org/W1963991285 https://doi.org/10.1126/science…  2338 &lt;df&gt;  </code></pre>
 </div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ngrams_data</span><span class="op">$</span><span class="va">ngrams</span>, <span class="va">head</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ngrams_data</span><span class="op">$</span><span class="va">ngrams</span>, <span class="va">head</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
                                        ngram ngram_count ngram_tokens
@@ -1137,7 +1226,7 @@ Important
 2   0.0003756574
 3   0.0003756574</code></pre>
 </div>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">ngrams</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ngram_tokens</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">ngram</span>, <span class="va">ngram_count</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1160,87 +1249,8 @@ Important
 </div>
 </div>
 <p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> can sometimes be slow because the N-grams data can get pretty big, but given that the N-grams are <a href="https://docs.openalex.org/api-entities/works/get-n-grams#api-endpoint">“cached via CDN”</a>, you may also consider parallelizing for this special case.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
-</section></section><section id="coding-challenges" class="level2"><h2 class="anchored" data-anchor-id="coding-challenges">🛤️ Coding challenges</h2>
-<section id="challenge-1-advanced-filters" class="level3"><h3 class="anchored" data-anchor-id="challenge-1-advanced-filters">Challenge 1: Advanced filters</h3>
-<p>According to the OpenAlex <a href="https://docs.openalex.org/api-entities">API documentation</a>, what is the filter we should use to:</p>
-<ul>
-<li>Get <code>funders</code> with a description containing “engineering”?</li>
-<li>Get <code>topics</code> with more than 1000 works?</li>
-<li>Get <code>institutions</code> located in Asia?</li>
-</ul></section><section id="challenge-2-humpback-whale" class="level3"><h3 class="anchored" data-anchor-id="challenge-2-humpback-whale">Challenge 2: Humpback whale</h3>
-<p>Identify works on a specific topic (e.g., “humpback whale”) that have been cited more than 100 times. When were these works published? Where are the authors based? Create a bar plot showing the number of works at each institution.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Your solution</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">My solution</a></li>
-</ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># work &lt;- oa_fetch(</span></span>
-<span><span class="co">#   entity = "works",</span></span>
-<span><span class="co">#   # decide whether you want search/title.search/abstract.search/etc.</span></span>
-<span><span class="co">#   ______</span></span>
-<span><span class="co"># )</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># ______</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">humpback</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
-<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
-<span>  title.search <span class="op">=</span> <span class="st">"humpback whale"</span>,</span>
-<span>  cited_by_count <span class="op">=</span> <span class="st">"&gt;100"</span>,</span>
-<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sort <span class="op">=</span> <span class="st">"cited_by_count:desc"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">title</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "Songs of Humpback Whales"                                                                            
- [2] "Leading-edge tubercles delay stall on humpback whale (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) flippers"       
- [3] "Hydrodynamic design of the humpback whale flipper"                                                   
- [4] "Dynamics of two populations of the humpback whale, Megaptera novaeangliae (Borowski)"                
- [5] "Network-Based Diffusion Analysis Reveals Cultural Transmission of Lobtail Feeding in Humpback Whales"
- [6] "Genetic tagging of humpback whales"                                                                  
- [7] "Microplastic in a macro filter feeder: Humpback whale Megaptera novaeangliae"                        
- [8] "9. The Seasonal Migratory Cycle of Humpback Whales"                                                  
- [9] "Abundant mitochondrial DNA variation and world-wide population structure in humpback whales."        
-[10] "Humpback Whales (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) Fatally Poisoned by Dinoflagellate Toxin"            </code></pre>
-</div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_authors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">author</span>, <span class="va">nrow</span><span class="op">)</span></span>
-<span><span class="va">hb_authors</span> <span class="op">&lt;-</span> <span class="va">humpback</span><span class="op">$</span><span class="va">author</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">n_authors</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#DCB0F2"</span>, <span class="st">"#D3B484"</span>, <span class="st">"#F89C74"</span>, <span class="st">"#C9DB74"</span>, <span class="st">"#87C55F"</span>, <span class="st">"#B497E7"</span>,<span class="st">"#66C5CC"</span><span class="op">)</span></span>
-<span><span class="va">hb_authors</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">institution_display_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>inst <span class="op">=</span> <span class="va">institution_display_name</span>, country <span class="op">=</span> <span class="va">institution_country_code</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span>,  .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">n</span>, y <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">inst</span>, <span class="va">n</span><span class="op">)</span>, fill <span class="op">=</span> <span class="va">country</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">pal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="st">"Weighted value of most cited works"</span>,</span>
-<span>    y <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    title <span class="op">=</span> <span class="st">"Institutions with most cited works on humpback whale"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="openalexR-webinar_files/figure-html/answer-top-authors-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </section></section><section id="qa" class="level2"><h2 class="anchored" data-anchor-id="qa">🌸 Q&amp;A</h2>
-<p>TODO</p>
+<p>TODO: to fill after webinar</p>
 </section><section id="conclusion" class="level1"><h1>🍁 Conclusion</h1>
 <p>Thank you for participating in the <strong>openalexR</strong> webinar! We hope you found the session informative and engaging. For more information, visit the <a href="https://github.com/ropensci/openalexR">openalexR GitHub page</a> reach out to me on the <a href="https://groups.google.com/g/openalex-community">OpenAlex Community</a> Google Group with any questions.</p>
 <hr>
@@ -1481,6 +1491,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
