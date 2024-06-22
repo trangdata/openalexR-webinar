@@ -96,8 +96,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
 <li><a href="#other-parameters-of-oa_fetch" id="toc-other-parameters-of-oa_fetch" class="nav-link" data-scroll-target="#other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code></a></li>
   <li><a href="#building-your-own-query" id="toc-building-your-own-query" class="nav-link" data-scroll-target="#building-your-own-query">Building your own query</a></li>
-  <li><a href="#oa_generate" id="toc-oa_generate" class="nav-link" data-scroll-target="#oa_generate">oa_generate</a></li>
-  <li><a href="#analyzing-citations" id="toc-analyzing-citations" class="nav-link" data-scroll-target="#analyzing-citations">Analyzing Citations</a></li>
+  <li><a href="#oa_generate" id="toc-oa_generate" class="nav-link" data-scroll-target="#oa_generate"><code>oa_generate()</code></a></li>
+  <li><a href="#oa_snowball" id="toc-oa_snowball" class="nav-link" data-scroll-target="#oa_snowball"><code>oa_snowball()</code></a></li>
   <li><a href="#n-grams" id="toc-n-grams" class="nav-link" data-scroll-target="#n-grams">🌾 N-grams</a></li>
   </ul>
 </li>
@@ -846,7 +846,7 @@ Tip
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     count db_response_time_ms page per_page
-[1,]    38                 223    1        1</code></pre>
+[1,]    38                  87    1        1</code></pre>
 </div>
 </div>
 <p>So there are <code>.Last.value[1, 1][[1]]</code> records in total. Now, we can get the entire collection:</p>
@@ -1031,18 +1031,75 @@ Important
 </section></section><section id="advanced-topics" class="level2"><h2 class="anchored" data-anchor-id="advanced-topics">🌵 Advanced topics</h2>
 <section id="other-parameters-of-oa_fetch" class="level3"><h3 class="anchored" data-anchor-id="other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code>
 </h3>
-<p>So far, we have seen the argument <code>options</code>, which is a list of additional parameters that can be passed to the API. <code>output = "list"</code> TODO</p>
+<p>So far, we have seen the argument <code>options</code>, which is a list of additional parameters that can be passed to the API. Some of these options include:</p>
+<ul>
+<li><p><code>select</code>: Top-level fields to show in output.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
+<li><p><code>sort</code>: Attribute to sort by, <em>e.g.</em>: “display_name” for sources or “cited_by_count:desc” for works.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p></li>
+<li><p><code>sample</code>: number of (random) records to return.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
+<li><p><code>seed</code> A seed value in order to retrieve the same set of random records in the same order when used multiple times with <code>sample</code>.</p></li>
+</ul>
+<p>Another helpful argument is <code>output</code>. By default, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code> returns a tibble with pre-specified columns that we think are useful for most users. We’re working on better documenting for this process in this <a href="https://github.com/ropensci/openalexR/pull/211">pull request</a>. However, if you need more control over the output (e.g., you want more fields that are not returned in the dataframe), you can set <code>output = "list"</code> to get the raw JSON (R list) object returned by the API. Please <a href="https://github.com/ropensci/openalexR/issues/new">make an issue</a> if you think a field is important to return in the dataframe output. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 </section><section id="building-your-own-query" class="level3"><h3 class="anchored" data-anchor-id="building-your-own-query">Building your own query</h3>
-<p>TODO</p>
-</section><section id="oa_generate" class="level3"><h3 class="anchored" data-anchor-id="oa_generate">oa_generate</h3>
-<p>TODO</p>
-</section><section id="analyzing-citations" class="level3"><h3 class="anchored" data-anchor-id="analyzing-citations">Analyzing Citations</h3>
-<p>Analyze the citations of a work:</p>
+<p>Behind the scene, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code> composes three functions below so the user can execute everything in one step, <em>i.e.</em>, <code>oa_query() |&gt; oa_request() |&gt; oa2df()</code></p>
+<ul>
+<li><p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_query.html">oa_query()</a></code>: generates a valid query, written following the OpenAlex API syntax, from a set of arguments provided by the user.</p></li>
+<li><p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_request.html">oa_request()</a></code>: downloads a collection of entities matching the query created by <code>oa_query</code> or manually written by the user, and returns a JSON object in a list format.</p></li>
+<li><p><code><a href="https://docs.ropensci.org/openalexR/reference/oa2df.html">oa2df()</a></code>: converts the JSON object in classical bibliographic tibble/data frame.</p></li>
+</ul>
+<p>Therefore, instead of using <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code>, you can use <code><a href="https://docs.ropensci.org/openalexR/reference/oa_query.html">oa_query()</a></code> and <code><a href="https://docs.ropensci.org/openalexR/reference/oa_request.html">oa_request()</a></code> separately to build your own query, then (optionally) convert the result to a dataframe using <code><a href="https://docs.ropensci.org/openalexR/reference/oa2df.html">oa2df()</a></code>.</p>
+</section><section id="oa_generate" class="level3"><h3 class="anchored" data-anchor-id="oa_generate"><code>oa_generate()</code></h3>
+<p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_generate.html">oa_generate()</a></code> is a generator for making request to OpenAlex API, returning one record at a time. This is useful when you want to process a large number of records without loading them all into memory at once. You will need to first build your own query (<em>e.g.</em>, using <code><a href="https://docs.ropensci.org/openalexR/reference/oa_query.html">oa_query()</a></code>) to use as an argument in <code><a href="https://docs.ropensci.org/openalexR/reference/oa_generate.html">oa_generate()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># citations &lt;- oa_fetch(entity = "works", filter = list(cited_by.work.id = work_id))</span></span>
-<span><span class="co"># print(citations)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">oa_generate</span><span class="op">)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## o_gnrt&gt; if (require("coro")) {</span></span>
+<span><span class="co">## o_gnrt+   # Example 1: basic usage getting one record at a time</span></span>
+<span><span class="co">## o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cites%3AW1160808132"</span></span>
+<span><span class="co">## o_gnrt+   oar &lt;- oa_generate(query_url, verbose = TRUE)</span></span>
+<span><span class="co">## o_gnrt+   p1 &lt;- oar() # record 1</span></span>
+<span><span class="co">## o_gnrt+   p2 &lt;- oar() # record 2</span></span>
+<span><span class="co">## o_gnrt+   p3 &lt;- oar() # record 3</span></span>
+<span><span class="co">## o_gnrt+   head(p1)</span></span>
+<span><span class="co">## o_gnrt+   head(p3)</span></span>
+<span><span class="co">## o_gnrt+ </span></span>
+<span><span class="co">## o_gnrt+   # Example 2: using `coro::loop()` to iterate through the generator</span></span>
+<span><span class="co">## o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cited_by%3AW1847168837"</span></span>
+<span><span class="co">## o_gnrt+   oar &lt;- oa_generate(query_url)</span></span>
+<span><span class="co">## o_gnrt+   coro::loop(for (x in oar) {</span></span>
+<span><span class="co">## o_gnrt+     print(x$id)</span></span>
+<span><span class="co">## o_gnrt+   })</span></span>
+<span><span class="co">## o_gnrt+ </span></span>
+<span><span class="co">## o_gnrt+   # Example 3: save records in blocks of 100</span></span>
+<span><span class="co">## o_gnrt+   query_url &lt;- "https://api.openalex.org/works?filter=cites%3AW1160808132"</span></span>
+<span><span class="co">## o_gnrt+   oar &lt;- oa_generate(query_url)</span></span>
+<span><span class="co">## o_gnrt+   n &lt;- 100</span></span>
+<span><span class="co">## o_gnrt+   recs &lt;- vector("list", n)</span></span>
+<span><span class="co">## o_gnrt+   i &lt;- 0</span></span>
+<span><span class="co">## o_gnrt+ </span></span>
+<span><span class="co">## o_gnrt+   coro::loop(for (x in oar) {</span></span>
+<span><span class="co">## o_gnrt+     j &lt;- i %% n + 1</span></span>
+<span><span class="co">## o_gnrt+     recs[[j]] &lt;- x</span></span>
+<span><span class="co">## o_gnrt+     if (j == n) {</span></span>
+<span><span class="co">## o_gnrt+       # saveRDS(recs, sprintf("rec-%s.rds", i %/% n))</span></span>
+<span><span class="co">## o_gnrt+       recs &lt;- vector("list", n) # reset recs</span></span>
+<span><span class="co">## o_gnrt+     }</span></span>
+<span><span class="co">## o_gnrt+     i &lt;- i + 1</span></span>
+<span><span class="co">## o_gnrt+   })</span></span>
+<span><span class="co">## o_gnrt+   head(x)</span></span>
+<span><span class="co">## o_gnrt+   j</span></span>
+<span><span class="co">## o_gnrt+   # 398 works total, so j = 98 makes sense.</span></span>
+<span><span class="co">## o_gnrt+ </span></span>
+<span><span class="co">## o_gnrt+   # You can also manually call the generator until exhausted</span></span>
+<span><span class="co">## o_gnrt+   # using `while (!coro::is_exhausted(record_i))`.</span></span>
+<span><span class="co">## o_gnrt+   # More details at https://coro.r-lib.org/articles/generator.html.</span></span>
+<span><span class="co">## o_gnrt+ </span></span>
+<span><span class="co">## o_gnrt+ }</span></span>
+<span><span class="co">## Loading required package: coro</span></span>
+<span><span class="co">## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,</span></span>
+<span><span class="co">## logical.return = TRUE, : there is no package called 'coro'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>TODO</p>
+</section><section id="oa_snowball" class="level3"><h3 class="anchored" data-anchor-id="oa_snowball"><code>oa_snowball()</code></h3>
+<p>The user can also perform <em>snowballing</em> with <code><a href="https://docs.ropensci.org/openalexR/reference/oa_snowball.html">oa_snowball()</a></code>. Snowballing is a literature search technique where the researcher starts with a set of articles and find articles that cite or were cited by the original set. <code><a href="https://docs.ropensci.org/openalexR/reference/oa_snowball.html">oa_snowball()</a></code> returns a list of 2 elements: <em>nodes</em> and <em>edges</em>. Similar to <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code>, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_snowball.html">oa_snowball()</a></code> finds and returns information on a core set of articles satisfying certain criteria, but, unlike <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code>, it also returns information the articles that cite and are cited by this core set.</p>
 </section><section id="n-grams" class="level3"><h3 class="anchored" data-anchor-id="n-grams">🌾 N-grams</h3>
 <p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
 <div class="cell">
@@ -1102,7 +1159,7 @@ Important
 </div>
 </div>
 </div>
-<p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> can sometimes be slow because the N-grams data can get pretty big, but given that the N-grams are <a href="https://docs.openalex.org/api-entities/works/get-n-grams#api-endpoint">“cached via CDN”</a>, you may also consider parallelizing for this special case.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> can sometimes be slow because the N-grams data can get pretty big, but given that the N-grams are <a href="https://docs.openalex.org/api-entities/works/get-n-grams#api-endpoint">“cached via CDN”</a>, you may also consider parallelizing for this special case.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
 </section></section><section id="coding-challenges" class="level2"><h2 class="anchored" data-anchor-id="coding-challenges">🛤️ Coding challenges</h2>
 <section id="challenge-1-advanced-filters" class="level3"><h3 class="anchored" data-anchor-id="challenge-1-advanced-filters">Challenge 1: Advanced filters</h3>
 <p>According to the OpenAlex <a href="https://docs.openalex.org/api-entities">API documentation</a>, what is the filter we should use to:</p>
@@ -1196,7 +1253,11 @@ Important
 <ol>
 <li id="fn1"><p>Either canonical form with <a href="https://doi.org/" class="uri">https://doi.org/</a> or without will work.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Either canonical form with <a href="https://orcid.org/" class="uri">https://orcid.org/</a> or without will work.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> parallelizes automatically if you have <code>{curl} &gt;= v5.0.0</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://docs.openalex.org/how-to-use-the-api/get-single-entities/select-fields<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sort-entity-lists" class="uri">https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sort-entity-lists</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sample-entity-lists" class="uri">https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sample-entity-lists</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://github.com/ropensci/openalexR/issues/205">Example issue</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> parallelizes automatically if you have <code>{curl} &gt;= v5.0.0</code><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></div></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
