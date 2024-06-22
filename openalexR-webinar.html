@@ -97,7 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#advanced-topics" id="toc-advanced-topics" class="nav-link" data-scroll-target="#advanced-topics">🌵 Advanced topics</a>
   <ul class="collapse">
-  <li><a href="#other-parameters-of-oa_fetch" id="toc-other-parameters-of-oa_fetch" class="nav-link" data-scroll-target="#other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch</code></a></li>
+  <li><a href="#other-parameters-of-oa_fetch" id="toc-other-parameters-of-oa_fetch" class="nav-link" data-scroll-target="#other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code></a></li>
   <li><a href="#building-your-own-query" id="toc-building-your-own-query" class="nav-link" data-scroll-target="#building-your-own-query">Building your own query</a></li>
   <li><a href="#oa_generate" id="toc-oa_generate" class="nav-link" data-scroll-target="#oa_generate">oa_generate</a></li>
   <li><a href="#analyzing-citations" id="toc-analyzing-citations" class="nav-link" data-scroll-target="#analyzing-citations">Analyzing Citations</a></li>
@@ -187,7 +187,7 @@ R base pipe
 </section>
 <section id="basic-usage" class="level2">
 <h2 class="anchored" data-anchor-id="basic-usage">🌿 Basic usage</h2>
-<p>The main function of <strong>openalexR</strong> is <code>oa_fetch</code>.</p>
+<p>The main function of <strong>openalexR</strong> is <code>oa_fetch()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?oa_fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -206,7 +206,7 @@ Note
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>When you know the OpenAlex ID of the work, you do not need to specify <code>entity = "works"</code> because entity can be inferred from the first character of <code>id</code>. However, I specify it here for clarity. In other use cases (search, filter), you will almost always want to specify <code>entity</code>.</p>
+<p>When you know the OpenAlex ID of the work, you do not need to specify <code>entity = "works"</code> because entity can be inferred from the first character of <code>id</code>. However, I specify it here for clarity. In other use cases (search, filter), you will almost always want to specify <code>entity</code>. For a list of all supported entities, see <code>oa_entities()</code>.</p>
 </div>
 </div>
 </div>
@@ -275,7 +275,7 @@ Note
  $ topics                     :List of 1</code></pre>
 </div>
 </div>
-<p><strong>openalexR</strong> also provides the <code>show_works</code> function to simplify the result (e.g., remove some columns, keep first/last author) for easy viewing. Let us define <code>print_oa</code> to wrap the output table in <code>knitr::kable()</code> to be displayed nicely on the webpage, but you will most likely not need this function.</p>
+<p><strong>openalexR</strong> also provides the <code>show_works</code> function to simplify the result (e.g., remove some columns, keep first/last author) for easy viewing. Let us define <code>print_oa()</code> to wrap the output table in <code>knitr::kable()</code> to be displayed nicely on the webpage, but you will most likely not need this function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>print_oa <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">fun =</span> show_works) {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
@@ -323,7 +323,7 @@ Note
 </section>
 <section id="filter-and-search" class="level3">
 <h3 class="anchored" data-anchor-id="filter-and-search">Filter and search</h3>
-<p>There are different <a href="https://ropensci.github.io/openalexR/articles/Filters">filters</a>/arguments you can use in <code>oa_fetch</code>, depending on which <a href="https://docs.openalex.org/#data">entity</a> you’re interested in: works, authors, sources, funders, institutions, or concepts. We show a few examples below.</p>
+<p>There are different <a href="https://ropensci.github.io/openalexR/articles/Filters">filters</a>/arguments you can use in <code>oa_fetch()</code>, depending on which <a href="https://docs.openalex.org/#data">entity</a> you’re interested in: works, authors, sources, funders, institutions, or concepts. We show a few examples below.</p>
 <section id="use-doi-as-a-works-filter" class="level4">
 <h4 class="anchored" data-anchor-id="use-doi-as-a-works-filter">1. Use <code>doi</code> as a <a href="https://ropensci.github.io/openalexR/articles/Filters.html#works">works filter</a></h4>
 <p><strong>Goal</strong>: Fetch information on two works with DOIs <code>10.1016/j.joi.2017.08.007</code> and <code>https://doi.org/10.1007/s11192-013-1221-3</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
@@ -392,7 +392,7 @@ Note
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>works_from_orcids <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">author.orcid =</span> <span class="fu">c</span>(<span class="st">"0000-0001-6187-6610"</span>, <span class="st">"0000-0002-8517-9411"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">author.orcid =</span> <span class="fu">c</span>(<span class="st">"0000-0001-6187-6610"</span>, <span class="st">"https://orcid.org/0000-0002-8517-9411"</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in oa_request(oa_query(filter = filter_i, multiple_id = multiple_id, : 
@@ -621,12 +621,12 @@ Invalid query parameters error.
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 3%">
-<col style="width: 36%">
-<col style="width: 6%">
+<col style="width: 33%">
+<col style="width: 5%">
 <col style="width: 9%">
-<col style="width: 21%">
+<col style="width: 23%">
 <col style="width: 1%">
-<col style="width: 21%">
+<col style="width: 22%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -686,6 +686,15 @@ Invalid query parameters error.
 <td style="text-align: left;">Chemistry</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">W4398757965</td>
+<td style="text-align: left;">Category of quantity in the language of the Kul Tig monumen</td>
+<td style="text-align: left;">Shahla Amirova</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Deleted Journal</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Welding</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">W4396694765</td>
 <td style="text-align: left;">Fluctuations and Changes in Adolescent Personality</td>
 <td style="text-align: left;">Tayler E. Truhan</td>
@@ -693,15 +702,6 @@ Invalid query parameters error.
 <td style="text-align: left;">Routledge eBooks</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Personality</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">W4391747045</td>
-<td style="text-align: left;">The Effect of Oral Iron Supplementation/Fortification on the Gut Microbiota in Infancy: A Systematic Review and Meta-Analysis</td>
-<td style="text-align: left;">Theoni Karamantziani</td>
-<td style="text-align: left;">Nicoletta Iacovidou</td>
-<td style="text-align: left;">Children</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Meta-analysis, Gut flora, Randomized controlled trial</td>
 </tr>
 </tbody>
 </table>
@@ -890,7 +890,7 @@ Tip
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     count db_response_time_ms page per_page
-[1,]    38                 105    1        1</code></pre>
+[1,]    38                 223    1        1</code></pre>
 </div>
 </div>
 <p>So there are <code>.Last.value[1, 1][[1]]</code> records in total. Now, we can get the entire collection:</p>
@@ -974,7 +974,7 @@ Tip
 <td style="text-align: left;">Francesco Fienga</td>
 <td style="text-align: left;">0000-0001-5978-4952</td>
 <td style="text-align: right;">846</td>
-<td style="text-align: right;">17213</td>
+<td style="text-align: right;">17271</td>
 <td style="text-align: left;">University of Naples Federico II</td>
 <td style="text-align: left;">Quantum mechanics, Nuclear physics, Particle physics</td>
 </tr>
@@ -1085,7 +1085,7 @@ Important
 <section id="advanced-topics" class="level2">
 <h2 class="anchored" data-anchor-id="advanced-topics">🌵 Advanced topics</h2>
 <section id="other-parameters-of-oa_fetch" class="level3">
-<h3 class="anchored" data-anchor-id="other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch</code></h3>
+<h3 class="anchored" data-anchor-id="other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code></h3>
 <p>So far, we have seen the argument <code>options</code>, which is a list of additional parameters that can be passed to the API. <code>output = "list"</code> TODO</p>
 </section>
 <section id="building-your-own-query" class="level3">
@@ -1107,7 +1107,7 @@ Important
 </section>
 <section id="n-grams" class="level3">
 <h3 class="anchored" data-anchor-id="n-grams">🌾 N-grams</h3>
-<p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code>oa_ngrams</code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
+<p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code>oa_ngrams()</code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ngrams_data <span class="ot">&lt;-</span> <span class="fu">oa_ngrams</span>(</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_identifier =</span> <span class="fu">c</span>(<span class="st">"W1964141474"</span>, <span class="st">"W1963991285"</span>),</span>
@@ -1166,7 +1166,7 @@ Important
 </div>
 </div>
 </div>
-<p><code>oa_ngrams</code> can sometimes be slow because the N-grams data can get pretty big, but given that the N-grams are <a href="https://docs.openalex.org/api-entities/works/get-n-grams#api-endpoint">“cached via CDN”</a>, you may also consider parallelizing for this special case.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><code>oa_ngrams()</code> can sometimes be slow because the N-grams data can get pretty big, but given that the N-grams are <a href="https://docs.openalex.org/api-entities/works/get-n-grams#api-endpoint">“cached via CDN”</a>, you may also consider parallelizing for this special case.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 </section>
 </section>
 <section id="coding-challenges" class="level2">
@@ -1275,9 +1275,9 @@ Important
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Either canonical form with <a href="https://orcid.org/" class="uri">https://doi.org/</a> or without will work.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Either canonical form with <a href="https://doi.org/" class="uri">https://doi.org/</a> or without will work.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Either canonical form with <a href="https://orcid.org/" class="uri">https://orcid.org/</a> or without will work.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><code>oa_ngrams</code> does this automatically if you have <code>{curl} &gt;= v5.0.0</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><code>oa_ngrams()</code> parallelizes automatically if you have <code>{curl} &gt;= v5.0.0</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->
