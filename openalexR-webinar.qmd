@@ -9,11 +9,10 @@ format:
       dark: slate
     toc: true
     toc_float: true
-    resources:
-      - data/* 
     code-link: true
-# filters:
-#   - webr
+    code-tools:
+      source: https://github.com/trangdata/openalexR-webinar
+      toggle: false
 ---
 
 Welcome to the webinar on **openalexR**!
@@ -234,6 +233,76 @@ oa_fetch(
   print_oa(show_authors)
 ```
 
+## 🛤️ Coding challenges
+
+### Challenge 1: Advanced filters
+
+According to the OpenAlex [API documentation](https://docs.openalex.org/api-entities), what is the filter we should use to:
+
+-   Get `funders` with a description containing "engineering"?
+-   Get `topics` with more than 1000 works?
+-   Get `institutions` located in Asia?
+
+### Challenge 2: Humpback whale
+
+Identify works on a specific topic (e.g., "humpback whale") that have been cited more than 100 times.
+When were these works published?
+Where are the authors based?
+Create a bar plot showing the number of works at each institution.
+
+::: panel-tabset
+## Your solution
+
+```{r challenge-top-authors}
+#| eval: false
+
+# work <- oa_fetch(
+#   entity = "works",
+#   # decide whether you want search/title.search/abstract.search/etc.
+#   ______
+# )
+#
+# ______
+```
+
+## My solution
+
+```{r answer-top-authors}
+humpback <- oa_fetch(
+  entity = "works",
+  title.search = "humpback whale",
+  cited_by_count = ">100",
+  options = list(sort = "cited_by_count:desc")
+)
+print(humpback$title[1:10])
+n_authors <- sapply(humpback$author, nrow)
+hb_authors <- humpback$author |>
+  bind_rows() |> 
+  mutate(weight = 1/unlist(lapply(n_authors, \(x) rep(x, x))))
+
+pal <- c("#D3B484", "#F89C74", "#C9DB74", "#87C55F", "#B497E7","#66C5CC")
+hb_authors |>
+  drop_na(institution_display_name) |>
+  group_by(
+    inst = institution_display_name, 
+    country = institution_country_code
+  ) |>
+  summarise(n = sum(weight),  .groups = "drop") |> 
+  arrange(desc(n)) |> 
+  filter(n > 0.5) |>
+  ggplot() +
+  aes(x = n, y = fct_reorder(inst, n), fill = country) +
+  geom_col() +
+  scale_fill_manual(values = rev(pal)) +
+  coord_cartesian(expand = FALSE) +
+  labs(
+    x = "Weighted value of most cited works",
+    y = NULL,
+    title = "Institutions with most cited works on humpback whale"
+  )
+```
+:::
+
 ## 🪴 Example analyses
 
 ### Prolific authors
@@ -393,8 +462,7 @@ Therefore, instead of using `oa_fetch()`, you can use `oa_query()` and `oa_reque
 This is useful when you want to process a large number of records without loading them all into memory at once.
 You will need to first build your own query (*e.g.*, using `oa_query()`) to use as an argument in `oa_generate()`.
 
-```{r}
-#| collapse: true
+```{r attr.output='.details summary="Output"'}
 example(oa_generate)
 ```
 
@@ -441,76 +509,9 @@ ngrams_data |>
 
 [^7]: `oa_ngrams()` parallelizes automatically if you have `{curl} >= v5.0.0`
 
-## 🛤️ Coding challenges
-
-### Challenge 1: Advanced filters
-
-According to the OpenAlex [API documentation](https://docs.openalex.org/api-entities), what is the filter we should use to:
-
--   Get `funders` with a description containing "engineering"?
--   Get `topics` with more than 1000 works?
--   Get `institutions` located in Asia?
-
-### Challenge 2: Humpback whale
-
-Identify works on a specific topic (e.g., "humpback whale") that have been cited more than 100 times.
-When were these works published?
-Where are the authors based?
-Create a bar plot showing the number of works at each institution.
-
-::: panel-tabset
-## Your solution
-
-```{r challenge-top-authors}
-#| eval: false
-
-# work <- oa_fetch(
-#   entity = "works",
-#   # decide whether you want search/title.search/abstract.search/etc.
-#   ______
-# )
-#
-# ______
-```
-
-## My solution
-
-```{r answer-top-authors}
-humpback <- oa_fetch(
-  entity = "works",
-  title.search = "humpback whale",
-  cited_by_count = ">100",
-  options = list(sort = "cited_by_count:desc")
-)
-print(humpback$title[1:10])
-n_authors <- sapply(humpback$author, nrow)
-hb_authors <- humpback$author |>
-  bind_rows() |> 
-  mutate(weight = 1/unlist(lapply(n_authors, \(x) rep(x, x))))
-
-pal <- c("#DCB0F2", "#D3B484", "#F89C74", "#C9DB74", "#87C55F", "#B497E7","#66C5CC")
-hb_authors |>
-  drop_na(institution_display_name) |>
-  group_by(inst = institution_display_name, country = institution_country_code) |>
-  summarise(n = sum(weight),  .groups = "drop") |> 
-  arrange(desc(n)) |> 
-  filter(n > 0.5) |>
-  ggplot() +
-  aes(x = n, y = fct_reorder(inst, n), fill = country) +
-  geom_col() +
-  scale_fill_manual(values = rev(pal)) +
-  coord_cartesian(expand = FALSE) +
-  labs(
-    x = "Weighted value of most cited works",
-    y = NULL,
-    title = "Institutions with most cited works on humpback whale"
-  )
-```
-:::
-
 ## 🌸 Q&A
 
-TODO
+TODO: to fill after webinar 
 
 # 🍁 Conclusion
 

@@ -1,6 +1,6 @@
 project:
   title: "openalexR-webinar"
   output-dir: docs
-  resources:
-    - data/*
 editor: visual
+filters:
+  - fold_results.lua
