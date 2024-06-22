@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.555">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Trang Le">
 <meta name="dcterms.date" content="2024-06-22">
-
 <title>Introduction to openalexR: a webinar</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,7 +55,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="openalexR-webinar_files/libs/clipboard/clipboard.min.js"></script>
 <script src="openalexR-webinar_files/libs/quarto-html/quarto.js"></script>
 <script src="openalexR-webinar_files/libs/quarto-html/popper.min.js"></script>
@@ -71,55 +67,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="openalexR-webinar_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="openalexR-webinar_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="openalexR-webinar_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-
-
 </head>
-
 <body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+  <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">🌻 Introduction</a></li>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">🌻 Introduction</a></li>
   <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup">🌱 Installation and setup</a></li>
-  <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">🌿 Basic usage</a>
+  <li>
+<a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">🌿 Basic usage</a>
   <ul class="collapse">
-  <li><a href="#fetching-information-from-identifiers" id="toc-fetching-information-from-identifiers" class="nav-link" data-scroll-target="#fetching-information-from-identifiers">Fetching information from identifiers</a></li>
+<li><a href="#fetching-information-from-identifiers" id="toc-fetching-information-from-identifiers" class="nav-link" data-scroll-target="#fetching-information-from-identifiers">Fetching information from identifiers</a></li>
   <li><a href="#filter-and-search" id="toc-filter-and-search" class="nav-link" data-scroll-target="#filter-and-search">Filter and search</a></li>
-  </ul></li>
-  <li><a href="#example-analyses" id="toc-example-analyses" class="nav-link" data-scroll-target="#example-analyses">🪴 Example analyses</a>
+  </ul>
+</li>
+  <li>
+<a href="#example-analyses" id="toc-example-analyses" class="nav-link" data-scroll-target="#example-analyses">🪴 Example analyses</a>
   <ul class="collapse">
-  <li><a href="#prolific-authors" id="toc-prolific-authors" class="nav-link" data-scroll-target="#prolific-authors">Prolific authors</a></li>
+<li><a href="#prolific-authors" id="toc-prolific-authors" class="nav-link" data-scroll-target="#prolific-authors">Prolific authors</a></li>
   <li><a href="#journal-clocks" id="toc-journal-clocks" class="nav-link" data-scroll-target="#journal-clocks">Journal clocks</a></li>
-  </ul></li>
-  <li><a href="#advanced-topics" id="toc-advanced-topics" class="nav-link" data-scroll-target="#advanced-topics">🌵 Advanced topics</a>
+  </ul>
+</li>
+  <li>
+<a href="#advanced-topics" id="toc-advanced-topics" class="nav-link" data-scroll-target="#advanced-topics">🌵 Advanced topics</a>
   <ul class="collapse">
-  <li><a href="#other-parameters-of-oa_fetch" id="toc-other-parameters-of-oa_fetch" class="nav-link" data-scroll-target="#other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code></a></li>
+<li><a href="#other-parameters-of-oa_fetch" id="toc-other-parameters-of-oa_fetch" class="nav-link" data-scroll-target="#other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code></a></li>
   <li><a href="#building-your-own-query" id="toc-building-your-own-query" class="nav-link" data-scroll-target="#building-your-own-query">Building your own query</a></li>
   <li><a href="#oa_generate" id="toc-oa_generate" class="nav-link" data-scroll-target="#oa_generate">oa_generate</a></li>
   <li><a href="#analyzing-citations" id="toc-analyzing-citations" class="nav-link" data-scroll-target="#analyzing-citations">Analyzing Citations</a></li>
   <li><a href="#n-grams" id="toc-n-grams" class="nav-link" data-scroll-target="#n-grams">🌾 N-grams</a></li>
-  </ul></li>
-  <li><a href="#coding-challenges" id="toc-coding-challenges" class="nav-link" data-scroll-target="#coding-challenges">🛤️ Coding challenges</a>
-  <ul class="collapse">
-  <li><a href="#challenge-1-advanced-filters" id="toc-challenge-1-advanced-filters" class="nav-link" data-scroll-target="#challenge-1-advanced-filters">Challenge 1: Advanced filters</a></li>
-  <li><a href="#challenge-2-humpback-whale" id="toc-challenge-2-humpback-whale" class="nav-link" data-scroll-target="#challenge-2-humpback-whale">Challenge 2: Humpback whale</a></li>
-  </ul></li>
-  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa">🌸 Q&amp;A</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">🍁 Conclusion</a>
-  <ul class="collapse">
-  <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">🌳 Links</a></li>
-  </ul></li>
   </ul>
-</nav>
+</li>
+  <li>
+<a href="#coding-challenges" id="toc-coding-challenges" class="nav-link" data-scroll-target="#coding-challenges">🛤️ Coding challenges</a>
+  <ul class="collapse">
+<li><a href="#challenge-1-advanced-filters" id="toc-challenge-1-advanced-filters" class="nav-link" data-scroll-target="#challenge-1-advanced-filters">Challenge 1: Advanced filters</a></li>
+  <li><a href="#challenge-2-humpback-whale" id="toc-challenge-2-humpback-whale" class="nav-link" data-scroll-target="#challenge-2-humpback-whale">Challenge 2: Humpback whale</a></li>
+  </ul>
+</li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa">🌸 Q&amp;A</a></li>
+  <li>
+<a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">🍁 Conclusion</a>
+  <ul class="collapse">
+<li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">🌳 Links</a></li>
+  </ul>
+</li>
+  </ul></nav>
 </div>
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Introduction to openalexR: a webinar</h1>
 </div>
 
@@ -146,27 +144,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<p>Welcome to the webinar on <strong>openalexR</strong>! Today, we will explore how to use the <strong>openalexR</strong> package to fetch data from OpenAlex, a free, comprehensive database for scholarly papers, authors, institutions, and more.</p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">🌻 Introduction</h2>
+</header><p>Welcome to the webinar on <strong>openalexR</strong>! Today, we will explore how to use the <strong>openalexR</strong> package to fetch data from OpenAlex, a free, comprehensive database for scholarly papers, authors, institutions, and more.</p>
+<section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">🌻 Introduction</h2>
 <p><strong>openalexR</strong> is an R package that provides an interface to OpenAlex, a free and open dataset of the entire research landscape. With <strong>openalexR</strong>, you can easily access and analyze scholarly data directly from R.</p>
-</section>
-<section id="installation-and-setup" class="level2">
-<h2 class="anchored" data-anchor-id="installation-and-setup">🌱 Installation and setup</h2>
+</section><section id="installation-and-setup" class="level2"><h2 class="anchored" data-anchor-id="installation-and-setup">🌱 Installation and setup</h2>
 <p>If you haven’t already installed the <strong>openalexR</strong> package, you can do so from CRAN:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"openalexR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openalexR"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Before we go any further, we highly recommend you set the <code>openalexR.mailto</code> option so that your requests go to <a href="https://docs.openalex.org/how-to-use-the-api/rate-limits-and-authentication#the-polite-pool">the polite pool</a> for faster response times. If you have OpenAlex Premium, you can add your API key to the <code>openalexR.apikey</code> option as well. To do so, you can open <code>.Renviron</code> with <code>file.edit("~/.Renviron")</code> and add:</p>
 <pre><code>openalexR.mailto = example@email.com
 openalexR.apikey = EXAMPLE_APIKEY</code></pre>
 <p>We will now load in <strong>openalexR</strong> and the <a href="https://www.tidyverse.org/"><strong>tidyverse</strong></a> to use for the rest of this webinar.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openalexR)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/openalexR">openalexR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -184,15 +176,12 @@ R base pipe
 </div>
 </div>
 </div>
-</section>
-<section id="basic-usage" class="level2">
-<h2 class="anchored" data-anchor-id="basic-usage">🌿 Basic usage</h2>
-<p>The main function of <strong>openalexR</strong> is <code>oa_fetch()</code>.</p>
+</section><section id="basic-usage" class="level2"><h2 class="anchored" data-anchor-id="basic-usage">🌿 Basic usage</h2>
+<p>The main function of <strong>openalexR</strong> is <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?oa_fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">oa_fetch</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="fetching-information-from-identifiers" class="level3">
-<h3 class="anchored" data-anchor-id="fetching-information-from-identifiers">Fetching information from identifiers</h3>
+<section id="fetching-information-from-identifiers" class="level3"><h3 class="anchored" data-anchor-id="fetching-information-from-identifiers">Fetching information from identifiers</h3>
 <p>Let’s start by fetching data on a specific scholarly work using its OpenAlex ID:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -206,16 +195,16 @@ Note
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>When you know the OpenAlex ID of the work, you do not need to specify <code>entity = "works"</code> because entity can be inferred from the first character of <code>id</code>. However, I specify it here for clarity. In other use cases (search, filter), you will almost always want to specify <code>entity</code>. For a list of all supported entities, see <code>oa_entities()</code>.</p>
+<p>When you know the OpenAlex ID of the work, you do not need to specify <code>entity = "works"</code> because entity can be inferred from the first character of <code>id</code>. However, I specify it here for clarity. In other use cases (search, filter), you will almost always want to specify <code>entity</code>. For a list of all supported entities, see <code><a href="https://docs.ropensci.org/openalexR/reference/oa_entities.html">oa_entities()</a></code>.</p>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">id =</span> <span class="st">"W2741809807"</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">work</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span>entity <span class="op">=</span> <span class="st">"works"</span>, id <span class="op">=</span> <span class="st">"W2741809807"</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works/W2741809807</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">work</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 38
   id                title display_name author ab    publication_date so    so_id
@@ -232,7 +221,7 @@ Note
 </div>
 <p>Now, we can view the output tibble/dataframe, <code>work</code>, interactively in RStudio or inspect it with base functions like <code>str</code> or <code>head</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(work, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">work</span>, max.level <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [1 × 38] (S3: tbl_df/tbl/data.frame)
  $ id                         : chr "https://openalex.org/W2741809807"
@@ -275,15 +264,15 @@ Note
  $ topics                     :List of 1</code></pre>
 </div>
 </div>
-<p><strong>openalexR</strong> also provides the <code>show_works</code> function to simplify the result (e.g., remove some columns, keep first/last author) for easy viewing. Let us define <code>print_oa()</code> to wrap the output table in <code>knitr::kable()</code> to be displayed nicely on the webpage, but you will most likely not need this function.</p>
+<p><strong>openalexR</strong> also provides the <code>show_works</code> function to simplify the result (e.g., remove some columns, keep first/last author) for easy viewing. Let us define <code>print_oa()</code> to wrap the output table in <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code> to be displayed nicely on the webpage, but you will most likely not need this function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>print_oa <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">fun =</span> show_works) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">any_of</span>(<span class="st">"url"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fun</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">print_oa</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">fun</span> <span class="op">=</span> <span class="va">show_works</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html">any_of</a></span><span class="op">(</span><span class="st">"url"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">fun</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">print_oa</span><span class="op">(</span><span class="va">work</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -295,8 +284,7 @@ Note
 <col style="width: 3%">
 <col style="width: 17%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">first_author</th>
@@ -304,10 +292,8 @@ Note
 <th style="text-align: left;">so</th>
 <th style="text-align: left;">is_oa</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
+</tr></thead>
+<tbody><tr class="odd">
 <td style="text-align: left;">W2741809807</td>
 <td style="text-align: left;">The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles</td>
 <td style="text-align: left;">Heather Piwowar</td>
@@ -315,31 +301,28 @@ Note
 <td style="text-align: left;">PeerJ</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">Citation, License, Bibliometrics</td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
 </div>
-</section>
-<section id="filter-and-search" class="level3">
-<h3 class="anchored" data-anchor-id="filter-and-search">Filter and search</h3>
-<p>There are different <a href="https://ropensci.github.io/openalexR/articles/Filters">filters</a>/arguments you can use in <code>oa_fetch()</code>, depending on which <a href="https://docs.openalex.org/#data">entity</a> you’re interested in: works, authors, sources, funders, institutions, or concepts. We show a few examples below.</p>
-<section id="use-doi-as-a-works-filter" class="level4">
-<h4 class="anchored" data-anchor-id="use-doi-as-a-works-filter">1. Use <code>doi</code> as a <a href="https://ropensci.github.io/openalexR/articles/Filters.html#works">works filter</a></h4>
+</section><section id="filter-and-search" class="level3"><h3 class="anchored" data-anchor-id="filter-and-search">Filter and search</h3>
+<p>There are different <a href="https://ropensci.github.io/openalexR/articles/Filters">filters</a>/arguments you can use in <code><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch()</a></code>, depending on which <a href="https://docs.openalex.org/#data">entity</a> you’re interested in: works, authors, sources, funders, institutions, or concepts. We show a few examples below.</p>
+<section id="use-doi-as-a-works-filter" class="level4"><h4 class="anchored" data-anchor-id="use-doi-as-a-works-filter">1. Use <code>doi</code> as a <a href="https://ropensci.github.io/openalexR/articles/Filters.html#works">works filter</a>
+</h4>
 <p><strong>Goal</strong>: Fetch information on two works with DOIs <code>10.1016/j.joi.2017.08.007</code> and <code>https://doi.org/10.1007/s11192-013-1221-3</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>works_from_dois <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">doi =</span> <span class="fu">c</span>(<span class="st">"10.1016/j.joi.2017.08.007"</span>, <span class="st">"https://doi.org/10.1007/s11192-013-1221-3"</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">works_from_dois</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  doi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"10.1016/j.joi.2017.08.007"</span>, <span class="st">"https://doi.org/10.1007/s11192-013-1221-3"</span><span class="op">)</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works?filter=doi%3A10.1016%2Fj.joi.2017.08.007%7Chttps%3A%2F%2Fdoi.org%2F10.1007%2Fs11192-013-1221-3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting 1 page of results with a total of 2 records...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_dois)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">print_oa</span><span class="op">(</span><span class="va">works_from_dois</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -351,8 +334,7 @@ Note
 <col style="width: 3%">
 <col style="width: 19%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">first_author</th>
@@ -360,8 +342,7 @@ Note
 <th style="text-align: left;">so</th>
 <th style="text-align: left;">is_oa</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">W2755950973</td>
@@ -385,15 +366,13 @@ Note
 </table>
 </div>
 </div>
-</section>
-<section id="use-author.orcid-as-a-filter" class="level4">
-<h4 class="anchored" data-anchor-id="use-author.orcid-as-a-filter">2. Use <code>author.orcid</code> as a filter</h4>
+</section><section id="use-author.orcid-as-a-filter" class="level4"><h4 class="anchored" data-anchor-id="use-author.orcid-as-a-filter">2. Use <code>author.orcid</code> as a filter</h4>
 <p><strong>Goal</strong>: Fetch all works by authors with ORCID IDs <code>0000-0001-6187-6610</code> and <code>0000-0002-8517-9411</code>. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>works_from_orcids <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">author.orcid =</span> <span class="fu">c</span>(<span class="st">"0000-0001-6187-6610"</span>, <span class="st">"https://orcid.org/0000-0002-8517-9411"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">works_from_orcids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  author.orcid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0000-0001-6187-6610"</span>, <span class="st">"https://orcid.org/0000-0002-8517-9411"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in oa_request(oa_query(filter = filter_i, multiple_id = multiple_id, : 
 The following work(s) have truncated lists of authors: W4230863633.
@@ -402,7 +381,7 @@ For example:
   lapply(c("W4230863633"), \(x) oa_fetch(identifier = x))
 Details at https://docs.openalex.org/api-entities/authors/limitations.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_orcids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">print_oa</span><span class="op">(</span><span class="va">works_from_orcids</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -414,8 +393,7 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <col style="width: 2%">
 <col style="width: 22%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">first_author</th>
@@ -423,8 +401,7 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <th style="text-align: left;">so</th>
 <th style="text-align: left;">is_oa</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">W2755950973</td>
@@ -484,21 +461,19 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 </table>
 </div>
 </div>
-</section>
-<section id="many-filters-at-once" class="level4">
-<h4 class="anchored" data-anchor-id="many-filters-at-once">3. Many filters at once</h4>
+</section><section id="many-filters-at-once" class="level4"><h4 class="anchored" data-anchor-id="many-filters-at-once">3. Many filters at once</h4>
 <p><strong>Goal</strong>: Download all works that have been cited more than 50 times, published between 2020 and 2021, and include the strings “bibliometric analysis” or “science mapping” in the title. Maybe we also want the results to be sorted by total citations in a descending order.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>works_biblio <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="fu">c</span>(<span class="st">"bibliometric analysis"</span>, <span class="st">"science mapping"</span>),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;50"</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_publication_date =</span> <span class="st">"2020-07-01"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">to_publication_date =</span> <span class="st">"2021-07-01"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_biblio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">works_biblio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  title.search <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bibliometric analysis"</span>, <span class="st">"science mapping"</span><span class="op">)</span>,</span>
+<span>  cited_by_count <span class="op">=</span> <span class="st">"&gt;50"</span>,</span>
+<span>  from_publication_date <span class="op">=</span> <span class="st">"2020-07-01"</span>,</span>
+<span>  to_publication_date <span class="op">=</span> <span class="st">"2021-07-01"</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sort <span class="op">=</span> <span class="st">"cited_by_count:desc"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">print_oa</span><span class="op">(</span><span class="va">works_biblio</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -510,8 +485,7 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <col style="width: 1%">
 <col style="width: 20%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">first_author</th>
@@ -519,8 +493,7 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <th style="text-align: left;">so</th>
 <th style="text-align: left;">is_oa</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">W3038273726</td>
@@ -580,18 +553,16 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 </table>
 </div>
 </div>
-</section>
-<section id="what-if-we-use-a-wrong-filter" class="level4">
-<h4 class="anchored" data-anchor-id="what-if-we-use-a-wrong-filter">4. What if we use a wrong filter?</h4>
+</section><section id="what-if-we-use-a-wrong-filter" class="level4"><h4 class="anchored" data-anchor-id="what-if-we-use-a-wrong-filter">4. What if we use a wrong filter?</h4>
 <p><strong>Goal</strong>: Sample 10 works published in 2024.</p>
 <p>Say we mistakenly use <code>year</code> instead of <code>publication_year</code> as a filter.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2024</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  year <span class="op">=</span> <span class="fl">2024</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sample <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works?filter=year%3A2024&amp;sample=10</code></pre>
 </div>
@@ -603,14 +574,14 @@ Invalid query parameters error.
 </div>
 <p>The API returns a helpful error message: <code>year</code> is a wrong filter, and shows you all possible, correct filters. In our case, <code>publication_year</code> is the filter we want.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="dv">2024</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co"> figure out why this doesn't work with some seeds</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  publication_year <span class="op">=</span> <span class="fl">2024</span>,</span>
+<span>  <span class="co"># TODO figure out why this doesn't work with some seeds</span></span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sample <span class="op">=</span> <span class="fl">10</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">print_oa</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works?filter=publication_year%3A2024&amp;sample=10&amp;seed=1</code></pre>
 </div>
@@ -628,8 +599,7 @@ Invalid query parameters error.
 <col style="width: 1%">
 <col style="width: 22%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">first_author</th>
@@ -637,8 +607,7 @@ Invalid query parameters error.
 <th style="text-align: left;">so</th>
 <th style="text-align: left;">is_oa</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">W4399851829</td>
@@ -707,17 +676,15 @@ Invalid query parameters error.
 </table>
 </div>
 </div>
-</section>
-<section id="search" class="level4">
-<h4 class="anchored" data-anchor-id="search">5. Search</h4>
+</section><section id="search" class="level4"><h4 class="anchored" data-anchor-id="search">5. Search</h4>
 <p>You can also search for works related to a specific topic. Here’s an example fetching the first few works of which abstracts include the phrase “urban heat island”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">abstract.search =</span> <span class="st">"urban heat island"</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  abstract.search <span class="op">=</span> <span class="st">"urban heat island"</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sample <span class="op">=</span> <span class="fl">10</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">print_oa</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -729,8 +696,7 @@ Invalid query parameters error.
 <col style="width: 2%">
 <col style="width: 24%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">first_author</th>
@@ -738,8 +704,7 @@ Invalid query parameters error.
 <th style="text-align: left;">so</th>
 <th style="text-align: left;">is_oa</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">W4362452636</td>
@@ -815,18 +780,16 @@ Tip
 </div>
 </div>
 </div>
-</section>
-<section id="other-entities" class="level4">
-<h4 class="anchored" data-anchor-id="other-entities">6. Other entities</h4>
+</section><section id="other-entities" class="level4"><h4 class="anchored" data-anchor-id="other-entities">6. Other entities</h4>
 <p>Similar to works, you can fetch information on authors, sources, funders, institutions, and concepts. Here are some examples of fetching authors:</p>
 <p><strong>Goal</strong>: Acquire information on a couple of authors with more than 10 works. Here, we can use filters such as <code>display_name</code> and <code>works_count</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">display_name.search =</span> <span class="fu">c</span>(<span class="st">"Massimo Aria"</span>, <span class="st">"Eugen Lounkine"</span>),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;10"</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>(show_authors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"authors"</span>,</span>
+<span>  display_name.search <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Massimo Aria"</span>, <span class="st">"Eugen Lounkine"</span><span class="op">)</span>,</span>
+<span>  works_count <span class="op">=</span> <span class="st">"&gt;10"</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">print_oa</span><span class="op">(</span><span class="va">show_authors</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -838,8 +801,7 @@ Tip
 <col style="width: 21%">
 <col style="width: 30%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">orcid</th>
@@ -847,8 +809,7 @@ Tip
 <th style="text-align: right;">cited_by_count</th>
 <th style="text-align: left;">affiliation_display_name</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">A5069892096</td>
@@ -872,22 +833,17 @@ Tip
 </table>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="example-analyses" class="level2">
-<h2 class="anchored" data-anchor-id="example-analyses">🪴 Example analyses</h2>
-<section id="prolific-authors" class="level3">
-<h3 class="anchored" data-anchor-id="prolific-authors">Prolific authors</h3>
+</section></section></section><section id="example-analyses" class="level2"><h2 class="anchored" data-anchor-id="example-analyses">🪴 Example analyses</h2>
+<section id="prolific-authors" class="level3"><h3 class="anchored" data-anchor-id="prolific-authors">Prolific authors</h3>
 <p><strong>Goal</strong>: Download all authors’ records of scholars who work at the <a href="https://explore.openalex.org/institutions/I71267560">University of Naples Federico II</a> (OpenAlex ID: I71267560) and have published at least 500 publications.</p>
 <p>Let’s first check how many records match the query, then download the entire collection. We can do this by adding <code>count_only = TRUE</code> (default <code>FALSE</code>) to the list of argument:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_known_institutions.id =</span> <span class="st">"I71267560"</span>,</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;499"</span>,</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">count_only =</span> <span class="cn">TRUE</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"authors"</span>,</span>
+<span>  last_known_institutions.id <span class="op">=</span> <span class="st">"I71267560"</span>,</span>
+<span>  works_count <span class="op">=</span> <span class="st">"&gt;499"</span>,</span>
+<span>  count_only <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     count db_response_time_ms page per_page
 [1,]    38                 223    1        1</code></pre>
@@ -895,12 +851,12 @@ Tip
 </div>
 <p>So there are <code>.Last.value[1, 1][[1]]</code> records in total. Now, we can get the entire collection:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_known_institutions.id =</span> <span class="st">"I71267560"</span>,</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;499"</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>(show_authors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"authors"</span>,</span>
+<span>  last_known_institutions.id <span class="op">=</span> <span class="st">"I71267560"</span>,</span>
+<span>  works_count <span class="op">=</span> <span class="st">"&gt;499"</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">print_oa</span><span class="op">(</span><span class="va">show_authors</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -912,8 +868,7 @@ Tip
 <col style="width: 19%">
 <col style="width: 31%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">display_name</th>
 <th style="text-align: left;">orcid</th>
@@ -921,8 +876,7 @@ Tip
 <th style="text-align: right;">cited_by_count</th>
 <th style="text-align: left;">affiliation_display_name</th>
 <th style="text-align: left;">top_concepts</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">A5063152727</td>
@@ -982,17 +936,15 @@ Tip
 </table>
 </div>
 </div>
-</section>
-<section id="journal-clocks" class="level3">
-<h3 class="anchored" data-anchor-id="journal-clocks">Journal clocks</h3>
+</section><section id="journal-clocks" class="level3"><h3 class="anchored" data-anchor-id="journal-clocks">Journal clocks</h3>
 <p><strong>Goal</strong>: Visualize big journals’ topics.</p>
 <p>We first download all records of journals with the most works/citation count, then visualize their scored concepts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>jours_all <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"sources"</span>,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;200000"</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jours_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"sources"</span>,</span>
+<span>  works_count <span class="op">=</span> <span class="st">"&gt;200000"</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/sources?filter=works_count%3A%3E200000</code></pre>
 </div>
@@ -1002,67 +954,63 @@ Tip
 </div>
 <p>The following is a lot of code but it is mainly for processing the data and customizing the final plot.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>clean_journal_name <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">(.*?</span><span class="sc">\\</span><span class="st">)"</span>, <span class="st">""</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"Journal of the|Journal of"</span>, <span class="st">"J."</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"/.*"</span>, <span class="st">""</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"RePEc: "</span>, <span class="st">""</span>, <span class="at">x =</span> _)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>jours <span class="ot">&lt;-</span> jours_all <span class="sc">|&gt;</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(x_concepts), type <span class="sc">!=</span> <span class="st">"ebook platform"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(cited_by_count, <span class="at">n =</span> <span class="dv">9</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(display_name, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">jour =</span> display_name, x_concepts) <span class="sc">|&gt;</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(x_concepts) <span class="sc">|&gt;</span></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(concept_abbrev, <span class="at">by =</span> <span class="fu">join_by</span>(id, display_name)) <span class="sc">|&gt;</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">abbreviation =</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"&lt;br&gt;"</span>, abbreviation),</span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">jour =</span> <span class="fu">clean_journal_name</span>(jour)</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">complete</span>(jour, abbreviation, <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">score =</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(jour) <span class="sc">|&gt;</span></span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">if_else</span>(score <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="st">"#1A1A1A"</span>, <span class="st">"#D9D9D9"</span>), <span class="co"># CCCCCC</span></span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"&lt;span style='color:"</span>, color, <span class="st">"'&gt;"</span>, abbreviation, <span class="st">"&lt;/span&gt;"</span>)</span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>jours <span class="sc">|&gt;</span></span>
-<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> jour, <span class="at">y =</span> score, <span class="at">x =</span> abbreviation, <span class="at">group =</span> jour) <span class="sc">+</span></span>
-<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>jour) <span class="sc">+</span></span>
-<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">90</span>), <span class="at">colour =</span> <span class="st">"grey90"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> abbreviation, <span class="at">xend =</span> abbreviation, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">100</span>),</span>
-<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey95"</span></span>
-<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"grey20"</span>) <span class="sc">+</span></span>
-<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
-<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
-<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
-<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a>  ggtext<span class="sc">::</span><span class="fu">geom_richtext</span>(</span>
-<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">120</span>, <span class="at">label =</span> label),</span>
-<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">label.color =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Journal clocks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clean_journal_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\\(.*?\\)"</span>, <span class="st">""</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"Journal of the|Journal of"</span>, <span class="st">"J."</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"/.*"</span>, <span class="st">""</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"RePEc: "</span>, <span class="st">""</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">jours</span> <span class="op">&lt;-</span> <span class="va">jours_all</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x_concepts</span><span class="op">)</span>, <span class="va">type</span> <span class="op">!=</span> <span class="st">"ebook platform"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">cited_by_count</span>, n <span class="op">=</span> <span class="fl">9</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">display_name</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>jour <span class="op">=</span> <span class="va">display_name</span>, <span class="va">x_concepts</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">x_concepts</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">level</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">concept_abbrev</span>, by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">display_name</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    abbreviation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"&lt;br&gt;"</span>, <span class="va">abbreviation</span><span class="op">)</span>,</span>
+<span>    jour <span class="op">=</span> <span class="fu">clean_journal_name</span><span class="op">(</span><span class="va">jour</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></span><span class="op">(</span><span class="va">jour</span>, <span class="va">abbreviation</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>score <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">jour</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">score</span> <span class="op">&gt;</span> <span class="fl">10</span>, <span class="st">"#1A1A1A"</span>, <span class="st">"#D9D9D9"</span><span class="op">)</span>, <span class="co"># CCCCCC</span></span>
+<span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;span style='color:"</span>, <span class="va">color</span>, <span class="st">"'&gt;"</span>, <span class="va">abbreviation</span>, <span class="st">"&lt;/span&gt;"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">jours</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">jour</span>, y <span class="op">=</span> <span class="va">score</span>, x <span class="op">=</span> <span class="va">abbreviation</span>, group <span class="op">=</span> <span class="va">jour</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">jour</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">45</span>, <span class="fl">90</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"grey90"</span>, linewidth <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">abbreviation</span>, xend <span class="op">=</span> <span class="va">abbreviation</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"grey95"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey20"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_polar.html">coord_polar</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"transparent"</span>, colour <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"transparent"</span>, colour <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.ticks.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggtext</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggtext/reference/geom_richtext.html">geom_richtext</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fl">120</span>, label <span class="op">=</span> <span class="va">label</span><span class="op">)</span>,</span>
+<span>    fill <span class="op">=</span> <span class="cn">NA</span>, label.color <span class="op">=</span> <span class="cn">NA</span>, size <span class="op">=</span> <span class="fl">3</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set1"</span>, guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="cn">NULL</span>, x <span class="op">=</span> <span class="cn">NULL</span>, title <span class="op">=</span> <span class="st">"Journal clocks"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="openalexR-webinar_files/figure-html/visualize-big-journals-1.png" class="img-fluid figure-img" width="768"></p>
+<figure class="figure"><p><img src="openalexR-webinar_files/figure-html/visualize-big-journals-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -1080,40 +1028,29 @@ Important
 <p><code>x_concepts</code> will be <a href="https://docs.openalex.org/api-entities/authors/author-object#x_concepts">deprecated</a> and removed soon. We leave it as an exercise to the reader to replace this field with <code>topics</code> instead.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="advanced-topics" class="level2">
-<h2 class="anchored" data-anchor-id="advanced-topics">🌵 Advanced topics</h2>
-<section id="other-parameters-of-oa_fetch" class="level3">
-<h3 class="anchored" data-anchor-id="other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code></h3>
+</section></section><section id="advanced-topics" class="level2"><h2 class="anchored" data-anchor-id="advanced-topics">🌵 Advanced topics</h2>
+<section id="other-parameters-of-oa_fetch" class="level3"><h3 class="anchored" data-anchor-id="other-parameters-of-oa_fetch">Other parameters of <code>oa_fetch()</code>
+</h3>
 <p>So far, we have seen the argument <code>options</code>, which is a list of additional parameters that can be passed to the API. <code>output = "list"</code> TODO</p>
-</section>
-<section id="building-your-own-query" class="level3">
-<h3 class="anchored" data-anchor-id="building-your-own-query">Building your own query</h3>
+</section><section id="building-your-own-query" class="level3"><h3 class="anchored" data-anchor-id="building-your-own-query">Building your own query</h3>
 <p>TODO</p>
-</section>
-<section id="oa_generate" class="level3">
-<h3 class="anchored" data-anchor-id="oa_generate">oa_generate</h3>
+</section><section id="oa_generate" class="level3"><h3 class="anchored" data-anchor-id="oa_generate">oa_generate</h3>
 <p>TODO</p>
-</section>
-<section id="analyzing-citations" class="level3">
-<h3 class="anchored" data-anchor-id="analyzing-citations">Analyzing Citations</h3>
+</section><section id="analyzing-citations" class="level3"><h3 class="anchored" data-anchor-id="analyzing-citations">Analyzing Citations</h3>
 <p>Analyze the citations of a work:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># citations &lt;- oa_fetch(entity = "works", filter = list(cited_by.work.id = work_id))</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(citations)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># citations &lt;- oa_fetch(entity = "works", filter = list(cited_by.work.id = work_id))</span></span>
+<span><span class="co"># print(citations)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>TODO</p>
-</section>
-<section id="n-grams" class="level3">
-<h3 class="anchored" data-anchor-id="n-grams">🌾 N-grams</h3>
-<p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code>oa_ngrams()</code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
+</section><section id="n-grams" class="level3"><h3 class="anchored" data-anchor-id="n-grams">🌾 N-grams</h3>
+<p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ngrams_data <span class="ot">&lt;-</span> <span class="fu">oa_ngrams</span>(</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_identifier =</span> <span class="fu">c</span>(<span class="st">"W1964141474"</span>, <span class="st">"W1963991285"</span>),</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>ngrams_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams</a></span><span class="op">(</span></span>
+<span>  works_identifier <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"W1964141474"</span>, <span class="st">"W1963991285"</span><span class="op">)</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">ngrams_data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   id                               doi                              count ngrams
@@ -1121,7 +1058,7 @@ Important
 1 https://openalex.org/W1964141474 https://doi.org/10.1016/j.conb.…  2733 &lt;df&gt;  
 2 https://openalex.org/W1963991285 https://doi.org/10.1126/science…  2338 &lt;df&gt;  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(ngrams_data<span class="sc">$</span>ngrams, head, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ngrams_data</span><span class="op">$</span><span class="va">ngrams</span>, <span class="va">head</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
                                        ngram ngram_count ngram_tokens
@@ -1143,69 +1080,64 @@ Important
 2   0.0003756574
 3   0.0003756574</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ngrams_data <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(ngrams) <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ngram_tokens <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, ngram, ngram_count) <span class="sc">|&gt;</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(ngram_count, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(ngram_count, <span class="fu">fct_reorder</span>(ngram, ngram_count))) <span class="sc">+</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> id), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#A16928"</span>, <span class="st">"#2887a1"</span>)) <span class="sc">+</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>id, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 fulltext bigrams"</span>,</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Count"</span>,</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">ngrams</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ngram_tokens</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">ngram</span>, <span class="va">ngram_count</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">ngram_count</span>, n <span class="op">=</span> <span class="fl">10</span>, with_ties <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">ngram_count</span>, <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">ngram</span>, <span class="va">ngram_count</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">id</span><span class="op">)</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#A16928"</span>, <span class="st">"#2887a1"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">id</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Top 10 fulltext bigrams"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Count"</span>,</span>
+<span>    y <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="openalexR-webinar_files/figure-html/ngrams-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="openalexR-webinar_files/figure-html/ngrams-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>oa_ngrams()</code> can sometimes be slow because the N-grams data can get pretty big, but given that the N-grams are <a href="https://docs.openalex.org/api-entities/works/get-n-grams#api-endpoint">“cached via CDN”</a>, you may also consider parallelizing for this special case.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-</section>
-</section>
-<section id="coding-challenges" class="level2">
-<h2 class="anchored" data-anchor-id="coding-challenges">🛤️ Coding challenges</h2>
-<section id="challenge-1-advanced-filters" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-1-advanced-filters">Challenge 1: Advanced filters</h3>
+<p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> can sometimes be slow because the N-grams data can get pretty big, but given that the N-grams are <a href="https://docs.openalex.org/api-entities/works/get-n-grams#api-endpoint">“cached via CDN”</a>, you may also consider parallelizing for this special case.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+</section></section><section id="coding-challenges" class="level2"><h2 class="anchored" data-anchor-id="coding-challenges">🛤️ Coding challenges</h2>
+<section id="challenge-1-advanced-filters" class="level3"><h3 class="anchored" data-anchor-id="challenge-1-advanced-filters">Challenge 1: Advanced filters</h3>
 <p>According to the OpenAlex <a href="https://docs.openalex.org/api-entities">API documentation</a>, what is the filter we should use to:</p>
 <ul>
 <li>Get <code>funders</code> with a description containing “engineering”?</li>
 <li>Get <code>topics</code> with more than 1000 works?</li>
 <li>Get <code>institutions</code> located in Asia?</li>
-</ul>
-</section>
-<section id="challenge-2-humpback-whale" class="level3">
-<h3 class="anchored" data-anchor-id="challenge-2-humpback-whale">Challenge 2: Humpback whale</h3>
+</ul></section><section id="challenge-2-humpback-whale" class="level3"><h3 class="anchored" data-anchor-id="challenge-2-humpback-whale">Challenge 2: Humpback whale</h3>
 <p>Identify works on a specific topic (e.g., “humpback whale”) that have been cited more than 100 times. When were these works published? Where are the authors based? Create a bar plot showing the number of works at each institution.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Your solution</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">My solution</a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Your solution</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">My solution</a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># work &lt;- oa_fetch(</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   entity = "works",</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   # decide whether you want search/title.search/abstract.search/etc.</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   ______</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ______</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># work &lt;- oa_fetch(</span></span>
+<span><span class="co">#   entity = "works",</span></span>
+<span><span class="co">#   # decide whether you want search/title.search/abstract.search/etc.</span></span>
+<span><span class="co">#   ______</span></span>
+<span><span class="co"># )</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># ______</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>humpback <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="st">"humpback whale"</span>,</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;100"</span>,</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(humpback<span class="sc">$</span>title[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">humpback</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
+<span>  title.search <span class="op">=</span> <span class="st">"humpback whale"</span>,</span>
+<span>  cited_by_count <span class="op">=</span> <span class="st">"&gt;100"</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sort <span class="op">=</span> <span class="st">"cited_by_count:desc"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">title</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Songs of Humpback Whales"                                                                            
  [2] "Leading-edge tubercles delay stall on humpback whale (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) flippers"       
@@ -1218,32 +1150,31 @@ Important
  [9] "Abundant mitochondrial DNA variation and world-wide population structure in humpback whales."        
 [10] "Humpback Whales (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) Fatally Poisoned by Dinoflagellate Toxin"            </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>n_authors <span class="ot">&lt;-</span> <span class="fu">sapply</span>(humpback<span class="sc">$</span>author, nrow)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="ot">&lt;-</span> humpback<span class="sc">$</span>author <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">unlist</span>(<span class="fu">lapply</span>(n_authors, \(x) <span class="fu">rep</span>(x, x))))</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#DCB0F2"</span>, <span class="st">"#D3B484"</span>, <span class="st">"#F89C74"</span>, <span class="st">"#C9DB74"</span>, <span class="st">"#87C55F"</span>, <span class="st">"#B497E7"</span>,<span class="st">"#66C5CC"</span>)</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="sc">|&gt;</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(institution_display_name) <span class="sc">|&gt;</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">inst =</span> institution_display_name, <span class="at">country =</span> institution_country_code) <span class="sc">|&gt;</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">sum</span>(weight),  <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">fct_reorder</span>(inst, n), <span class="at">fill =</span> country) <span class="sc">+</span></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">rev</span>(pal)) <span class="sc">+</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weighted value of most cited works"</span>,</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Institutions with most cited works on humpback whale"</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_authors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">author</span>, <span class="va">nrow</span><span class="op">)</span></span>
+<span><span class="va">hb_authors</span> <span class="op">&lt;-</span> <span class="va">humpback</span><span class="op">$</span><span class="va">author</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">n_authors</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#DCB0F2"</span>, <span class="st">"#D3B484"</span>, <span class="st">"#F89C74"</span>, <span class="st">"#C9DB74"</span>, <span class="st">"#87C55F"</span>, <span class="st">"#B497E7"</span>,<span class="st">"#66C5CC"</span><span class="op">)</span></span>
+<span><span class="va">hb_authors</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">institution_display_name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>inst <span class="op">=</span> <span class="va">institution_display_name</span>, country <span class="op">=</span> <span class="va">institution_country_code</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">weight</span><span class="op">)</span>,  .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">n</span>, y <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">inst</span>, <span class="va">n</span><span class="op">)</span>, fill <span class="op">=</span> <span class="va">country</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">pal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Weighted value of most cited works"</span>,</span>
+<span>    y <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Institutions with most cited works on humpback whale"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="openalexR-webinar_files/figure-html/answer-top-authors-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="openalexR-webinar_files/figure-html/answer-top-authors-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1251,37 +1182,22 @@ Important
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="qa" class="level2">
-<h2 class="anchored" data-anchor-id="qa">🌸 Q&amp;A</h2>
+</section></section><section id="qa" class="level2"><h2 class="anchored" data-anchor-id="qa">🌸 Q&amp;A</h2>
 <p>TODO</p>
-</section>
-<section id="conclusion" class="level1">
-<h1>🍁 Conclusion</h1>
+</section><section id="conclusion" class="level1"><h1>🍁 Conclusion</h1>
 <p>Thank you for participating in the <strong>openalexR</strong> webinar! We hope you found the session informative and engaging. For more information, visit the <a href="https://github.com/ropensci/openalexR">openalexR GitHub page</a> reach out to me on the <a href="https://groups.google.com/g/openalex-community">OpenAlex Community</a> Google Group with any questions.</p>
 <hr>
-<section id="links" class="level2">
-<h2 class="anchored" data-anchor-id="links">🌳 Links</h2>
+<section id="links" class="level2"><h2 class="anchored" data-anchor-id="links">🌳 Links</h2>
 <ul>
 <li><a href="https://openalex.org" class="uri">https://openalex.org</a></li>
 <li><a href="https://docs.openalex.org" class="uri">https://docs.openalex.org</a></li>
 <li><a href="https://docs.ropensci.org/openalexR" class="uri">https://docs.ropensci.org/openalexR</a></li>
-</ul>
-</section>
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
+</ul></section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>Either canonical form with <a href="https://doi.org/" class="uri">https://doi.org/</a> or without will work.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Either canonical form with <a href="https://orcid.org/" class="uri">https://orcid.org/</a> or without will work.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p><code>oa_ngrams()</code> parallelizes automatically if you have <code>{curl} &gt;= v5.0.0</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main>
-<!-- /main column -->
-<script id="quarto-html-after-body" type="application/javascript">
+<li id="fn3"><p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> parallelizes automatically if you have <code>{curl} &gt;= v5.0.0</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1835,7 +1751,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 
