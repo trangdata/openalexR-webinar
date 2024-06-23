@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.555">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Trang Le">
-<meta name="dcterms.date" content="2024-06-22">
+<meta name="dcterms.date" content="2024-06-23">
 <title>Introduction to openalexR: a webinar</title>
 <style>
 code{white-space: pre-wrap;}
@@ -135,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 22, 2024</p>
+      <p class="date">June 23, 2024</p>
     </div>
   </div>
   
@@ -144,9 +144,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Welcome to the webinar on <strong>openalexR</strong>! Today, we will explore how to use the <strong>openalexR</strong> package to fetch data from OpenAlex, a free, comprehensive database for scholarly papers, authors, institutions, and more.</p>
-<section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">🌻 Introduction</h2>
-<p><strong>openalexR</strong> is an R package that provides an interface to OpenAlex, a free and open dataset of the entire research landscape. With <strong>openalexR</strong>, you can easily access and analyze scholarly data directly from R.</p>
+</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">🌻 Introduction</h2>
+<p>Welcome to the webinar on <strong>openalexR</strong>! Today, we will explore how to use the <strong>openalexR</strong> package to fetch data from OpenAlex, a free and open database of the entire research landscape. With <strong>openalexR</strong>, you can easily access and analyze scholarly data directly from R.</p>
 </section><section id="installation-and-setup" class="level2"><h2 class="anchored" data-anchor-id="installation-and-setup">🌱 Installation and setup</h2>
 <p>If you haven’t already installed the <strong>openalexR</strong> package, you can do so from CRAN:</p>
 <div class="cell">
@@ -839,9 +838,8 @@ Tip
 <ul>
 <li>Get <code>funders</code> with a description containing “engineering”?</li>
 <li>Get <code>topics</code> with more than 1000 works?</li>
-<li>Get <code>institutions</code> located in Asia?</li>
-</ul></section><section id="challenge-2-humpback-whale" class="level3"><h3 class="anchored" data-anchor-id="challenge-2-humpback-whale">Challenge 2: Humpback whale</h3>
-<p>Identify works on a specific topic (e.g., “humpback whale”) that have been cited more than 100 times. When were these works published? Where are the authors based? Create a bar plot showing the number of works at each institution.</p>
+<li>Get 10 <code>institutions</code> located in Asia?</li>
+</ul>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Your solution</a></li>
@@ -850,18 +848,66 @@ Tip
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># work &lt;- oa_fetch(</span></span>
-<span><span class="co">#   entity = "works",</span></span>
-<span><span class="co">#   # decide whether you want search/title.search/abstract.search/etc.</span></span>
-<span><span class="co">#   ______</span></span>
-<span><span class="co"># )</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># ______</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"funders"</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"engineering"</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"topics"</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"&gt;1000"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"institutions"</span>,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"Asia"</span>,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">_____ =</span> <span class="dv">10</span>)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">humpback</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"funders"</span>,</span>
+<span>  description.search <span class="op">=</span> <span class="st">"engineering"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"topics"</span>,</span>
+<span>  works_count <span class="op">=</span> <span class="st">"&gt;1000"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<span>  entity <span class="op">=</span> <span class="st">"institutions"</span>,</span>
+<span>  continent <span class="op">=</span> <span class="st">"Asia"</span>,</span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>sample <span class="op">=</span> <span class="fl">10</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="challenge-2-humpback-whale" class="level3"><h3 class="anchored" data-anchor-id="challenge-2-humpback-whale">Challenge 2: Humpback whale</h3>
+<p>Identify works on a specific topic (e.g., “humpback whale”) that have been cited more than 100 times. When were these works published? Where are the authors based? Create a bar plot showing the number of works at each institution.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Your solution</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">My solution</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decide whether you want search/title.search/abstract.search/etc.</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  ______</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>______</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">humpback</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
 <span>  entity <span class="op">=</span> <span class="st">"works"</span>,</span>
 <span>  title.search <span class="op">=</span> <span class="st">"humpback whale"</span>,</span>
 <span>  cited_by_count <span class="op">=</span> <span class="st">"&gt;100"</span>,</span>
@@ -880,7 +926,7 @@ Tip
  [9] "Abundant mitochondrial DNA variation and world-wide population structure in humpback whales."        
 [10] "Humpback Whales (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) Fatally Poisoned by Dinoflagellate Toxin"            </code></pre>
 </div>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_authors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">author</span>, <span class="va">nrow</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_authors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">humpback</span><span class="op">$</span><span class="va">author</span>, <span class="va">nrow</span><span class="op">)</span></span>
 <span><span class="va">hb_authors</span> <span class="op">&lt;-</span> <span class="va">humpback</span><span class="op">$</span><span class="va">author</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">n_authors</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -920,7 +966,7 @@ Tip
 <p><strong>Goal</strong>: Download all authors’ records of scholars who work at the <a href="https://explore.openalex.org/institutions/I71267560">University of Naples Federico II</a> (OpenAlex ID: I71267560) and have published at least 500 publications.</p>
 <p>Let’s first check how many records match the query, then download the entire collection. We can do this by adding <code>count_only = TRUE</code> (default <code>FALSE</code>) to the list of argument:</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
 <span>  entity <span class="op">=</span> <span class="st">"authors"</span>,</span>
 <span>  last_known_institutions.id <span class="op">=</span> <span class="st">"I71267560"</span>,</span>
 <span>  works_count <span class="op">=</span> <span class="st">"&gt;499"</span>,</span>
@@ -933,7 +979,7 @@ Tip
 </div>
 <p>So there are <code>.Last.value[1, 1][[1]]</code> records in total. Now, we can get the entire collection:</p>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
 <span>  entity <span class="op">=</span> <span class="st">"authors"</span>,</span>
 <span>  last_known_institutions.id <span class="op">=</span> <span class="st">"I71267560"</span>,</span>
 <span>  works_count <span class="op">=</span> <span class="st">"&gt;499"</span></span>
@@ -1022,7 +1068,7 @@ Tip
 <p><strong>Goal</strong>: Visualize big journals’ topics.</p>
 <p>We first download all records of journals with the most works/citation count, then visualize their scored concepts:</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jours_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">jours_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_fetch.html">oa_fetch</a></span><span class="op">(</span></span>
 <span>  entity <span class="op">=</span> <span class="st">"sources"</span>,</span>
 <span>  works_count <span class="op">=</span> <span class="st">"&gt;200000"</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -1036,7 +1082,7 @@ Tip
 </div>
 <p>The following is a lot of code but it is mainly for processing the data and customizing the final plot.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clean_journal_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clean_journal_name</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\\(.*?\\)"</span>, <span class="st">""</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"Journal of the|Journal of"</span>, <span class="st">"J."</span>, x <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1132,7 +1178,7 @@ Important
 </section><section id="oa_generate" class="level3"><h3 class="anchored" data-anchor-id="oa_generate"><code>oa_generate()</code></h3>
 <p><code><a href="https://docs.ropensci.org/openalexR/reference/oa_generate.html">oa_generate()</a></code> is a generator for making request to OpenAlex API, returning one record at a time. This is useful when you want to process a large number of records without loading them all into memory at once. You will need to first build your own query (<em>e.g.</em>, using <code><a href="https://docs.ropensci.org/openalexR/reference/oa_query.html">oa_query()</a></code>) to use as an argument in <code><a href="https://docs.ropensci.org/openalexR/reference/oa_generate.html">oa_generate()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">oa_generate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">oa_generate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <details><summary>Output</summary><pre class="details" data-summary="Output"><code>
 o_gnrt&gt; if (require("coro")) {
@@ -1192,7 +1238,7 @@ logical.return = TRUE, : there is no package called 'coro'</code></pre>
 </section><section id="n-grams" class="level3"><h3 class="anchored" data-anchor-id="n-grams">🌾 N-grams</h3>
 <p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams()</a></code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
 <div class="cell">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/openalexR/reference/oa_ngrams.html">oa_ngrams</a></span><span class="op">(</span></span>
 <span>  works_identifier <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"W1964141474"</span>, <span class="st">"W1963991285"</span><span class="op">)</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
@@ -1204,7 +1250,7 @@ logical.return = TRUE, : there is no package called 'coro'</code></pre>
 1 https://openalex.org/W1964141474 https://doi.org/10.1016/j.conb.…  2733 &lt;df&gt;  
 2 https://openalex.org/W1963991285 https://doi.org/10.1126/science…  2338 &lt;df&gt;  </code></pre>
 </div>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ngrams_data</span><span class="op">$</span><span class="va">ngrams</span>, <span class="va">head</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">ngrams_data</span><span class="op">$</span><span class="va">ngrams</span>, <span class="va">head</span>, <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
                                        ngram ngram_count ngram_tokens
@@ -1226,7 +1272,7 @@ logical.return = TRUE, : there is no package called 'coro'</code></pre>
 2   0.0003756574
 3   0.0003756574</code></pre>
 </div>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngrams_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html">unnest</a></span><span class="op">(</span><span class="va">ngrams</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ngram_tokens</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">ngram</span>, <span class="va">ngram_count</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1263,7 +1309,7 @@ logical.return = TRUE, : there is no package called 'coro'</code></pre>
 <ol>
 <li id="fn1"><p>Either canonical form with <a href="https://doi.org/" class="uri">https://doi.org/</a> or without will work.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Either canonical form with <a href="https://orcid.org/" class="uri">https://orcid.org/</a> or without will work.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>https://docs.openalex.org/how-to-use-the-api/get-single-entities/select-fields<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://docs.openalex.org/how-to-use-the-api/get-single-entities/select-fields" class="uri">https://docs.openalex.org/how-to-use-the-api/get-single-entities/select-fields</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p><a href="https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sort-entity-lists" class="uri">https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sort-entity-lists</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p><a href="https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sample-entity-lists" class="uri">https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sample-entity-lists</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p><a href="https://github.com/ropensci/openalexR/issues/205">Example issue</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
