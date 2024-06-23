@@ -15,12 +15,10 @@ format:
       toggle: false
 ---
 
-Welcome to the webinar on **openalexR**!
-Today, we will explore how to use the **openalexR** package to fetch data from OpenAlex, a free, comprehensive database for scholarly papers, authors, institutions, and more.
-
 ## 🌻 Introduction
 
-**openalexR** is an R package that provides an interface to OpenAlex, a free and open dataset of the entire research landscape.
+Welcome to the webinar on **openalexR**!
+Today, we will explore how to use the **openalexR** package to fetch data from OpenAlex, a free and open database of the entire research landscape.
 With **openalexR**, you can easily access and analyze scholarly data directly from R.
 
 ## 🌱 Installation and setup
@@ -241,7 +239,56 @@ According to the OpenAlex [API documentation](https://docs.openalex.org/api-enti
 
 -   Get `funders` with a description containing "engineering"?
 -   Get `topics` with more than 1000 works?
--   Get `institutions` located in Asia?
+-   Get 10 `institutions` located in Asia?
+
+::: panel-tabset
+## Your solution
+
+```{r }
+#| label: challenge-filters
+#| eval: false
+
+oa_fetch(
+  entity = "funders",
+  _____ = "engineering"
+)
+
+oa_fetch(
+  entity = "topics",
+  _____ = ">1000"
+)
+
+oa_fetch(
+  entity = "institutions",
+  _____ = "Asia",
+  options = list(_____ = 10)
+)
+```
+
+## My solution
+
+```{r}
+#| label: answer-filters
+#| eval: false
+#| 
+oa_fetch(
+  entity = "funders",
+  description.search = "engineering"
+)
+
+oa_fetch(
+  entity = "topics",
+  works_count = ">1000"
+)
+
+oa_fetch(
+  entity = "institutions",
+  continent = "Asia",
+  options = list(sample = 10, seed = 1)
+)
+```
+
+:::
 
 ### Challenge 2: Humpback whale
 
@@ -256,13 +303,13 @@ Create a bar plot showing the number of works at each institution.
 ```{r challenge-top-authors}
 #| eval: false
 
-# work <- oa_fetch(
-#   entity = "works",
-#   # decide whether you want search/title.search/abstract.search/etc.
-#   ______
-# )
-#
-# ______
+work <- oa_fetch(
+  entity = "works",
+  # decide whether you want search/title.search/abstract.search/etc.
+  ______
+)
+
+______
 ```
 
 ## My solution
@@ -429,7 +476,7 @@ Some of these options include:
 
 -   `seed` A seed value in order to retrieve the same set of random records in the same order when used multiple times with `sample`.
 
-[^3]: https://docs.openalex.org/how-to-use-the-api/get-single-entities/select-fields
+[^3]: <https://docs.openalex.org/how-to-use-the-api/get-single-entities/select-fields>
 
 [^4]: <https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/sort-entity-lists>
 
