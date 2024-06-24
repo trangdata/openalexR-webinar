@@ -155,7 +155,7 @@ Maybe we also want the results to be sorted by total citations in a descending o
 works_biblio <- oa_fetch(
   entity = "works",
   title.search = c("bibliometric analysis", "science mapping"),
-  cited_by_count = ">50",
+  cited_by_count = ">100",
   from_publication_date = "2020-07-01",
   to_publication_date = "2021-07-01",
   options = list(sort = "cited_by_count:desc")
@@ -188,7 +188,7 @@ oa_fetch(
   entity = "works",
   publication_year = 2024,
   # TODO figure out why this doesn't work with some seeds
-  options = list(sample = 10, seed = 1),
+  options = list(sample = 10, seed = 2),
   verbose = TRUE
 ) |>
   print_oa()
@@ -400,6 +400,7 @@ The following is a lot of code but it is mainly for processing the data and cust
 #| fig.height: 8
 #| fig.width: 8
 #| code-fold: true
+#| eval: false
 clean_journal_name <- function(x) {
   x |>
     gsub("\\(.*?\\)", "", x = _) |>
@@ -407,18 +408,25 @@ clean_journal_name <- function(x) {
     gsub("/.*", "", x = _) |>
     gsub("RePEc: ", "", x = _)
 }
-
+  
+jours_all <- oa_fetch(
+  entity = "sources",
+  works_count = ">200000",
+  verbose = TRUE
+)
 jours <- jours_all |>
-  filter(!is.na(x_concepts), type != "ebook platform") |>
+  filter(type == "journal") |>
   slice_max(cited_by_count, n = 9) |>
   distinct(display_name, .keep_all = TRUE) |>
-  select(jour = display_name, x_concepts) |>
-  unnest(x_concepts) |>
-  filter(level == 0) |>
+  select(jour = display_name, topics) |>
+  tidyr::unnest(topics) |>
+  filter(name == "field") |>
+  group_by(id, jour, display_name) |> 
+  summarise(score = (sum(count))^(1/3), .groups = "drop") |> 
   left_join(concept_abbrev, by = join_by(id, display_name)) |>
   mutate(
     abbreviation = gsub(" ", "<br>", abbreviation),
-    jour = clean_journal_name(jour)
+    jour = clean_journal_name(jour),
   ) |>
   tidyr::complete(jour, abbreviation, fill = list(score = 0)) |>
   group_by(jour) |>
@@ -432,9 +440,9 @@ jours |>
   ggplot() +
   aes(fill = jour, y = score, x = abbreviation, group = jour) +
   facet_wrap(~jour) +
-  geom_hline(yintercept = c(45, 90), colour = "grey90", linewidth = 0.2) +
+  geom_hline(yintercept = c(25, 50), colour = "grey90", linewidth = 0.2) +
   geom_segment(
-    aes(x = abbreviation, xend = abbreviation, y = 0, yend = 100),
+    aes(x = abbreviation, xend = abbreviation, y = 0, yend = 55),
     color = "grey95"
   ) +
   geom_col(color = "grey20") +
@@ -449,17 +457,12 @@ jours |>
     axis.ticks.y = element_blank()
   ) +
   ggtext::geom_richtext(
-    aes(y = 120, label = label),
+    aes(y = 75, label = label),
     fill = NA, label.color = NA, size = 3
   ) +
   scale_fill_brewer(palette = "Set1", guide = "none") +
   labs(y = NULL, x = NULL, title = "Journal clocks")
 ```
-
-::: callout-important
-`x_concepts` will be [deprecated](https://docs.openalex.org/api-entities/authors/author-object#x_concepts) and removed soon.
-We leave it as an exercise to the reader to replace this field with `topics` instead.
-:::
 
 ## 🌵 Advanced topics
 
@@ -501,7 +504,8 @@ Behind the scene, `oa_fetch()` composes three functions below so the user can ex
 
 -   `oa2df()`: converts the JSON object in classical bibliographic tibble/data frame.
 
-Therefore, instead of using `oa_fetch()`, you can use `oa_query()` and `oa_request()` separately to build your own query, then (optionally) convert the result to a dataframe using `oa2df()`.
+Therefore, instead of using `oa_fetch()`, you can use `oa_query()` and `oa_request()` separately to build your own query and make an API request, then (optionally) convert the result to a dataframe using `oa2df()`.
+This way, you have more control over the process.
 
 ### `oa_generate()`
 
