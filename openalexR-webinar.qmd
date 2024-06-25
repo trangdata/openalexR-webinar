@@ -17,6 +17,8 @@ format:
 
 ## 🌻 Introduction
 
+<img src="images/logo.png" align="right" height="139"/>
+
 Welcome to the webinar on **openalexR**!
 Today, we will explore how to use the **openalexR** package to fetch data from OpenAlex, a free and open database of the entire research landscape.
 With **openalexR**, you can easily access and analyze scholarly data directly from R.
@@ -51,7 +53,7 @@ theme_update(
   plot.background = element_rect(fill = "transparent", colour = NA),
   panel.background = element_rect(fill = "transparent", colour = NA),
   legend.title = element_blank(),
-  legend.position = c(0.8, 0.4),
+  legend.position = c(0.7, 0.4),
 )
 
 knitr::opts_chunk$set(dev.args = list(bg = "transparent"))
@@ -354,30 +356,50 @@ hb_authors |>
 
 ### Prolific authors
 
-**Goal**: Download all authors' records of scholars who work at the [University of Naples Federico II](https://explore.openalex.org/institutions/I71267560) (OpenAlex ID: I71267560) and have published at least 500 publications.
-
-Let's first check how many records match the query, then download the entire collection.
-We can do this by adding `count_only = TRUE` (default `FALSE`) to the list of argument:
+**Goal**: Analyze the open access status of datasets published by researchers at [Dartmouth college](https://openalex.org/institutions/i107672454) over the years.
 
 ```{r}
-oa_fetch(
-  entity = "authors",
-  last_known_institutions.id = "I71267560",
-  works_count = ">499",
-  count_only = TRUE
+#| fig-height: 4
+#| fig-width: 8
+#| 
+w_dartmouth <- oa_fetch(
+  "works",
+  authorships.institutions.lineage = "i107672454",
+  publication_year = ">2000",
+  publication_year = "<2024",
+  type = "dataset",
+  options = list(
+    select = c("id", "open_access", "publication_year")
+  #   sample = 500, seed = 1 # sample for a faster response
+  ),
+  # count_only = TRUE,
+  verbose = TRUE
 )
-```
+w_dartmouth
 
-So there are `.Last.value[1, 1][[1]]` records in total.
-Now, we can get the entire collection:
+w_dartmouth |> 
+  mutate(
+    oa_status = oa_status %>% 
+      fct_relevel("gold", "hybrid", "bronze", "green", "closed") |> 
+      fct_recode(
+        "Gold: Published in an OA journal" = "gold",
+        "Green: Toll-access on publisher page, but free copy in an OA repository" = "green",
+        "Bronze: Free to read on publisher page, but no identifiable license" = "bronze",
+        "Hybrid: Free under an open license in a toll-access journal" = "hybrid",
+        "Closed" = "closed"
+      )
+  ) |>
+  count(publication_year, oa_status) |> 
+  ggplot() +
+  aes(y = as.factor(publication_year), x = n, fill = oa_status) +
+  geom_col() +
+  scale_fill_manual(values = c("#FFD700", "#1E90FF", "#CD7F32", "#32CD32", "#A9A9A9")) +
+  labs(
+    x = "Number of datasets", y = NULL,
+    # title = "Open access status of datasets published by Dartmouth researchers",
+    ) +
+  coord_cartesian(expand = FALSE) 
 
-```{r}
-oa_fetch(
-  entity = "authors",
-  last_known_institutions.id = "I71267560",
-  works_count = ">499"
-) |>
-  print_oa(show_authors)
 ```
 
 ### Journal clocks
@@ -511,7 +533,7 @@ This way, you have more control over the process.
 
 `oa_generate()` is a generator for making request to OpenAlex API, returning one record at a time.
 This is useful when you want to process a large number of records without loading them all into memory at once.
-You will need to first build your own query (*e.g.*, using `oa_query()`) to use as an argument in `oa_generate()`.
+You will need to first build your own query (*e.g.*, using `oa_query()` or interactively from the interface provided directly by OpenAlex) to use as an argument in `oa_generate()`.
 
 ```{r attr.output='.details summary="Output"'}
 example(oa_generate)
