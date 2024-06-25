@@ -964,7 +964,7 @@
       "RemoteUsername": "ropensci",
       "RemoteRepo": "openalexR",
       "RemoteRef": "main",
-      "RemoteSha": "cc8d0fe52ac4e83d28e1053e0e08b4bdb40e44e2",
+      "RemoteSha": "35ef5cbfec654dd475a4ed3b5740cbc81a0699e4",
       "Requirements": [
         "R",
         "httr",
@@ -972,7 +972,7 @@
         "progress",
         "tibble"
       ],
-      "Hash": "2b846374f73703b2a4f526fab2002dbe"
+      "Hash": "ad954d51dd9ae8eaac62195f082f35dc"
     },
     "openssl": {
       "Package": "openssl",

@@ -27,7 +27,10 @@ With **openalexR**, you can easily access and analyze scholarly data directly fr
 
 If you haven't already installed the **openalexR** package, you can do so from CRAN:
 
-```{r install, eval=FALSE}
+```{r}
+#| label: install
+#| eval: false
+#| 
 install.packages("openalexR")
 ```
 
@@ -42,12 +45,18 @@ openalexR.apikey = EXAMPLE_APIKEY
 
 We will now load in **openalexR** and the [**tidyverse**](https://www.tidyverse.org/) to use for the rest of this webinar.
 
-```{r load, message=FALSE}
+```{r}
+#| label: load
+#| message: false
+
 library(openalexR)
 library(tidyverse)
 ```
 
-```{r set-theme, include=FALSE}
+```{r}
+#| label: set-theme
+#| include: false
+
 theme_set(theme_classic())
 theme_update(
   plot.background = element_rect(fill = "transparent", colour = NA),
@@ -73,6 +82,7 @@ The main function of **openalexR** is `oa_fetch()`.
 
 ```{r}
 #| eval: false
+
 ?oa_fetch
 ```
 
@@ -174,6 +184,7 @@ Say we mistakenly use `year` instead of `publication_year` as a filter.
 
 ```{r}
 #| error: true
+
 oa_fetch(
   entity = "works",
   year = 2024,
@@ -302,7 +313,8 @@ Create a bar plot showing the number of works at each institution.
 ::: panel-tabset
 ## Your solution
 
-```{r challenge-top-authors}
+```{r}
+#| label: challenge-top-authors
 #| eval: false
 
 work <- oa_fetch(
@@ -418,24 +430,19 @@ jours_all <- oa_fetch(
 
 The following is a lot of code but it is mainly for processing the data and customizing the final plot.
 
-```{r visualize-big-journals}
-#| fig.height: 8
-#| fig.width: 8
+```{r}
+#| label: visualize-big-journals
+#| fig-height: 8
+#| fig-width: 8
 #| code-fold: true
-#| eval: false
+
 clean_journal_name <- function(x) {
   x |>
     gsub("\\(.*?\\)", "", x = _) |>
     gsub("Journal of the|Journal of", "J.", x = _) |>
-    gsub("/.*", "", x = _) |>
-    gsub("RePEc: ", "", x = _)
+    gsub("/.*", "", x = _)
 }
-  
-jours_all <- oa_fetch(
-  entity = "sources",
-  works_count = ">200000",
-  verbose = TRUE
-)
+
 jours <- jours_all |>
   filter(type == "journal") |>
   slice_max(cited_by_count, n = 9) |>
@@ -552,7 +559,11 @@ Similar to `oa_fetch()`, `oa_snowball()` finds and returns information on a core
 OpenAlex offers (limited) support for [fulltext N-grams](https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage) of Work entities (these have IDs starting with `"W"`).
 Given a vector of work IDs, `oa_ngrams()` returns a dataframe of N-gram data (in the `ngrams` list-column) for each work.
 
-```{r ngrams, fig.height=3}
+```{r}
+#| label: ngrams
+#| fig-height: 3
+#| fig-width: 8
+#| 
 ngrams_data <- oa_ngrams(
   works_identifier = c("W1964141474", "W1963991285"),
   verbose = TRUE
