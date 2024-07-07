@@ -27,7 +27,7 @@ With **openalexR**, you can easily access and analyze scholarly data directly fr
 
 If you haven't already installed the **openalexR** package, you can do so from CRAN:
 
-```{r}
+```{r eval=FALSE}
 #| label: install
 #| eval: false
 #| 
@@ -116,7 +116,8 @@ print_oa <- function(x, fun = show_works) {
   x |>
     select(-any_of("url")) |>
     fun() |>
-    knitr::kable()
+    knitr::kable() |>
+    identity()
 }
 print_oa(work)
 ```
@@ -213,12 +214,13 @@ You can also search for works related to a specific topic.
 Here's an example fetching the first few works of which abstracts include the phrase "urban heat island":
 
 ```{r search-works}
-oa_fetch(
+uhi <- oa_fetch(
   entity = "works",
   abstract.search = "urban heat island",
   options = list(sample = 10, seed = 1)
-) |>
-  print_oa()
+)
+
+print_oa(uhi)
 ```
 
 ::: {.callout-tip collapse="true"}
@@ -238,7 +240,7 @@ Here, we can use filters such as `display_name` and `works_count`:
 ```{r}
 oa_fetch(
   entity = "authors",
-  display_name.search = c("Massimo Aria", "Eugen Lounkine"),
+  display_name.search = c("Massimo Aria", "Kyle Demes"),
   works_count = ">10"
 ) |>
   print_oa(show_authors)
@@ -300,7 +302,6 @@ oa_fetch(
   options = list(sample = 10, seed = 1)
 )
 ```
-
 :::
 
 ### Challenge 2: Humpback whale
@@ -365,6 +366,12 @@ hb_authors |>
 :::
 
 ## 🪴 Example analyses
+
+### Heterocycles authors
+
+How many authors published in Heterocycles?
+
+LIVE DEMO
 
 ### Prolific authors
 
@@ -548,11 +555,10 @@ example(oa_generate)
 
 ### `oa_snowball()`
 
-The user can also perform *snowballing* with `oa_snowball()`. 
-Snowballing is a literature search technique where the researcher starts with a set of articles and find articles that cite or were cited by the original set. 
-`oa_snowball()` returns a list of 2 elements: *nodes* and *edges*. 
+The user can also perform *snowballing* with `oa_snowball()`.
+Snowballing is a literature search technique where the researcher starts with a set of articles and find articles that cite or were cited by the original set.
+`oa_snowball()` returns a list of 2 elements: *nodes* and *edges*.
 Similar to `oa_fetch()`, `oa_snowball()` finds and returns information on a core set of articles satisfying certain criteria, but, unlike `oa_fetch()`, it also returns information the articles that cite and are cited by this core set.
-
 
 ### 🌾 N-grams
 
@@ -595,7 +601,7 @@ ngrams_data |>
 
 ## 🌸 Q&A
 
-TODO: to fill after webinar 
+TODO: to fill after webinar
 
 # 🍁 Conclusion
 
