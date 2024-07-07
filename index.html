@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Trang Le">
-<meta name="dcterms.date" content="2024-06-25">
+<meta name="dcterms.date" content="2024-07-07">
 
 <title>Introduction to openalexR: a webinar</title>
 <style>
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -97,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#example-analyses" id="toc-example-analyses" class="nav-link" data-scroll-target="#example-analyses">🪴 Example analyses</a>
   <ul class="collapse">
+  <li><a href="#heterocycles-authors" id="toc-heterocycles-authors" class="nav-link" data-scroll-target="#heterocycles-authors">Heterocycles authors</a></li>
   <li><a href="#prolific-authors" id="toc-prolific-authors" class="nav-link" data-scroll-target="#prolific-authors">Prolific authors</a></li>
   <li><a href="#journal-clocks" id="toc-journal-clocks" class="nav-link" data-scroll-target="#journal-clocks">Journal clocks</a></li>
   </ul></li>
@@ -137,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 25, 2024</p>
+      <p class="date">July 7, 2024</p>
     </div>
   </div>
   
@@ -260,7 +261,7 @@ Note
  $ any_repository_has_fulltext: logi TRUE
  $ language                   : chr "en"
  $ grants                     : logi NA
- $ cited_by_count             : int 730
+ $ cited_by_count             : int 734
  $ counts_by_year             :List of 1
  $ publication_year           : int 2018
  $ cited_by_api_url           : chr "https://api.openalex.org/works?filter=cites:W2741809807"
@@ -281,9 +282,10 @@ Note
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">any_of</span>(<span class="st">"url"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fun</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">identity</span>()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -621,12 +623,12 @@ Invalid query parameters error.
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 3%">
-<col style="width: 50%">
-<col style="width: 7%">
+<col style="width: 41%">
 <col style="width: 6%">
-<col style="width: 14%">
-<col style="width: 1%">
+<col style="width: 8%">
 <col style="width: 16%">
+<col style="width: 1%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -641,58 +643,58 @@ Invalid query parameters error.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">W4392229725</td>
-<td style="text-align: left;">Author response for “Triblock copolymer micelles enhance solubility, permeability and activity of a quorum sensing inhibitor against Pseudomonas. aeruginosa biofilms”</td>
-<td style="text-align: left;">Karolina Kasza</td>
-<td style="text-align: left;">Amir M. Ghaemmaghami</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Solubility, Bacteria, Aqueous solution</td>
+<td style="text-align: left;">W4390769214</td>
+<td style="text-align: left;">The effect of timing and abundance of lesser sandeel on the breeding success of a North Sea seabird community</td>
+<td style="text-align: left;">Jérémi Régnier</td>
+<td style="text-align: left;">Sarah Wanless</td>
+<td style="text-align: left;">Marine ecology. Progress series</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Abundance (ecology), Predation</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W4393867392</td>
-<td style="text-align: left;">Identifying the Onset Location of Equatorial Plasma Bubbles (EPBs) and Its Relationship With the Background Ionospheric Conditions</td>
-<td style="text-align: left;">K. K. Ajith</td>
-<td style="text-align: left;">Septi Perwitasari</td>
-<td style="text-align: left;">Journal of geophysical research. Space physics</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Ionosphere, Plasma</td>
+<td style="text-align: left;">W4396559427</td>
+<td style="text-align: left;">CARACTERIZAÇÃO DOS IMPACTOS NO ENTORNO DO RECURSO HÍDRICO INTERMUNICIPAL DE PERNAMBUCO: RIO CAMARAGIBE</td>
+<td style="text-align: left;">María Manuel Borges</td>
+<td style="text-align: left;">Ana Lúcia Bezerra Candeias</td>
+<td style="text-align: left;">Revista Ambientale</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Forestry</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W4399761400</td>
-<td style="text-align: left;">Unravelling the interactions between small molecules and liposomal bilayers via molecular dynamics and thermodynamic modelling</td>
-<td style="text-align: left;">Christopher M. Miles</td>
-<td style="text-align: left;">Christopher M Miles</td>
-<td style="text-align: left;">International journal of pharmaceutics</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Liposome, Molecular dynamics, Pharmaceutical technology</td>
+<td style="text-align: left;">W4393079007</td>
+<td style="text-align: left;">“Una volta per tutte” (once and for all) – Europa Donna Italia makes breast cancer patients’ voice heard nationwide</td>
+<td style="text-align: left;">R. D’Antona</td>
+<td style="text-align: left;">L. F. Pau</td>
+<td style="text-align: left;">European journal of cancer</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Cancer</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W4393309264</td>
-<td style="text-align: left;">Légitimité du pouvoir - Gestion des déchets</td>
-<td style="text-align: left;">Martine Peyrard-Moulard</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Pour l’éco. Hors-série/Pour l’éco. Hors-série</td>
+<td style="text-align: left;">W4394012374</td>
+<td style="text-align: left;">Supporting future roles of millennials in rural agriculture retail: The role of technology in continuing education solutions</td>
+<td style="text-align: left;">Katie Brenny</td>
+<td style="text-align: left;">Susan M. Yelich Biniecki</td>
+<td style="text-align: left;">New directions for adult and continuing education</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Political science</td>
+<td style="text-align: left;">Experiential learning, Agriculture, Adult education</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W4396980676</td>
-<td style="text-align: left;">Epidemiological and clinical aspects of HFRS in the territory of the Voronezh region</td>
-<td style="text-align: left;">И. В. Криворучко</td>
-<td style="text-align: left;">С. П. Кокорева</td>
-<td style="text-align: left;">Sanitarnyj vrač</td>
+<td style="text-align: left;">W4394860458</td>
+<td style="text-align: left;">Accelerated Recurrent Neural Network Dynamics for Time-Varying Lyapunov Equation Solving</td>
+<td style="text-align: left;">Achilleas Doumanis</td>
+<td style="text-align: left;">Dimitrios Garyfallou</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Epidemiology</td>
+<td style="text-align: left;">Artificial neural network, Dynamics (music), Nonlinear system</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W4392753132</td>
-<td style="text-align: left;">A Horizontally Transferred Plant Fatty Acid Desaturase Gene Steers Whitefly Reproduction (Adv. Sci. 10/2024)</td>
-<td style="text-align: left;">Chengliang Gong</td>
-<td style="text-align: left;">Youjun Zhang</td>
-<td style="text-align: left;">Advanced science</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Whitefly, Gene, Reproduction</td>
+<td style="text-align: left;">W4390848562</td>
+<td style="text-align: left;">AMPK-mediated CD47 H3K4 methylation promotes phagocytosis evasion of glioma stem cells post-radiotherapy</td>
+<td style="text-align: left;">Ting Sun</td>
+<td style="text-align: left;">Wei Yang</td>
+<td style="text-align: left;">Cancer letters</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Glioma, Stem cell, Radiation therapy</td>
 </tr>
 </tbody>
 </table>
@@ -703,22 +705,23 @@ Invalid query parameters error.
 <h4 class="anchored" data-anchor-id="search">5. Search</h4>
 <p>You can also search for works related to a specific topic. Here’s an example fetching the first few works of which abstracts include the phrase “urban heat island”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>uhi <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">abstract.search =</span> <span class="st">"urban heat island"</span>,</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(uhi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 3%">
-<col style="width: 41%">
-<col style="width: 7%">
-<col style="width: 6%">
-<col style="width: 13%">
+<col style="width: 56%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
 <col style="width: 1%">
-<col style="width: 25%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -733,58 +736,58 @@ Invalid query parameters error.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">W3042163173</td>
-<td style="text-align: left;">Relationship of surface urban heat island with air temperature and precipitation in global large cities</td>
-<td style="text-align: left;">Long Li</td>
-<td style="text-align: left;">Ren Wang</td>
-<td style="text-align: left;">Ecological indicators</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Urban heat island, Precipitation, Context (archaeology)</td>
+<td style="text-align: left;">W2884211947</td>
+<td style="text-align: left;">A new water-retaining paver block for reducing runoff and cooling pavement</td>
+<td style="text-align: left;">Yinghong Qin</td>
+<td style="text-align: left;">Guoxiong Mei</td>
+<td style="text-align: left;">Journal of cleaner production</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Impervious surface, Urban heat island, Rainwater harvesting</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W2378815279</td>
-<td style="text-align: left;">The Relationship Between Urban Heat Island and Land Use/Cover Changes in Guangzhou City</td>
-<td style="text-align: left;">Wu Zhi-Feng Sun Qin-Qin</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Guotu ziyuan yaogan</td>
+<td style="text-align: left;">W1997244107</td>
+<td style="text-align: left;">Impacts of city-block-scale countermeasures against urban heat-island phenomena upon a building’s energy-consumption for air-conditioning</td>
+<td style="text-align: left;">Yukihiro Kikegawa</td>
+<td style="text-align: left;">Keisuke Hanaki</td>
+<td style="text-align: left;">Applied energy</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Urban heat island, Index (typography), Significant difference</td>
+<td style="text-align: left;">Urban heat island, Energy consumption, Air conditioning</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W4323536207</td>
-<td style="text-align: left;">Spatiotemporal Characterization Of Land Surface Temperature In Relation Landuse/Cover: A Spatial Autocorrelation Approach</td>
-<td style="text-align: left;">. Diksha</td>
-<td style="text-align: left;">Rina Kumari</td>
-<td style="text-align: left;">Journal of Landscape Ecology</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Spatial analysis, Common spatial pattern, Autocorrelation</td>
+<td style="text-align: left;">W4311998966</td>
+<td style="text-align: left;">Indoor and roadside exposures to traffic noise and cardiovascular mortality and the role of urban environmental stressors across a high-rise, high-density environment: A case study in Hong Kong</td>
+<td style="text-align: left;">Pin Wang</td>
+<td style="text-align: left;">Hung Chak Ho</td>
+<td style="text-align: left;">Building and environment</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Stressor, Built environment, Confidence interval</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W2144594621</td>
-<td style="text-align: left;">Dynamic simulation of pollutant dispersion over complex urban terrains: A tool for sustainable development, control and management*1</td>
-<td style="text-align: left;">K HANJALI</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Energy</td>
+<td style="text-align: left;">W1956697259</td>
+<td style="text-align: left;">Subsurface urban heat island and its effects on horizontal ground-source heat pump potential under climate change</td>
+<td style="text-align: left;">Zhiwen Luo</td>
+<td style="text-align: left;">Christina Asproudi</td>
+<td style="text-align: left;">Applied thermal engineering</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Terrain, Pollutant, Dispersion (optics)</td>
+<td style="text-align: left;">Urban heat island, Urbanization, Climate change</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W2075549326</td>
-<td style="text-align: left;">Multi-Scale Simulations of Climate-Change Influence on Chicago Heat Island</td>
-<td style="text-align: left;">Patrick Conry</td>
-<td style="text-align: left;">Jessica J. Hellmann</td>
+<td style="text-align: left;">W2566986869</td>
+<td style="text-align: left;">Climate Change</td>
+<td style="text-align: left;">Katia Perini</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Weather Research and Forecasting Model, Mesoscale meteorology, Urban heat island</td>
+<td style="text-align: left;">Microclimate, Urban heat island, Climate change</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W3096610185</td>
-<td style="text-align: left;">A THEORETICAL STUDY ON THE URBAN HEAT ISLAND EFFECT</td>
-<td style="text-align: left;">Jianguo Sang</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Kishocho Kenkyu Jiho/Kishocho kenkyu jiho</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Urban heat island, Circulation (fluid dynamics), Observational study</td>
+<td style="text-align: left;">W2528437563</td>
+<td style="text-align: left;">The Impact of Albedo Increase to Mitigate the Urban Heat Island in Terni (Italy) Using the WRF Model</td>
+<td style="text-align: left;">Elena Morini</td>
+<td style="text-align: left;">Franco Cotana</td>
+<td style="text-align: left;">Sustainability</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Urban heat island, Weather Research and Forecasting Model, Roof</td>
 </tr>
 </tbody>
 </table>
@@ -814,20 +817,20 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">display_name.search =</span> <span class="fu">c</span>(<span class="st">"Massimo Aria"</span>, <span class="st">"Eugen Lounkine"</span>),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">display_name.search =</span> <span class="fu">c</span>(<span class="st">"Massimo Aria"</span>, <span class="st">"Kyle Demes"</span>),</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;10"</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>(show_authors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 6%">
+<col style="width: 7%">
 <col style="width: 8%">
-<col style="width: 11%">
-<col style="width: 6%">
-<col style="width: 8%">
-<col style="width: 18%">
-<col style="width: 39%">
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 20%">
+<col style="width: 35%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -845,19 +848,19 @@ Tip
 <td style="text-align: left;">A5069892096</td>
 <td style="text-align: left;">Massimo Aria</td>
 <td style="text-align: left;">0000-0002-8517-9411</td>
-<td style="text-align: right;">192</td>
-<td style="text-align: right;">8282</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">8436</td>
 <td style="text-align: left;">University of Naples Federico II</td>
 <td style="text-align: left;">Physiology, Pathology and Forensic Medicine, Periodontics</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">A5088290637</td>
-<td style="text-align: left;">Eugen Lounkine</td>
+<td style="text-align: left;">A5086928770</td>
+<td style="text-align: left;">Kyle W. Demes</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: right;">58</td>
-<td style="text-align: right;">2100</td>
-<td style="text-align: left;">Novartis (Switzerland)</td>
-<td style="text-align: left;">Computational Theory and Mathematics, Pharmacology, Molecular Biology</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">1316</td>
+<td style="text-align: left;">Simon Fraser University</td>
+<td style="text-align: left;">Oceanography, Oceanography, Ecology</td>
 </tr>
 </tbody>
 </table>
@@ -998,6 +1001,11 @@ Tip
 </section>
 <section id="example-analyses" class="level2">
 <h2 class="anchored" data-anchor-id="example-analyses">🪴 Example analyses</h2>
+<section id="heterocycles-authors" class="level3">
+<h3 class="anchored" data-anchor-id="heterocycles-authors">Heterocycles authors</h3>
+<p>How many authors published in Heterocycles?</p>
+<p>LIVE DEMO</p>
+</section>
 <section id="prolific-authors" class="level3">
 <h3 class="anchored" data-anchor-id="prolific-authors">Prolific authors</h3>
 <p><strong>Goal</strong>: Analyze the open access status of datasets published by researchers at <a href="https://openalex.org/institutions/i107672454">Dartmouth college</a> over the years.</p>
@@ -1023,20 +1031,20 @@ Tip
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,123 × 6
+<pre><code># A tibble: 4,118 × 6
    id    is_oa_anywhere oa_status oa_url any_repository_has_f…¹ publication_year
    &lt;chr&gt; &lt;lgl&gt;          &lt;chr&gt;     &lt;chr&gt;  &lt;lgl&gt;                             &lt;int&gt;
  1 http… FALSE          closed    &lt;NA&gt;   FALSE                              2006
  2 http… TRUE           hybrid    https… TRUE                               2014
- 3 http… TRUE           gold      https… TRUE                               2015
+ 3 http… TRUE           gold      https… TRUE                               2020
  4 http… TRUE           hybrid    https… TRUE                               2021
- 5 http… TRUE           gold      https… TRUE                               2023
- 6 http… TRUE           gold      https… TRUE                               2023
- 7 http… TRUE           gold      https… TRUE                               2014
- 8 http… TRUE           gold      https… TRUE                               2022
- 9 http… TRUE           gold      https… TRUE                               2020
-10 http… FALSE          closed    &lt;NA&gt;   FALSE                              2023
-# ℹ 4,113 more rows
+ 5 http… TRUE           gold      https… TRUE                               2014
+ 6 http… TRUE           gold      https… TRUE                               2015
+ 7 http… TRUE           gold      https… TRUE                               2023
+ 8 http… TRUE           gold      https… TRUE                               2023
+ 9 http… TRUE           gold      https… TRUE                               2023
+10 http… TRUE           gold      https… TRUE                               2022
+# ℹ 4,108 more rows
 # ℹ abbreviated name: ¹​any_repository_has_fulltext</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth <span class="sc">|&gt;</span> </span>
@@ -1520,18 +1528,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1563,7 +1560,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1622,7 +1641,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
