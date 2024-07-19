@@ -51,6 +51,7 @@ We will now load in **openalexR** and the [**tidyverse**](https://www.tidyverse.
 
 library(openalexR)
 library(tidyverse)
+packageVersion("openalexR")
 ```
 
 ```{r}
@@ -153,7 +154,8 @@ print_oa(works_from_dois)
 ```{r}
 works_from_orcids <- oa_fetch(
   entity = "works",
-  author.orcid = c("0000-0001-6187-6610", "https://orcid.org/0000-0002-8517-9411")
+  author.orcid = c("0000-0001-6187-6610", "https://orcid.org/0000-0002-8517-9411"),
+  verbose = TRUE
 )
 
 print_oa(works_from_orcids)
@@ -201,8 +203,7 @@ In our case, `publication_year` is the filter we want.
 oa_fetch(
   entity = "works",
   publication_year = 2024,
-  # TODO figure out why this doesn't work with some seeds
-  options = list(sample = 10, seed = 2),
+  options = list(sample = 10, seed = 1),
   verbose = TRUE
 ) |>
   print_oa()
