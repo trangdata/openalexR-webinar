@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Trang Le">
-<meta name="dcterms.date" content="2024-07-07">
+<meta name="dcterms.date" content="2024-07-19">
 
 <title>Introduction to openalexR: a webinar</title>
 <style>
@@ -138,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 7, 2024</p>
+      <p class="date">July 19, 2024</p>
     </div>
   </div>
   
@@ -167,7 +167,11 @@ openalexR.apikey = EXAMPLE_APIKEY</code></pre>
 <p>We will now load in <strong>openalexR</strong> and the <a href="https://www.tidyverse.org/"><strong>tidyverse</strong></a> to use for the rest of this webinar.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openalexR)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"openalexR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '1.4.0'</code></pre>
+</div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -190,7 +194,7 @@ R base pipe
 <h2 class="anchored" data-anchor-id="basic-usage">🌿 Basic usage</h2>
 <p>The main function of <strong>openalexR</strong> is <code>oa_fetch()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>?oa_fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>?oa_fetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="fetching-information-from-identifiers" class="level3">
 <h3 class="anchored" data-anchor-id="fetching-information-from-identifiers">Fetching information from identifiers</h3>
@@ -212,11 +216,11 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">id =</span> <span class="st">"W2741809807"</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(<span class="at">entity =</span> <span class="st">"works"</span>, <span class="at">id =</span> <span class="st">"W2741809807"</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works/W2741809807</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 38
   id                title display_name author ab    publication_date so    so_id
@@ -233,7 +237,7 @@ Note
 </div>
 <p>Now, we can view the output tibble/dataframe, <code>work</code>, interactively in RStudio or inspect it with base functions like <code>str</code> or <code>head</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(work, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(work, <span class="at">max.level =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [1 × 38] (S3: tbl_df/tbl/data.frame)
  $ id                         : chr "https://openalex.org/W2741809807"
@@ -261,7 +265,7 @@ Note
  $ any_repository_has_fulltext: logi TRUE
  $ language                   : chr "en"
  $ grants                     : logi NA
- $ cited_by_count             : int 734
+ $ cited_by_count             : int 773
  $ counts_by_year             :List of 1
  $ publication_year           : int 2018
  $ cited_by_api_url           : chr "https://api.openalex.org/works?filter=cites:W2741809807"
@@ -278,14 +282,14 @@ Note
 </div>
 <p><strong>openalexR</strong> also provides the <code>show_works</code> function to simplify the result (e.g., remove some columns, keep first/last author) for easy viewing. Let us define <code>print_oa()</code> to wrap the output table in <code>knitr::kable()</code> to be displayed nicely on the webpage, but you will most likely not need this function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>print_oa <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">fun =</span> show_works) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">any_of</span>(<span class="st">"url"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fun</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">identity</span>()</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>print_oa <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">fun =</span> show_works) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">any_of</span>(<span class="st">"url"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fun</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">identity</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -330,18 +334,18 @@ Note
 <h4 class="anchored" data-anchor-id="use-doi-as-a-works-filter">1. Use <code>doi</code> as a <a href="https://ropensci.github.io/openalexR/articles/Filters.html#works">works filter</a></h4>
 <p><strong>Goal</strong>: Fetch information on two works with DOIs <code>10.1016/j.joi.2017.08.007</code> and <code>https://doi.org/10.1007/s11192-013-1221-3</code>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>works_from_dois <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">doi =</span> <span class="fu">c</span>(<span class="st">"10.1016/j.joi.2017.08.007"</span>, <span class="st">"https://doi.org/10.1007/s11192-013-1221-3"</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>works_from_dois <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">doi =</span> <span class="fu">c</span>(<span class="st">"10.1016/j.joi.2017.08.007"</span>, <span class="st">"https://doi.org/10.1007/s11192-013-1221-3"</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works?filter=doi%3A10.1016%2Fj.joi.2017.08.007%7Chttps%3A%2F%2Fdoi.org%2F10.1007%2Fs11192-013-1221-3</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting 1 page of results with a total of 2 records...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_dois)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_dois)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -392,10 +396,17 @@ Note
 <h4 class="anchored" data-anchor-id="use-author.orcid-as-a-filter">2. Use <code>author.orcid</code> as a filter</h4>
 <p><strong>Goal</strong>: Fetch all works by authors with ORCID IDs <code>0000-0001-6187-6610</code> and <code>0000-0002-8517-9411</code>. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>works_from_orcids <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">author.orcid =</span> <span class="fu">c</span>(<span class="st">"0000-0001-6187-6610"</span>, <span class="st">"https://orcid.org/0000-0002-8517-9411"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>works_from_orcids <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">author.orcid =</span> <span class="fu">c</span>(<span class="st">"0000-0001-6187-6610"</span>, <span class="st">"https://orcid.org/0000-0002-8517-9411"</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Requesting url: https://api.openalex.org/works?filter=author.orcid%3A0000-0001-6187-6610%7Chttps%3A%2F%2Forcid.org%2F0000-0002-8517-9411</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Getting 2 pages of results with a total of 259 records...</code></pre>
+</div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in oa_request(oa_query(filter = filter_i, multiple_id = multiple_id, : 
 The following work(s) have truncated lists of authors: W4230863633.
@@ -404,7 +415,7 @@ For example:
   lapply(c("W4230863633"), \(x) oa_fetch(identifier = x))
 Details at https://docs.openalex.org/api-entities/authors/limitations.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_orcids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_from_orcids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -459,7 +470,7 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <td style="text-align: left;">W3005144120</td>
 <td style="text-align: left;">Mapping the Evolution of Social Research and Data Science on 30 Years of Social Indicators Research</td>
 <td style="text-align: left;">Massimo Aria</td>
-<td style="text-align: left;">Maria Spano</td>
+<td style="text-align: left;">M. Spanò</td>
 <td style="text-align: left;">Social indicators research</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Human geography, Data collection, Position (finance)</td>
@@ -491,16 +502,16 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <h4 class="anchored" data-anchor-id="many-filters-at-once">3. Many filters at once</h4>
 <p><strong>Goal</strong>: Download all works that have been cited more than 50 times, published between 2020 and 2021, and include the strings “bibliometric analysis” or “science mapping” in the title. Maybe we also want the results to be sorted by total citations in a descending order.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>works_biblio <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="fu">c</span>(<span class="st">"bibliometric analysis"</span>, <span class="st">"science mapping"</span>),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;100"</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_publication_date =</span> <span class="st">"2020-07-01"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">to_publication_date =</span> <span class="st">"2021-07-01"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_biblio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>works_biblio <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="fu">c</span>(<span class="st">"bibliometric analysis"</span>, <span class="st">"science mapping"</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;100"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">from_publication_date =</span> <span class="st">"2020-07-01"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">to_publication_date =</span> <span class="st">"2021-07-01"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(works_biblio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -588,33 +599,32 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <p><strong>Goal</strong>: Sample 10 works published in 2024.</p>
 <p>Say we mistakenly use <code>year</code> instead of <code>publication_year</code> as a filter.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2024</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2024</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works?filter=year%3A2024&amp;sample=10</code></pre>
 </div>
 <div class="cell-output cell-output-error">
 <pre><code>Error: OpenAlex API request failed [403]
 Invalid query parameters error.
-&lt;year is not a valid field. Valid fields are underscore or hyphenated versions of: abstract.search, abstract.search.no_stem, apc_list.currency, apc_list.provenance, apc_list.value, apc_list.value_usd, apc_paid.currency, apc_paid.provenance, apc_paid.value, apc_paid.value_usd, author.id, author.orcid, authors_count, authorships.affiliations.institution_ids, authorships.author.id, authorships.author.orcid, authorships.countries, authorships.institutions.continent, authorships.institutions.country_code, authorships.institutions.id, authorships.institutions.is_global_south, authorships.institutions.lineage, authorships.institutions.ror, authorships.institutions.type, authorships.is_corresponding, best_oa_location.is_accepted, best_oa_location.is_oa, best_oa_location.is_published, best_oa_location.landing_page_url, best_oa_location.license, best_oa_location.license_id, best_oa_location.source.host_organization, best_oa_location.source.host_organization_lineage, best_oa_location.source.id, best_oa_location.source.is_in_doaj, best_oa_location.source.is_oa, best_oa_location.source.issn, best_oa_location.source.type, best_oa_location.version, best_open_version, biblio.first_page, biblio.issue, biblio.last_page, biblio.volume, cited_by, cited_by_count, cited_by_percentile_year.max, cited_by_percentile_year.min, cites, concept.id, concepts.id, concepts.wikidata, concepts_count, corresponding_author_ids, corresponding_institution_ids, countries_distinct_count, default.search, display_name, display_name.search, display_name.search.no_stem, doi, doi_starts_with, from_created_date, from_publication_date, fulltext.search, fulltext_origin, fwci, grants.award_id, grants.funder, has_abstract, has_doi, has_embeddings, has_fulltext, has_ngrams, has_oa_accepted_or_published_version, has_oa_submitted_version, has_old_authors, has_orcid, has_pdf_url, has_pmcid, has_pmid, has_raw_affiliation_strings, has_references, ids.mag, ids.openalex, ids.pmcid, ids.pmid, indexed_in, institution.id, institutions.continent, institutions.country_code, institutions.id, institutions.is_global_south, institutions.ror, institutions.type, institutions_distinct_count, is_corresponding, is_oa, is_paratext, is_retracted, journal, keyword.search, keywords.id, language, locations.is_accepted, locations.is_oa, locations.is_published, locations.landing_page_url, locations.license, locations.license_id, locations.source.has_issn, locations.source.host_institution_lineage, locations.source.host_organization, locations.source.host_organization_lineage, locations.source.id, locations.source.is_core, locations.source.is_in_doaj, locations.source.is_oa, locations.source.issn, locations.source.publisher_lineage, locations.source.type, locations.version, locations_count, mag, mag_only, oa_status, open_access.any_repository_has_fulltext, open_access.is_oa, open_access.oa_status, openalex, openalex_id, pmcid, pmid, primary_location.is_accepted, primary_location.is_oa, primary_location.is_published, primary_location.landing_page_url, primary_location.license, primary_location.license_id, primary_location.source.has_issn, primary_location.source.host_institution_lineage, primary_location.source.host_organization, primary_location.source.host_organization_lineage, primary_location.source.id, primary_location.source.is_core, primary_location.source.is_in_doaj, primary_location.source.is_oa, primary_location.source.issn, primary_location.source.publisher_lineage, primary_location.source.type, primary_location.version, primary_topic.domain.id, primary_topic.field.id, primary_topic.id, primary_topic.subfield.id, publication_date, publication_year, raw_affiliation_strings.search, referenced_works, referenced_works_count, related_to, repository, semantic.search, sustainable_development_goals.id, sustainable_development_goals.score, title.search, title.search.no_stem, title_and_abstract.search, title_and_abstract.search.no_stem, to_publication_date, to_updated_date, topics.domain.id, topics.field.id, topics.id, topics.subfield.id, topics_count, type, type_crossref, version&gt;</code></pre>
+&lt;year is not a valid field. Valid fields are underscore or hyphenated versions of: abstract.search, abstract.search.no_stem, apc_list.currency, apc_list.provenance, apc_list.value, apc_list.value_usd, apc_paid.currency, apc_paid.provenance, apc_paid.value, apc_paid.value_usd, author.id, author.orcid, authors_count, authorships.affiliations.institution_ids, authorships.author.id, authorships.author.orcid, authorships.countries, authorships.institutions.continent, authorships.institutions.country_code, authorships.institutions.id, authorships.institutions.is_global_south, authorships.institutions.lineage, authorships.institutions.ror, authorships.institutions.type, authorships.is_corresponding, best_oa_location.is_accepted, best_oa_location.is_oa, best_oa_location.is_published, best_oa_location.landing_page_url, best_oa_location.license, best_oa_location.license_id, best_oa_location.source.host_organization, best_oa_location.source.host_organization_lineage, best_oa_location.source.id, best_oa_location.source.is_in_doaj, best_oa_location.source.is_oa, best_oa_location.source.issn, best_oa_location.source.type, best_oa_location.version, best_open_version, biblio.first_page, biblio.issue, biblio.last_page, biblio.volume, cited_by, cited_by_count, cited_by_percentile_year.max, cited_by_percentile_year.min, cites, concept.id, concepts.id, concepts.wikidata, concepts_count, corresponding_author_ids, corresponding_institution_ids, countries_distinct_count, default.search, display_name, display_name.search, display_name.search.no_stem, doi, doi_starts_with, from_created_date, from_publication_date, fulltext.search, fulltext_origin, fwci, grants.award_id, grants.funder, has_abstract, has_doi, has_embeddings, has_fulltext, has_ngrams, has_oa_accepted_or_published_version, has_oa_submitted_version, has_old_authors, has_orcid, has_pdf_url, has_pmcid, has_pmid, has_raw_affiliation_strings, has_references, ids.mag, ids.openalex, ids.pmcid, ids.pmid, indexed_in, institution.id, institutions.continent, institutions.country_code, institutions.id, institutions.is_global_south, institutions.ror, institutions.type, institutions_distinct_count, is_corresponding, is_oa, is_paratext, is_retracted, journal, keyword.search, keywords.id, language, locations.is_accepted, locations.is_oa, locations.is_published, locations.landing_page_url, locations.license, locations.license_id, locations.source.has_issn, locations.source.host_institution_lineage, locations.source.host_organization, locations.source.host_organization_lineage, locations.source.id, locations.source.is_core, locations.source.is_in_doaj, locations.source.is_oa, locations.source.issn, locations.source.publisher_lineage, locations.source.type, locations.version, locations_count, mag, mag_only, oa_status, open_access.any_repository_has_fulltext, open_access.is_oa, open_access.oa_status, openalex, openalex_id, pmcid, pmid, primary_location.is_accepted, primary_location.is_oa, primary_location.is_published, primary_location.landing_page_url, primary_location.license, primary_location.license_id, primary_location.source.has_issn, primary_location.source.host_institution_lineage, primary_location.source.host_organization, primary_location.source.host_organization_lineage, primary_location.source.id, primary_location.source.is_core, primary_location.source.is_in_doaj, primary_location.source.is_oa, primary_location.source.issn, primary_location.source.publisher_lineage, primary_location.source.type, primary_location.version, primary_topic.domain.id, primary_topic.field.id, primary_topic.id, primary_topic.subfield.id, publication_date, publication_year, raw_affiliation_strings.search, referenced_works, referenced_works_count, related_to, repository, semantic.search, sustainable_development_goals.id, sustainable_development_goals.score, title.search, title.search.no_stem, title_and_abstract.search, title_and_abstract.search.no_stem, to_created_date, to_publication_date, to_updated_date, topics.domain.id, topics.field.id, topics.id, topics.subfield.id, topics_count, type, type_crossref, version&gt;</code></pre>
 </div>
 </div>
 <p>The API returns a helpful error message: <code>year</code> is a wrong filter, and shows you all possible, correct filters. In our case, <code>publication_year</code> is the filter we want.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="dv">2024</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co"> figure out why this doesn't work with some seeds</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">2</span>),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="dv">2024</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Requesting url: https://api.openalex.org/works?filter=publication_year%3A2024&amp;sample=10&amp;seed=2</code></pre>
+<pre><code>Requesting url: https://api.openalex.org/works?filter=publication_year%3A2024&amp;sample=10&amp;seed=1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting 1 page of results with a total of 10 records...</code></pre>
@@ -622,13 +632,13 @@ Invalid query parameters error.
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 41%">
-<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 47%">
 <col style="width: 8%">
-<col style="width: 16%">
-<col style="width: 1%">
-<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 2%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -643,58 +653,58 @@ Invalid query parameters error.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">W4390769214</td>
-<td style="text-align: left;">The effect of timing and abundance of lesser sandeel on the breeding success of a North Sea seabird community</td>
-<td style="text-align: left;">Jérémi Régnier</td>
-<td style="text-align: left;">Sarah Wanless</td>
-<td style="text-align: left;">Marine ecology. Progress series</td>
+<td style="text-align: left;">W4393003523</td>
+<td style="text-align: left;">An Untargeted Metabolomics Strategy to Identify Substrates of Known and Orphan E. coli Transporters</td>
+<td style="text-align: left;">Mohammad S. Radi</td>
+<td style="text-align: left;">Douglas B. Kell</td>
+<td style="text-align: left;">Membranes</td>
 <td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Abundance (ecology), Predation</td>
+<td style="text-align: left;">Metabolomics, Substrate (aquarium), Gene</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W4396559427</td>
-<td style="text-align: left;">CARACTERIZAÇÃO DOS IMPACTOS NO ENTORNO DO RECURSO HÍDRICO INTERMUNICIPAL DE PERNAMBUCO: RIO CAMARAGIBE</td>
-<td style="text-align: left;">María Manuel Borges</td>
-<td style="text-align: left;">Ana Lúcia Bezerra Candeias</td>
-<td style="text-align: left;">Revista Ambientale</td>
+<td style="text-align: left;">W4392343767</td>
+<td style="text-align: left;">Nd isotope systematics of Late Paleozoic granitoids from the Western Transbaikalia (Russia): Petrological consequences and plume model testing</td>
+<td style="text-align: left;">А. А. Цыганков</td>
+<td style="text-align: left;">N.D. Guslyakov</td>
+<td style="text-align: left;">Geosystems and geoenvironment</td>
 <td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Forestry</td>
+<td style="text-align: left;">Paleozoic, Plume, Taxonomy (biology)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W4393079007</td>
-<td style="text-align: left;">“Una volta per tutte” (once and for all) – Europa Donna Italia makes breast cancer patients’ voice heard nationwide</td>
-<td style="text-align: left;">R. D’Antona</td>
-<td style="text-align: left;">L. F. Pau</td>
-<td style="text-align: left;">European journal of cancer</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Cancer</td>
+<td style="text-align: left;">W4395690149</td>
+<td style="text-align: left;">Bilimsel Toplantı Değerlendirmesi: Kur’ân Meâlleri Sorunlar, Çözüm Önerileri (Muş 13-15 Ekim 2023)</td>
+<td style="text-align: left;">İsmail Çalışkan</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Tader</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Chemistry</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W4394012374</td>
-<td style="text-align: left;">Supporting future roles of millennials in rural agriculture retail: The role of technology in continuing education solutions</td>
-<td style="text-align: left;">Katie Brenny</td>
-<td style="text-align: left;">Susan M. Yelich Biniecki</td>
-<td style="text-align: left;">New directions for adult and continuing education</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Experiential learning, Agriculture, Adult education</td>
+<td style="text-align: left;">W4400136181</td>
+<td style="text-align: left;">In Search of Intermediating Capacities: The Interplay of Civic Engagement and Institutionalised Politics</td>
+<td style="text-align: left;">Adalbert Evers</td>
+<td style="text-align: left;">Johan von Essen</td>
+<td style="text-align: left;">Palgrave studies in third sector research</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Politics, Intermediation, Corporate governance</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W4394860458</td>
-<td style="text-align: left;">Accelerated Recurrent Neural Network Dynamics for Time-Varying Lyapunov Equation Solving</td>
-<td style="text-align: left;">Achilleas Doumanis</td>
-<td style="text-align: left;">Dimitrios Garyfallou</td>
+<td style="text-align: left;">W4400308256</td>
+<td style="text-align: left;">Patterns of sedentary time accumulation according to age in the United States: A 2003-2006 NHANES analysis</td>
+<td style="text-align: left;">Pierre-Yves de Müllenheim</td>
+<td style="text-align: left;">Bénédicte Noury-Desvaux</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Artificial neural network, Dynamics (music), Nonlinear system</td>
+<td style="text-align: left;">Population</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W4390848562</td>
-<td style="text-align: left;">AMPK-mediated CD47 H3K4 methylation promotes phagocytosis evasion of glioma stem cells post-radiotherapy</td>
-<td style="text-align: left;">Ting Sun</td>
-<td style="text-align: left;">Wei Yang</td>
-<td style="text-align: left;">Cancer letters</td>
+<td style="text-align: left;">W4392588264</td>
+<td style="text-align: left;">Water flow and MP transport in sandy soils imaged with neutron radiography and X-ray CT</td>
+<td style="text-align: left;">Andreas Cramer</td>
+<td style="text-align: left;">Andrea Carminati</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Glioma, Stem cell, Radiation therapy</td>
+<td style="text-align: left;">Soil water, X-ray, Radiography</td>
 </tr>
 </tbody>
 </table>
@@ -705,23 +715,23 @@ Invalid query parameters error.
 <h4 class="anchored" data-anchor-id="search">5. Search</h4>
 <p>You can also search for works related to a specific topic. Here’s an example fetching the first few works of which abstracts include the phrase “urban heat island”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>uhi <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">abstract.search =</span> <span class="st">"urban heat island"</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(uhi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>uhi <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">abstract.search =</span> <span class="st">"urban heat island"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print_oa</span>(uhi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 56%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 8%">
-<col style="width: 1%">
-<col style="width: 18%">
+<col style="width: 4%">
+<col style="width: 37%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 2%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -736,42 +746,51 @@ Invalid query parameters error.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">W2884211947</td>
-<td style="text-align: left;">A new water-retaining paver block for reducing runoff and cooling pavement</td>
-<td style="text-align: left;">Yinghong Qin</td>
-<td style="text-align: left;">Guoxiong Mei</td>
-<td style="text-align: left;">Journal of cleaner production</td>
+<td style="text-align: left;">W2739368650</td>
+<td style="text-align: left;">Living Green Shell: Urban micro-vertical farm</td>
+<td style="text-align: left;">Jeanne Lee</td>
+<td style="text-align: left;">I-Ting Chuang</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Impervious surface, Urban heat island, Rainwater harvesting</td>
+<td style="text-align: left;">Roof, Urban heat island, Greening</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W1997244107</td>
-<td style="text-align: left;">Impacts of city-block-scale countermeasures against urban heat-island phenomena upon a building’s energy-consumption for air-conditioning</td>
-<td style="text-align: left;">Yukihiro Kikegawa</td>
-<td style="text-align: left;">Keisuke Hanaki</td>
-<td style="text-align: left;">Applied energy</td>
+<td style="text-align: left;">W1884411247</td>
+<td style="text-align: left;">Multiscaled analysis of hydrothermal dynamics in Japanese megalopolis by using integrated approach</td>
+<td style="text-align: left;">Tadanobu Nakayama</td>
+<td style="text-align: left;">H Hamano</td>
+<td style="text-align: left;">Hydrological processes</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Urban heat island, Energy consumption, Air conditioning</td>
+<td style="text-align: left;">Water cycle, Latent heat, Groundwater</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W4311998966</td>
-<td style="text-align: left;">Indoor and roadside exposures to traffic noise and cardiovascular mortality and the role of urban environmental stressors across a high-rise, high-density environment: A case study in Hong Kong</td>
-<td style="text-align: left;">Pin Wang</td>
-<td style="text-align: left;">Hung Chak Ho</td>
-<td style="text-align: left;">Building and environment</td>
+<td style="text-align: left;">W2803234898</td>
+<td style="text-align: left;">Impact of greening on the urban heat island: Seasonal variations and mitigation strategies</td>
+<td style="text-align: left;">Bumseok Chun</td>
+<td style="text-align: left;">Jean‐Michel Guldmann</td>
+<td style="text-align: left;">Computers, environment and urban systems</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Stressor, Built environment, Confidence interval</td>
+<td style="text-align: left;">Urban heat island, Impervious surface, Vegetation (pathology)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W1956697259</td>
-<td style="text-align: left;">Subsurface urban heat island and its effects on horizontal ground-source heat pump potential under climate change</td>
-<td style="text-align: left;">Zhiwen Luo</td>
-<td style="text-align: left;">Christina Asproudi</td>
-<td style="text-align: left;">Applied thermal engineering</td>
+<td style="text-align: left;">W1979863349</td>
+<td style="text-align: left;">Analyzing the Influence of Urban Forms on Surface Urban Heat Islands in Europe</td>
+<td style="text-align: left;">Nina Schwarz</td>
+<td style="text-align: left;">Ameur M. Manceur</td>
+<td style="text-align: left;">Journal of urban planning and development</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Urban heat island, Urbanization, Climate change</td>
+<td style="text-align: left;">Urban heat island, Urban area, Elevation (ballistics)</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">W4200545985</td>
+<td style="text-align: left;">Calculation of surface urban heat index from LANDSAT-8 TIRS data and its relation with land cover</td>
+<td style="text-align: left;">Anabella Ferral</td>
+<td style="text-align: left;">Carlos Marcelo Scavuzzo</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Urban heat island, Metropolitan area, Index (typography)</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">W2566986869</td>
 <td style="text-align: left;">Climate Change</td>
 <td style="text-align: left;">Katia Perini</td>
@@ -779,15 +798,6 @@ Invalid query parameters error.
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Microclimate, Urban heat island, Climate change</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">W2528437563</td>
-<td style="text-align: left;">The Impact of Albedo Increase to Mitigate the Urban Heat Island in Terni (Italy) Using the WRF Model</td>
-<td style="text-align: left;">Elena Morini</td>
-<td style="text-align: left;">Franco Cotana</td>
-<td style="text-align: left;">Sustainability</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Urban heat island, Weather Research and Forecasting Model, Roof</td>
 </tr>
 </tbody>
 </table>
@@ -815,12 +825,12 @@ Tip
 <p>Similar to works, you can fetch information on authors, sources, funders, institutions, and concepts. Here are some examples of fetching authors:</p>
 <p><strong>Goal</strong>: Acquire information on a couple of authors with more than 10 works. Here, we can use filters such as <code>display_name</code> and <code>works_count</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">display_name.search =</span> <span class="fu">c</span>(<span class="st">"Massimo Aria"</span>, <span class="st">"Kyle Demes"</span>),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;10"</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>(show_authors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"authors"</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">display_name.search =</span> <span class="fu">c</span>(<span class="st">"Massimo Aria"</span>, <span class="st">"Kyle Demes"</span>),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;10"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_oa</span>(show_authors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -849,16 +859,16 @@ Tip
 <td style="text-align: left;">Massimo Aria</td>
 <td style="text-align: left;">0000-0002-8517-9411</td>
 <td style="text-align: right;">193</td>
-<td style="text-align: right;">8436</td>
+<td style="text-align: right;">8979</td>
 <td style="text-align: left;">University of Naples Federico II</td>
 <td style="text-align: left;">Physiology, Pathology and Forensic Medicine, Periodontics</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">A5086928770</td>
 <td style="text-align: left;">Kyle W. Demes</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">0000-0003-2780-0393</td>
 <td style="text-align: right;">24</td>
-<td style="text-align: right;">1316</td>
+<td style="text-align: right;">1343</td>
 <td style="text-align: left;">Simon Fraser University</td>
 <td style="text-align: left;">Oceanography, Oceanography, Ecology</td>
 </tr>
@@ -884,40 +894,40 @@ Tip
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"funders"</span>,</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"engineering"</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"topics"</span>,</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"&gt;1000"</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"institutions"</span>,</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"Asia"</span>,</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">_____ =</span> <span class="dv">10</span>)</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"funders"</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"engineering"</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"topics"</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"&gt;1000"</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"institutions"</span>,</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">_____ =</span> <span class="st">"Asia"</span>,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">_____ =</span> <span class="dv">10</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"funders"</span>,</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">description.search =</span> <span class="st">"engineering"</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"topics"</span>,</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;1000"</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"institutions"</span>,</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">continent =</span> <span class="st">"Asia"</span>,</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"funders"</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">description.search =</span> <span class="st">"engineering"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"topics"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;1000"</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="fu">oa_fetch</span>(</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"institutions"</span>,</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">continent =</span> <span class="st">"Asia"</span>,</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sample =</span> <span class="dv">10</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -931,61 +941,61 @@ Tip
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decide whether you want search/title.search/abstract.search/etc.</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  ______</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>______</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>work <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># decide whether you want search/title.search/abstract.search/etc.</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  ______</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>______</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>humpback <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="st">"humpback whale"</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;100"</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(humpback<span class="sc">$</span>title[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>humpback <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"works"</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title.search =</span> <span class="st">"humpback whale"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cited_by_count =</span> <span class="st">"&gt;100"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">sort =</span> <span class="st">"cited_by_count:desc"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(humpback<span class="sc">$</span>title[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Songs of Humpback Whales"                                                                            
  [2] "Leading-edge tubercles delay stall on humpback whale (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) flippers"       
  [3] "Hydrodynamic design of the humpback whale flipper"                                                   
  [4] "Dynamics of two populations of the humpback whale, Megaptera novaeangliae (Borowski)"                
  [5] "Network-Based Diffusion Analysis Reveals Cultural Transmission of Lobtail Feeding in Humpback Whales"
- [6] "Genetic tagging of humpback whales"                                                                  
- [7] "Microplastic in a macro filter feeder: Humpback whale Megaptera novaeangliae"                        
+ [6] "Microplastic in a macro filter feeder: Humpback whale Megaptera novaeangliae"                        
+ [7] "Genetic tagging of humpback whales"                                                                  
  [8] "9. The Seasonal Migratory Cycle of Humpback Whales"                                                  
  [9] "Abundant mitochondrial DNA variation and world-wide population structure in humpback whales."        
 [10] "Humpback Whales (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) Fatally Poisoned by Dinoflagellate Toxin"            </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>n_authors <span class="ot">&lt;-</span> <span class="fu">sapply</span>(humpback<span class="sc">$</span>author, nrow)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="ot">&lt;-</span> humpback<span class="sc">$</span>author <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">unlist</span>(<span class="fu">lapply</span>(n_authors, \(x) <span class="fu">rep</span>(x, x))))</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#D3B484"</span>, <span class="st">"#F89C74"</span>, <span class="st">"#C9DB74"</span>, <span class="st">"#87C55F"</span>, <span class="st">"#B497E7"</span>,<span class="st">"#66C5CC"</span>)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="sc">|&gt;</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(institution_display_name) <span class="sc">|&gt;</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">inst =</span> institution_display_name, </span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> institution_country_code</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">sum</span>(weight),  <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">fct_reorder</span>(inst, n), <span class="at">fill =</span> country) <span class="sc">+</span></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">rev</span>(pal)) <span class="sc">+</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weighted value of most cited works"</span>,</span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Institutions with most cited works on humpback whale"</span></span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>n_authors <span class="ot">&lt;-</span> <span class="fu">sapply</span>(humpback<span class="sc">$</span>author, nrow)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="ot">&lt;-</span> humpback<span class="sc">$</span>author <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weight =</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">unlist</span>(<span class="fu">lapply</span>(n_authors, \(x) <span class="fu">rep</span>(x, x))))</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#D3B484"</span>, <span class="st">"#F89C74"</span>, <span class="st">"#C9DB74"</span>, <span class="st">"#87C55F"</span>, <span class="st">"#B497E7"</span>,<span class="st">"#66C5CC"</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="sc">|&gt;</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(institution_display_name) <span class="sc">|&gt;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">inst =</span> institution_display_name, </span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> institution_country_code</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">sum</span>(weight),  <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span> </span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> n, <span class="at">y =</span> <span class="fu">fct_reorder</span>(inst, n), <span class="at">fill =</span> country) <span class="sc">+</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">rev</span>(pal)) <span class="sc">+</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Weighted value of most cited works"</span>,</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Institutions with most cited works on humpback whale"</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1010,65 +1020,65 @@ Tip
 <h3 class="anchored" data-anchor-id="prolific-authors">Prolific authors</h3>
 <p><strong>Goal</strong>: Analyze the open access status of datasets published by researchers at <a href="https://openalex.org/institutions/i107672454">Dartmouth college</a> over the years.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"works"</span>,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">authorships.institutions.lineage =</span> <span class="st">"i107672454"</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="st">"&gt;2000"</span>,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="st">"&lt;2024"</span>,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataset"</span>,</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"open_access"</span>, <span class="st">"publication_year"</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   sample = 500, seed = 1 # sample for a faster response</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count_only = TRUE,</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"works"</span>,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">authorships.institutions.lineage =</span> <span class="st">"i107672454"</span>,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="st">"&gt;2000"</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication_year =</span> <span class="st">"&lt;2024"</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"dataset"</span>,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">select =</span> <span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"open_access"</span>, <span class="st">"publication_year"</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   sample = 500, seed = 1 # sample for a faster response</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># count_only = TRUE,</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/works?filter=authorships.institutions.lineage%3Ai107672454%2Cpublication_year%3A%3E2000%2Cpublication_year%3A%3C2024%2Ctype%3Adataset&amp;select=id%2Copen_access%2Cpublication_year</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Getting 21 pages of results with a total of 4122 records...</code></pre>
+<pre><code>Getting 21 pages of results with a total of 4121 records...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,118 × 6
+<pre><code># A tibble: 4,121 × 6
    id    is_oa_anywhere oa_status oa_url any_repository_has_f…¹ publication_year
    &lt;chr&gt; &lt;lgl&gt;          &lt;chr&gt;     &lt;chr&gt;  &lt;lgl&gt;                             &lt;int&gt;
  1 http… FALSE          closed    &lt;NA&gt;   FALSE                              2006
- 2 http… TRUE           hybrid    https… TRUE                               2014
- 3 http… TRUE           gold      https… TRUE                               2020
- 4 http… TRUE           hybrid    https… TRUE                               2021
- 5 http… TRUE           gold      https… TRUE                               2014
- 6 http… TRUE           gold      https… TRUE                               2015
- 7 http… TRUE           gold      https… TRUE                               2023
- 8 http… TRUE           gold      https… TRUE                               2023
+ 2 http… TRUE           gold      https… TRUE                               2014
+ 3 http… TRUE           hybrid    https… TRUE                               2014
+ 4 http… TRUE           gold      https… TRUE                               2020
+ 5 http… TRUE           gold      https… TRUE                               2020
+ 6 http… TRUE           hybrid    https… TRUE                               2021
+ 7 http… TRUE           gold      https… TRUE                               2019
+ 8 http… TRUE           gold      https… TRUE                               2015
  9 http… TRUE           gold      https… TRUE                               2023
-10 http… TRUE           gold      https… TRUE                               2022
-# ℹ 4,108 more rows
+10 http… TRUE           gold      https… TRUE                               2023
+# ℹ 4,111 more rows
 # ℹ abbreviated name: ¹​any_repository_has_fulltext</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">oa_status =</span> oa_status <span class="sc">%&gt;%</span> </span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fct_relevel</span>(<span class="st">"gold"</span>, <span class="st">"hybrid"</span>, <span class="st">"bronze"</span>, <span class="st">"green"</span>, <span class="st">"closed"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fct_recode</span>(</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Gold: Published in an OA journal"</span> <span class="ot">=</span> <span class="st">"gold"</span>,</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Green: Toll-access on publisher page, but free copy in an OA repository"</span> <span class="ot">=</span> <span class="st">"green"</span>,</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Bronze: Free to read on publisher page, but no identifiable license"</span> <span class="ot">=</span> <span class="st">"bronze"</span>,</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Hybrid: Free under an open license in a toll-access journal"</span> <span class="ot">=</span> <span class="st">"hybrid"</span>,</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Closed"</span> <span class="ot">=</span> <span class="st">"closed"</span></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(publication_year, oa_status) <span class="sc">|&gt;</span> </span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">as.factor</span>(publication_year), <span class="at">x =</span> n, <span class="at">fill =</span> oa_status) <span class="sc">+</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#FFD700"</span>, <span class="st">"#1E90FF"</span>, <span class="st">"#CD7F32"</span>, <span class="st">"#32CD32"</span>, <span class="st">"#A9A9A9"</span>)) <span class="sc">+</span></span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of datasets"</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># title = "Open access status of datasets published by Dartmouth researchers",</span></span>
-<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">oa_status =</span> oa_status <span class="sc">%&gt;%</span> </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fct_relevel</span>(<span class="st">"gold"</span>, <span class="st">"hybrid"</span>, <span class="st">"bronze"</span>, <span class="st">"green"</span>, <span class="st">"closed"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fct_recode</span>(</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Gold: Published in an OA journal"</span> <span class="ot">=</span> <span class="st">"gold"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Green: Toll-access on publisher page, but free copy in an OA repository"</span> <span class="ot">=</span> <span class="st">"green"</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Bronze: Free to read on publisher page, but no identifiable license"</span> <span class="ot">=</span> <span class="st">"bronze"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Hybrid: Free under an open license in a toll-access journal"</span> <span class="ot">=</span> <span class="st">"hybrid"</span>,</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Closed"</span> <span class="ot">=</span> <span class="st">"closed"</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(publication_year, oa_status) <span class="sc">|&gt;</span> </span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">as.factor</span>(publication_year), <span class="at">x =</span> n, <span class="at">fill =</span> oa_status) <span class="sc">+</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#FFD700"</span>, <span class="st">"#1E90FF"</span>, <span class="st">"#CD7F32"</span>, <span class="st">"#32CD32"</span>, <span class="st">"#A9A9A9"</span>)) <span class="sc">+</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of datasets"</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># title = "Open access status of datasets published by Dartmouth researchers",</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1083,11 +1093,11 @@ Tip
 <p><strong>Goal</strong>: Visualize big journals’ topics.</p>
 <p>We first download all records of journals with the most works/citation count, then visualize their scored concepts:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>jours_all <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"sources"</span>,</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;200000"</span>,</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>jours_all <span class="ot">&lt;-</span> <span class="fu">oa_fetch</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">entity =</span> <span class="st">"sources"</span>,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_count =</span> <span class="st">"&gt;200000"</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Requesting url: https://api.openalex.org/sources?filter=works_count%3A%3E200000</code></pre>
 </div>
@@ -1099,61 +1109,61 @@ Tip
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>clean_journal_name <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">(.*?</span><span class="sc">\\</span><span class="st">)"</span>, <span class="st">""</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"Journal of the|Journal of"</span>, <span class="st">"J."</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"/.*"</span>, <span class="st">""</span>, <span class="at">x =</span> _)</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>jours <span class="ot">&lt;-</span> jours_all <span class="sc">|&gt;</span></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"journal"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(cited_by_count, <span class="at">n =</span> <span class="dv">9</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(display_name, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">jour =</span> display_name, topics) <span class="sc">|&gt;</span></span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">unnest</span>(topics) <span class="sc">|&gt;</span></span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"field"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id, jour, display_name) <span class="sc">|&gt;</span> </span>
-<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> (<span class="fu">sum</span>(count))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(concept_abbrev, <span class="at">by =</span> <span class="fu">join_by</span>(id, display_name)) <span class="sc">|&gt;</span></span>
-<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">abbreviation =</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"&lt;br&gt;"</span>, abbreviation),</span>
-<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">jour =</span> <span class="fu">clean_journal_name</span>(jour),</span>
-<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">complete</span>(jour, abbreviation, <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">score =</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(jour) <span class="sc">|&gt;</span></span>
-<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">if_else</span>(score <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="st">"#1A1A1A"</span>, <span class="st">"#D9D9D9"</span>), <span class="co"># CCCCCC</span></span>
-<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"&lt;span style='color:"</span>, color, <span class="st">"'&gt;"</span>, abbreviation, <span class="st">"&lt;/span&gt;"</span>)</span>
-<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>jours <span class="sc">|&gt;</span></span>
-<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> jour, <span class="at">y =</span> score, <span class="at">x =</span> abbreviation, <span class="at">group =</span> jour) <span class="sc">+</span></span>
-<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>jour) <span class="sc">+</span></span>
-<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">50</span>), <span class="at">colour =</span> <span class="st">"grey90"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb43-35"><a href="#cb43-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb43-36"><a href="#cb43-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> abbreviation, <span class="at">xend =</span> abbreviation, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">55</span>),</span>
-<span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey95"</span></span>
-<span id="cb43-38"><a href="#cb43-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb43-39"><a href="#cb43-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"grey20"</span>) <span class="sc">+</span></span>
-<span id="cb43-40"><a href="#cb43-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
-<span id="cb43-41"><a href="#cb43-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb43-43"><a href="#cb43-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
-<span id="cb43-44"><a href="#cb43-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
-<span id="cb43-45"><a href="#cb43-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb43-46"><a href="#cb43-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb43-47"><a href="#cb43-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb43-48"><a href="#cb43-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb43-49"><a href="#cb43-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb43-50"><a href="#cb43-50" aria-hidden="true" tabindex="-1"></a>  ggtext<span class="sc">::</span><span class="fu">geom_richtext</span>(</span>
-<span id="cb43-51"><a href="#cb43-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">75</span>, <span class="at">label =</span> label),</span>
-<span id="cb43-52"><a href="#cb43-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">label.color =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb43-53"><a href="#cb43-53" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb43-54"><a href="#cb43-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb43-55"><a href="#cb43-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Journal clocks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>clean_journal_name <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">(.*?</span><span class="sc">\\</span><span class="st">)"</span>, <span class="st">""</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"Journal of the|Journal of"</span>, <span class="st">"J."</span>, <span class="at">x =</span> _) <span class="sc">|&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gsub</span>(<span class="st">"/.*"</span>, <span class="st">""</span>, <span class="at">x =</span> _)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>jours <span class="ot">&lt;-</span> jours_all <span class="sc">|&gt;</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"journal"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(cited_by_count, <span class="at">n =</span> <span class="dv">9</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(display_name, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">jour =</span> display_name, topics) <span class="sc">|&gt;</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">unnest</span>(topics) <span class="sc">|&gt;</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"field"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id, jour, display_name) <span class="sc">|&gt;</span> </span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">score =</span> (<span class="fu">sum</span>(count))<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(concept_abbrev, <span class="at">by =</span> <span class="fu">join_by</span>(id, display_name)) <span class="sc">|&gt;</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">abbreviation =</span> <span class="fu">gsub</span>(<span class="st">" "</span>, <span class="st">"&lt;br&gt;"</span>, abbreviation),</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">jour =</span> <span class="fu">clean_journal_name</span>(jour),</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">complete</span>(jour, abbreviation, <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">score =</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(jour) <span class="sc">|&gt;</span></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">if_else</span>(score <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="st">"#1A1A1A"</span>, <span class="st">"#D9D9D9"</span>), <span class="co"># CCCCCC</span></span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"&lt;span style='color:"</span>, color, <span class="st">"'&gt;"</span>, abbreviation, <span class="st">"&lt;/span&gt;"</span>)</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>jours <span class="sc">|&gt;</span></span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">fill =</span> jour, <span class="at">y =</span> score, <span class="at">x =</span> abbreviation, <span class="at">group =</span> jour) <span class="sc">+</span></span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>jour) <span class="sc">+</span></span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">50</span>), <span class="at">colour =</span> <span class="st">"grey90"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> abbreviation, <span class="at">xend =</span> abbreviation, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">55</span>),</span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey95"</span></span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"grey20"</span>) <span class="sc">+</span></span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">clip =</span> <span class="st">"off"</span>) <span class="sc">+</span></span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"transparent"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb46-47"><a href="#cb46-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a>  ggtext<span class="sc">::</span><span class="fu">geom_richtext</span>(</span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">75</span>, <span class="at">label =</span> label),</span>
+<span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">label.color =</span> <span class="cn">NA</span>, <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb46-55"><a href="#cb46-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Journal clocks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1192,7 +1202,7 @@ Tip
 <h3 class="anchored" data-anchor-id="oa_generate"><code>oa_generate()</code></h3>
 <p><code>oa_generate()</code> is a generator for making request to OpenAlex API, returning one record at a time. This is useful when you want to process a large number of records without loading them all into memory at once. You will need to first build your own query (<em>e.g.</em>, using <code>oa_query()</code> or interactively from the interface provided directly by OpenAlex) to use as an argument in <code>oa_generate()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(oa_generate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(oa_generate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <details><summary>Output</summary>
 <pre class="details" data-summary="Output"><code>
@@ -1257,11 +1267,11 @@ logical.return = TRUE, : there is no package called 'coro'</code></pre>
 <h3 class="anchored" data-anchor-id="n-grams">🌾 N-grams</h3>
 <p>OpenAlex offers (limited) support for <a href="https://docs.openalex.org/api-entities/works/get-n-grams#fulltext-coverage">fulltext N-grams</a> of Work entities (these have IDs starting with <code>"W"</code>). Given a vector of work IDs, <code>oa_ngrams()</code> returns a dataframe of N-gram data (in the <code>ngrams</code> list-column) for each work.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ngrams_data <span class="ot">&lt;-</span> <span class="fu">oa_ngrams</span>(</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_identifier =</span> <span class="fu">c</span>(<span class="st">"W1964141474"</span>, <span class="st">"W1963991285"</span>),</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>ngrams_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>ngrams_data <span class="ot">&lt;-</span> <span class="fu">oa_ngrams</span>(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">works_identifier =</span> <span class="fu">c</span>(<span class="st">"W1964141474"</span>, <span class="st">"W1963991285"</span>),</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>ngrams_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   id                               doi                              count ngrams
@@ -1269,7 +1279,7 @@ logical.return = TRUE, : there is no package called 'coro'</code></pre>
 1 https://openalex.org/W1964141474 https://doi.org/10.1016/j.conb.…  2733 &lt;df&gt;  
 2 https://openalex.org/W1963991285 https://doi.org/10.1126/science…  2338 &lt;df&gt;  </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(ngrams_data<span class="sc">$</span>ngrams, head, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(ngrams_data<span class="sc">$</span>ngrams, head, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
                                        ngram ngram_count ngram_tokens
@@ -1291,21 +1301,21 @@ logical.return = TRUE, : there is no package called 'coro'</code></pre>
 2   0.0003756574
 3   0.0003756574</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ngrams_data <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(ngrams) <span class="sc">|&gt;</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ngram_tokens <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, ngram, ngram_count) <span class="sc">|&gt;</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(ngram_count, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(ngram_count, <span class="fu">fct_reorder</span>(ngram, ngram_count))) <span class="sc">+</span></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> id), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#A16928"</span>, <span class="st">"#2887a1"</span>)) <span class="sc">+</span></span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>id, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 fulltext bigrams"</span>,</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Count"</span>,</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>ngrams_data <span class="sc">|&gt;</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(ngrams) <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ngram_tokens <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, ngram, ngram_count) <span class="sc">|&gt;</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(ngram_count, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(ngram_count, <span class="fu">fct_reorder</span>(ngram, ngram_count))) <span class="sc">+</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> id), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#A16928"</span>, <span class="st">"#2887a1"</span>)) <span class="sc">+</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>id, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 fulltext bigrams"</span>,</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Count"</span>,</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
