@@ -19,7 +19,7 @@ format:
 
 <img src="images/logo.png" align="right" height="139"/>
 
-Welcome to the webinar on **openalexR**!
+Welcome to the webinar on **openalexR**! To view the video recording of the webinar, go to [https://youtu.be/AUd6-mK76a0](https://youtu.be/AUd6-mK76a0).
 Today, we will explore how to use the **openalexR** package to fetch data from OpenAlex, a free and open database of the entire research landscape.
 With **openalexR**, you can easily access and analyze scholarly data directly from R.
 
