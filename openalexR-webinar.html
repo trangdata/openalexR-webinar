@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Trang Le">
-<meta name="dcterms.date" content="2024-07-19">
+<meta name="dcterms.date" content="2024-07-24">
 
 <title>Introduction to openalexR: a webinar</title>
 <style>
@@ -138,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 19, 2024</p>
+      <p class="date">July 24, 2024</p>
     </div>
   </div>
   
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">🌻 Introduction</h2>
 <p><img src="images/logo.png" align="right" height="139"></p>
-<p>Welcome to the webinar on <strong>openalexR</strong>! Today, we will explore how to use the <strong>openalexR</strong> package to fetch data from OpenAlex, a free and open database of the entire research landscape. With <strong>openalexR</strong>, you can easily access and analyze scholarly data directly from R.</p>
+<p>Welcome to the webinar on <strong>openalexR</strong>! To view the video recording of the webinar, go to <a href="https://youtu.be/AUd6-mK76a0">https://youtu.be/AUd6-mK76a0</a>. Today, we will explore how to use the <strong>openalexR</strong> package to fetch data from OpenAlex, a free and open database of the entire research landscape. With <strong>openalexR</strong>, you can easily access and analyze scholarly data directly from R.</p>
 </section>
 <section id="installation-and-setup" class="level2">
 <h2 class="anchored" data-anchor-id="installation-and-setup">🌱 Installation and setup</h2>
@@ -265,7 +265,7 @@ Note
  $ any_repository_has_fulltext: logi TRUE
  $ language                   : chr "en"
  $ grants                     : logi NA
- $ cited_by_count             : int 773
+ $ cited_by_count             : int 785
  $ counts_by_year             :List of 1
  $ publication_year           : int 2018
  $ cited_by_api_url           : chr "https://api.openalex.org/works?filter=cites:W2741809807"
@@ -374,7 +374,7 @@ Note
 <td style="text-align: left;">bibliometrix : An R-tool for comprehensive science mapping analysis</td>
 <td style="text-align: left;">Massimo Aria</td>
 <td style="text-align: left;">Corrado Cuccurullo</td>
-<td style="text-align: left;">Journal of informetrics</td>
+<td style="text-align: left;">Journal of Informetrics</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Workflow, Bibliometrics, Software</td>
 </tr>
@@ -444,7 +444,7 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <td style="text-align: left;">bibliometrix : An R-tool for comprehensive science mapping analysis</td>
 <td style="text-align: left;">Massimo Aria</td>
 <td style="text-align: left;">Corrado Cuccurullo</td>
-<td style="text-align: left;">Journal of informetrics</td>
+<td style="text-align: left;">Journal of Informetrics</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Workflow, Bibliometrics, Software</td>
 </tr>
@@ -471,20 +471,11 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <td style="text-align: left;">Mapping the Evolution of Social Research and Data Science on 30 Years of Social Indicators Research</td>
 <td style="text-align: left;">Massimo Aria</td>
 <td style="text-align: left;">M. Spanò</td>
-<td style="text-align: left;">Social indicators research</td>
+<td style="text-align: left;">Social Indicators Research</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Human geography, Data collection, Position (finance)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">W2038196424</td>
-<td style="text-align: left;">Coverage and adoption of altmetrics sources in the bibliometric community</td>
-<td style="text-align: left;">Stefanie Haustein</td>
-<td style="text-align: left;">Jens Terliesner</td>
-<td style="text-align: left;">Scientometrics</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Altmetrics, Bookmarking, Social media</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">W2408216567</td>
 <td style="text-align: left;">Foundations and trends in performance management. A twenty-five years bibliometric analysis in business and public administration domains</td>
 <td style="text-align: left;">Corrado Cuccurullo</td>
@@ -492,6 +483,15 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <td style="text-align: left;">Scientometrics</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Domain (mathematical analysis), Content analysis, Public domain</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W2038196424</td>
+<td style="text-align: left;">Coverage and adoption of altmetrics sources in the bibliometric community</td>
+<td style="text-align: left;">Stefanie Haustein</td>
+<td style="text-align: left;">Jens Terliesner</td>
+<td style="text-align: left;">Scientometrics</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Altmetrics, Bookmarking, Social media</td>
 </tr>
 </tbody>
 </table>
@@ -558,7 +558,7 @@ Details at https://docs.openalex.org/api-entities/authors/limitations.</code></p
 <td style="text-align: left;">A bibliometric analysis using VOSviewer of publications on COVID-19</td>
 <td style="text-align: left;">Yuetian Yu</td>
 <td style="text-align: left;">Erzhen Chen</td>
-<td style="text-align: left;">Annals of translational medicine</td>
+<td style="text-align: left;">Annals of Translational Medicine</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">Citation, Bibliometrics, China</td>
 </tr>
@@ -633,12 +633,12 @@ Invalid query parameters error.
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 4%">
-<col style="width: 47%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 14%">
-<col style="width: 2%">
+<col style="width: 40%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 15%">
+<col style="width: 2%">
+<col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -653,6 +653,15 @@ Invalid query parameters error.
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">W4396533323</td>
+<td style="text-align: left;">Mutually unbiased bases: polynomial optimization and symmetry</td>
+<td style="text-align: left;">Sander Gribling</td>
+<td style="text-align: left;">Sven Polak</td>
+<td style="text-align: left;">Quantum</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Symmetry (geometry), Polynomial, Hilbert space</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">W4393003523</td>
 <td style="text-align: left;">An Untargeted Metabolomics Strategy to Identify Substrates of Known and Orphan E. coli Transporters</td>
 <td style="text-align: left;">Mohammad S. Radi</td>
@@ -660,15 +669,6 @@ Invalid query parameters error.
 <td style="text-align: left;">Membranes</td>
 <td style="text-align: left;">TRUE</td>
 <td style="text-align: left;">Metabolomics, Substrate (aquarium), Gene</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">W4392343767</td>
-<td style="text-align: left;">Nd isotope systematics of Late Paleozoic granitoids from the Western Transbaikalia (Russia): Petrological consequences and plume model testing</td>
-<td style="text-align: left;">А. А. Цыганков</td>
-<td style="text-align: left;">N.D. Guslyakov</td>
-<td style="text-align: left;">Geosystems and geoenvironment</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">Paleozoic, Plume, Taxonomy (biology)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">W4395690149</td>
@@ -698,13 +698,13 @@ Invalid query parameters error.
 <td style="text-align: left;">Population</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">W4392588264</td>
-<td style="text-align: left;">Water flow and MP transport in sandy soils imaged with neutron radiography and X-ray CT</td>
-<td style="text-align: left;">Andreas Cramer</td>
-<td style="text-align: left;">Andrea Carminati</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">W4391389036</td>
+<td style="text-align: left;">Poststroke Cognitive Decline: Is Functional Connectivity the Key to Tangible Therapeutic Targets?</td>
+<td style="text-align: left;">Isabella Dallasta</td>
+<td style="text-align: left;">Elisabeth B. Marsh</td>
+<td style="text-align: left;">Stroke</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Soil water, X-ray, Radiography</td>
+<td style="text-align: left;">Centennial</td>
 </tr>
 </tbody>
 </table>
@@ -725,12 +725,12 @@ Invalid query parameters error.
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 37%">
-<col style="width: 6%">
-<col style="width: 9%">
+<col style="width: 3%">
+<col style="width: 45%">
+<col style="width: 5%">
+<col style="width: 5%">
 <col style="width: 15%">
-<col style="width: 2%">
+<col style="width: 1%">
 <col style="width: 23%">
 </colgroup>
 <thead>
@@ -746,15 +746,24 @@ Invalid query parameters error.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">W2739368650</td>
-<td style="text-align: left;">Living Green Shell: Urban micro-vertical farm</td>
-<td style="text-align: left;">Jeanne Lee</td>
-<td style="text-align: left;">I-Ting Chuang</td>
+<td style="text-align: left;">W3092970147</td>
+<td style="text-align: left;">Research on urban waterlogging in China</td>
+<td style="text-align: left;">Yang Yang</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Roof, Urban heat island, Greening</td>
+<td style="text-align: left;">Urbanization, Urban planning, Population</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">W4285200466</td>
+<td style="text-align: left;">Predicting Housing Prices in Hong Kong Based on AI Interpreted Sentiment in Social Media, Health and Sustainability Factors: A White-box AutoML Research Agenda</td>
+<td style="text-align: left;">Rita Yi Man Li</td>
+<td style="text-align: left;">Kwong Wing Chau</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Sustainability, Valuation (finance), Sentiment analysis</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">W1884411247</td>
 <td style="text-align: left;">Multiscaled analysis of hydrothermal dynamics in Japanese megalopolis by using integrated approach</td>
 <td style="text-align: left;">Tadanobu Nakayama</td>
@@ -762,33 +771,6 @@ Invalid query parameters error.
 <td style="text-align: left;">Hydrological processes</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Water cycle, Latent heat, Groundwater</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">W2803234898</td>
-<td style="text-align: left;">Impact of greening on the urban heat island: Seasonal variations and mitigation strategies</td>
-<td style="text-align: left;">Bumseok Chun</td>
-<td style="text-align: left;">Jean‐Michel Guldmann</td>
-<td style="text-align: left;">Computers, environment and urban systems</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Urban heat island, Impervious surface, Vegetation (pathology)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">W1979863349</td>
-<td style="text-align: left;">Analyzing the Influence of Urban Forms on Surface Urban Heat Islands in Europe</td>
-<td style="text-align: left;">Nina Schwarz</td>
-<td style="text-align: left;">Ameur M. Manceur</td>
-<td style="text-align: left;">Journal of urban planning and development</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Urban heat island, Urban area, Elevation (ballistics)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">W4200545985</td>
-<td style="text-align: left;">Calculation of surface urban heat index from LANDSAT-8 TIRS data and its relation with land cover</td>
-<td style="text-align: left;">Anabella Ferral</td>
-<td style="text-align: left;">Carlos Marcelo Scavuzzo</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">Urban heat island, Metropolitan area, Index (typography)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">W2566986869</td>
@@ -798,6 +780,24 @@ Invalid query parameters error.
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">FALSE</td>
 <td style="text-align: left;">Microclimate, Urban heat island, Climate change</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">W2991559970</td>
+<td style="text-align: left;">Modeling of the heat island in the period of extreme frost in Moscow in January 2017</td>
+<td style="text-align: left;">V. P. Yushkov</td>
+<td style="text-align: left;">M. A. Kallistratova</td>
+<td style="text-align: left;">Izvestiâ Akademii nauk SSSR. Fizika atmosfery i okeana</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">Mesoscale meteorology, Weather Research and Forecasting Model, Urban heat island</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">W2993775190</td>
+<td style="text-align: left;">Large Urban Trees as Stormwater Infrastructure: Too Good to Be True?</td>
+<td style="text-align: left;">Peter MacDonagh</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Proceedings of the Water Environment Federation</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">Green infrastructure, Urban heat island, Surface runoff</td>
 </tr>
 </tbody>
 </table>
@@ -859,7 +859,7 @@ Tip
 <td style="text-align: left;">Massimo Aria</td>
 <td style="text-align: left;">0000-0002-8517-9411</td>
 <td style="text-align: right;">193</td>
-<td style="text-align: right;">8979</td>
+<td style="text-align: right;">9307</td>
 <td style="text-align: left;">University of Naples Federico II</td>
 <td style="text-align: left;">Physiology, Pathology and Forensic Medicine, Periodontics</td>
 </tr>
@@ -969,7 +969,7 @@ Tip
  [7] "Genetic tagging of humpback whales"                                                                  
  [8] "9. The Seasonal Migratory Cycle of Humpback Whales"                                                  
  [9] "Abundant mitochondrial DNA variation and world-wide population structure in humpback whales."        
-[10] "Humpback Whales (&lt;i&gt;Megaptera novaeangliae&lt;/i&gt;) Fatally Poisoned by Dinoflagellate Toxin"            </code></pre>
+[10] "Male Competition in Large Groups of Wintering Humpback Whales"                                       </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>n_authors <span class="ot">&lt;-</span> <span class="fu">sapply</span>(humpback<span class="sc">$</span>author, nrow)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>hb_authors <span class="ot">&lt;-</span> humpback<span class="sc">$</span>author <span class="sc">|&gt;</span></span>
@@ -1041,20 +1041,20 @@ Tip
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4,121 × 6
+<pre><code># A tibble: 4,126 × 6
    id    is_oa_anywhere oa_status oa_url any_repository_has_f…¹ publication_year
    &lt;chr&gt; &lt;lgl&gt;          &lt;chr&gt;     &lt;chr&gt;  &lt;lgl&gt;                             &lt;int&gt;
- 1 http… FALSE          closed    &lt;NA&gt;   FALSE                              2006
- 2 http… TRUE           gold      https… TRUE                               2014
- 3 http… TRUE           hybrid    https… TRUE                               2014
- 4 http… TRUE           gold      https… TRUE                               2020
- 5 http… TRUE           gold      https… TRUE                               2020
- 6 http… TRUE           hybrid    https… TRUE                               2021
- 7 http… TRUE           gold      https… TRUE                               2019
- 8 http… TRUE           gold      https… TRUE                               2015
+ 1 http… TRUE           gold      https… TRUE                               2014
+ 2 http… TRUE           hybrid    https… TRUE                               2014
+ 3 http… TRUE           gold      https… TRUE                               2020
+ 4 http… TRUE           hybrid    https… TRUE                               2021
+ 5 http… TRUE           gold      https… TRUE                               2019
+ 6 http… TRUE           gold      https… TRUE                               2015
+ 7 http… TRUE           gold      https… TRUE                               2017
+ 8 http… TRUE           gold      https… TRUE                               2019
  9 http… TRUE           gold      https… TRUE                               2023
 10 http… TRUE           gold      https… TRUE                               2023
-# ℹ 4,111 more rows
+# ℹ 4,116 more rows
 # ℹ abbreviated name: ¹​any_repository_has_fulltext</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>w_dartmouth <span class="sc">|&gt;</span> </span>
